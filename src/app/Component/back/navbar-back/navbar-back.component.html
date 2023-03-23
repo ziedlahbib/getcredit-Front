@@ -1,0 +1,12 @@
+<section>
+    <p-menubar [model]="item">
+        <ng-template pTemplate="start">
+            <img src="assets/images.png" height="40" class="mr-2">
+        </ng-template>
+        <ng-template pTemplate="end">
+            <p-chip label="zied lahbib" image="assets/images.png" styleClass="mr-2"
+                (click)="menu.toggle($event)"></p-chip>
+            <p-menu #menu [popup]="true" [model]="items"></p-menu>
+        </ng-template>
+    </p-menubar>
+</section>

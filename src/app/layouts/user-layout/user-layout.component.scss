@@ -1,0 +1,23 @@
+#entete, #menu, #contenu, #footer {
+    padding:1px 0;
+    }
+    #entete {
+    text-align:center;
+    }
+    #main {
+        margin:auto;
+        }
+        #menu  {
+        float:left;
+        width:245px;
+        }
+        #contenu {
+        margin-left:245px;
+        width: 1200px;
+        }
+
+    #footer {
+
+    text-align:center;
+    clear:both;
+    }
