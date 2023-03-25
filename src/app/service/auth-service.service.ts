@@ -21,6 +21,7 @@ export class AuthServiceService {
   }
 
   registerSuccessfulLogin(data:any) {
+    localStorage.clear();
     localStorage.setItem('autorisation',data.accessToken);
     console.log(data.accessToken);
   }
@@ -31,15 +32,4 @@ export class AuthServiceService {
     this.password = "";
   }
 
-  isUserLoggedIn() {
-    let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
-    if (user === null) return false
-    return true
-  }
-
-  getLoggedInUserName() {
-    let user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME)
-    if (user === null) return ''
-    return user
-  }
 }
