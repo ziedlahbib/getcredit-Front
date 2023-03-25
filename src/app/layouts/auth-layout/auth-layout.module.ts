@@ -9,11 +9,13 @@ import {PasswordModule} from 'primeng/password';
 import {ButtonModule} from 'primeng/button';
 import {TriStateCheckboxModule} from 'primeng/tristatecheckbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from 'src/app/pages/login/login.component';
 
 
 @NgModule({
   declarations: [
     AuthLayoutComponent,
+    LoginComponent,
 
   ],
   imports: [

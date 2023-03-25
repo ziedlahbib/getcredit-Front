@@ -9,7 +9,7 @@ import {MenuItem} from 'primeng/api';
 export class NavbarBackComponent implements OnInit {
 
   
-  nom="zied"
+
   items: MenuItem[]=[];
   item: MenuItem[]=[];
   constructor() { }
@@ -25,8 +25,6 @@ export class NavbarBackComponent implements OnInit {
     this.items = [
 
         {
-            label:this.nom,
-            icon:'assets/images.png',
             items:[
                 {
                     label:'profil',

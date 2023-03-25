@@ -1,0 +1,36 @@
+<div>
+
+    <h1 class="glow">--tous les produit--</h1>
+
+    <!-- <div style="padding:40px ;">
+        <div class="example-header" style="margin-left: 50px">
+
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText placeholder="Search" (keyup)="applyFilter($event)" />
+            </span>
+
+        </div>
+        <br>
+        <br>
+        <br> -->
+        <div class="row row-cols-1 row-cols-md-3">
+            <div class="col mb-4" *ngFor="let u of usersListPagination">
+                <div class="card h-100">
+                    <!-- <img src="api/File/file/{{t.files.id}}" class="card-img-top" alt="..."> -->
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-weight: bold;font-size: 50px;margin: 50px;">{{u.nom}}</h5>
+                        <h5 class="card-title" style="font-weight: bold;font-size: 50px;margin: 50px;">{{u.prenom}}</h5>
+                        <p class="card-text " style="color: red;">prix:{{u.email}}</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12" *ngIf="usersListPagination">
+            <mat-paginator [length]="usersList.length" [pageSize]="6" [pageSizeOptions]="[6, 12, 18]"
+                (page)="paginate($event)">
+            </mat-paginator>
+        </div>
+    </div>
+

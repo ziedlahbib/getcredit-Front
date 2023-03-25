@@ -7,9 +7,9 @@ import { UserLayoutComponent } from './layouts/user-layout/user-layout.component
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'register',
+    redirectTo: 'login',
     pathMatch: 'full',
-  }, 
+  },
   {
     path: '',
     component: AdminLayoutComponent,

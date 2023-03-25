@@ -18,6 +18,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+import { AddEditUserComponent } from 'src/app/pages/user-management/add-edit-user/add-edit-user.component';
+import { EntrepriseManagementComponent } from 'src/app/pages/entreprise-management/entreprise-management.component';
+import { UserManagementComponent } from 'src/app/pages/user-management/user-management.component';
+
+
 
 
 
@@ -30,6 +35,9 @@ import {MatSelectModule} from '@angular/material/select';
     SidenavComponent,
     NavbarBackComponent,
     FooterBackComponent,
+    UserManagementComponent,
+    AddEditUserComponent,
+    EntrepriseManagementComponent,
 
     
   ],
@@ -48,7 +56,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     MatPaginatorModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
   ]
 })
 export class AdminLayoutModule { }

@@ -9,10 +9,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AccordionModule } from 'primeng/accordion'; 
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserManagementComponent } from './pages/user-management/user-management.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
+
   ],
   imports: [
     BrowserModule,
