@@ -1,5 +1,6 @@
 import { Credit } from "./credit";
-import { Entreprise } from "./Entreprise";
+import { Entreprise } from "./entreprise";
+
 import { FileDB } from "./fileDB";
 import { Magasin } from "./magasin";
 import { Role } from "./role";

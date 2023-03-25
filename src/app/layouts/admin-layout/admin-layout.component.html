@@ -11,18 +11,11 @@
 
 <div id="navbar">
 
-
-    <div class="divide">
-        <button id="closeNav" (click)="w3_close()">&#9776;</button>
-        <button id="openNav" (click)="w3_open()">&#9776;</button>
-    </div>
-    <div>
         <app-navbar-back>
         </app-navbar-back>
-    </div>
 </div>
 <div id="main">
-    <div style="display:none" id="menu"><app-sidenav></app-sidenav></div>
+    <div  id="menu"><app-sidenav></app-sidenav></div>
 
     <div id="contenu">
         <router-outlet></router-outlet>

@@ -1,5 +1,5 @@
-import { Entreprise } from "./Entreprise";
-import { Produit } from "./Produit";
+import { Entreprise } from "./entreprise";
+import { Produit } from "./produit";
 
 export class Magasin {
     magasinId?:Number;

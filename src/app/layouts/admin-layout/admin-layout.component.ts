@@ -13,28 +13,5 @@ export class AdminLayoutComponent implements OnInit {
 
   ngOnInit(): void {
   }
-   w3_open() {
-
-  (<HTMLInputElement>document.getElementById("menu")).style.display = "block"; 
-  (<HTMLInputElement>document.getElementById("openNav")).style.display = 'none';
-  (<HTMLInputElement>document.getElementById("openNav")).style.height = '57px'; 
-  (<HTMLInputElement>document.getElementById("closeNav")).style.display = "inline-block";
-
-
-
-
-
-
-
   
-  }
-  
-   w3_close() {
-
-    (<HTMLInputElement>document.getElementById("menu")).style.display = "none";
-   (<HTMLInputElement>document.getElementById("openNav")).style.display = "inline-block";
-   (<HTMLInputElement>document.getElementById("closeNav")).style.display = "none";
-  
-  
-  }
 }

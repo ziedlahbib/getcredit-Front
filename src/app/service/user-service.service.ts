@@ -9,10 +9,15 @@ import { User } from '../model/user';
 export class UserServiceService {
 
   getbyusersurl="http://localhost:8081/user/get-users";
+  getbyuserbyIdsurl="http://localhost:8081/user/get-user";
   constructor(private http : HttpClient) { }
 
   getusers(): Observable<User[]>{
     return this.http.get<User[]>(`${this.getbyusersurl}`);
+
+  }
+  getuserById(iduser :Number): Observable<User>{
+    return this.http.get<User>(`${this.getbyuserbyIdsurl}/${iduser}`);
 
   }
 }

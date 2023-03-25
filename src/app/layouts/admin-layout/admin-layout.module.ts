@@ -29,6 +29,7 @@ import { UserManagementComponent } from 'src/app/pages/user-management/user-mana
 
 
 
+
 @NgModule({
   declarations: [
     AdminLayoutComponent,
@@ -57,6 +58,7 @@ import { UserManagementComponent } from 'src/app/pages/user-management/user-mana
     MatPaginatorModule,
     MatInputModule,
     MatSelectModule,
+    
   ]
 })
 export class AdminLayoutModule { }
