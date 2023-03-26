@@ -21,6 +21,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { AddEditUserComponent } from 'src/app/pages/user-management/add-edit-user/add-edit-user.component';
 import { EntrepriseManagementComponent } from 'src/app/pages/entreprise-management/entreprise-management.component';
 import { UserManagementComponent } from 'src/app/pages/user-management/user-management.component';
+import {PanelMenuModule} from 'primeng/panelmenu';
 
 
 
@@ -58,6 +59,7 @@ import { UserManagementComponent } from 'src/app/pages/user-management/user-mana
     MatPaginatorModule,
     MatInputModule,
     MatSelectModule,
+    PanelMenuModule
     
   ]
 })

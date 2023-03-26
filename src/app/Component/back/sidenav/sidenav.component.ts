@@ -9,10 +9,100 @@ import {MenuItem} from 'primeng/api';
 export class SidenavComponent implements OnInit {
 
 
+  items: MenuItem[] = [];
   constructor() { }
 
   ngOnInit(): void {
-    
+    this.items = [
+      {
+        label: 'Gestion des utilisateurs',
+        items: [
+            {
+                label: 'ajouter',
+
+            },
+            {
+                label: 'modifier',
+
+            },
+            {
+                label: 'afficher',
+
+            },
+            
+        ]
+    },
+    {
+        label: 'Gestion des Entreprises',
+        items: [
+            {
+                label: 'ajouter',
+
+            },
+            {
+                label: 'modifier',
+
+            },
+            {
+                label: 'afficher',
+
+            },
+            
+        ]
+    },
+    {
+        label: 'Gestionn des magasins',
+        items: [
+            {
+                label: 'ajouter',
+
+            },
+            {
+                label: 'modifier',
+
+            },
+            {
+                label: 'afficher',
+
+            },
+            
+        ]
+    }, {
+        label: 'Gestion des produits',
+        items: [
+            {
+                label: 'ajouter',
+
+            },
+            {
+                label: 'modifier',
+
+            },
+            {
+                label: 'afficher',
+
+            },
+            
+        ]
+    },{
+        label: 'Gestion des crédits',
+        items: [
+            {
+                label: 'ajouter',
+
+            },
+            {
+                label: 'modifier',
+
+            },
+            {
+                label: 'afficher',
+
+            },
+            
+        ]
+    },
+  ]
 }
 }
 
