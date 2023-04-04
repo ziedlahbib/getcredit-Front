@@ -1,5 +1,5 @@
 export enum ERole {
-    ROLE_AGENT="ROLE_AGENT",
-    ROLE_ENTREPRENEUR="ROLE_ENTREPRENEUR",
-    ROLE_ADMIN="ROLE_ADMIN"
+    ROLE_AGENT="agent",
+    ROLE_ENTREPRENEUR="entrepreneur",
+    ROLE_ADMIN="admin"
 }

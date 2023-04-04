@@ -8,8 +8,9 @@ import { User } from '../model/user';
 })
 export class UserServiceService {
 
-  getbyusersurl="http://localhost:8081/user/get-users";
-  getbyuserbyIdsurl="http://localhost:8081/user/get-user";
+  getbyusersurl="/api/user/get-users";
+  getbyuserbyIdsurl="/api/user/get-user";
+  adduserUrl="/api/auth/signup";
   constructor(private http : HttpClient) { }
 
   getusers(): Observable<User[]>{
@@ -19,5 +20,8 @@ export class UserServiceService {
   getuserById(iduser :Number): Observable<User>{
     return this.http.get<User>(`${this.getbyuserbyIdsurl}/${iduser}`);
 
+  }
+  ajoutuser(user :User): Observable<User>{
+    return this.http.post<User>(`${this.adduserUrl}`,user);
   }
 }

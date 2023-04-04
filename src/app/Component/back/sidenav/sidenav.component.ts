@@ -19,6 +19,7 @@ export class SidenavComponent implements OnInit {
         items: [
             {
                 label: 'ajouter',
+                routerLink: '/ajoutuser',
 
             },
             {

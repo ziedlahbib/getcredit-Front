@@ -16,7 +16,7 @@
                                             <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
                                             <span class="p-float-label">
                                                 <input id="float-input" type="text" pInputText
-                                                    formControlName="userName">
+                                                    formControlName="username">
                                                 <label for="float-input">username</label>
                                             </span>
                                         </div>
@@ -65,27 +65,14 @@
                                         </div>
                                     </div>
 
-                                    <!--
-                                                        <div class="d-flex flex-row align-items-center mb-4">
-                                        <div class="p-inputgroup">
-                                            <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
-                                            <span class="p-float-label">
-                                            <span class="p-float-label">
-                                                <input id="float-input" type="password" pPassword> 
-                                                <label for="float-input"> Repeat Password</label>
-                                            </span> 
-                                            </span>        
-                                        </div>
-                                    </div>
-                                     -->
 
                                      <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
                                           <span class="p-inputgroup-addon"><i class="pi pi-inbox"></i></span>
                                           <span class="p-float-label">
                                             <span class="p-float-label">
-                                              <input id="float-input" type="text" pInputText formControlName="cin">
-                                              <label for="float-input">cin</label>
+                                              <input id="float-input" type="text" pInputText formControlName="tel">
+                                              <label for="float-input">tel </label>
                                             </span>
                                           </span>
                                         </div>
@@ -104,29 +91,15 @@
                                         </div>
                                       </div>
                                       
-                                      <mat-form-field class="demo-full-width" appearance="fill">
-                                        <mat-label>Choose one</mat-label>
-                                        <select matNativeControl [formControl]="nativeSelectFormControl" [errorStateMatcher]="matcher" formControlName="role">
-                                          <option value=""></option>
-                                          <option value="valid" selected>Valid option</option>
-                                          <option value="invalid">Invalid option</option>
+                                      <mat-form-field appearance="fill">
+                                        <mat-label>Choose an option</mat-label>
+                                        <select matNativeControl formControlName="roles" >
+                                          <option value="" selected></option>
+                                          <option *ngFor="let c of erole | keyvalue" [value]="c.value">{{c.value}}</option>
                                         </select>
-                                        <mat-error *ngIf="nativeSelectFormControl.hasError('required')">You must make a selection</mat-error>
-                                        <mat-error *ngIf="nativeSelectFormControl.hasError('pattern') && !nativeSelectFormControl.hasError('required')">
-                                          Your selection is invalid
-                                        </mat-error>
                                       </mat-form-field>
-
-                                    <div class="form-check d-flex justify-content-center mb-5">
-                                        <input class="form-check-input me-2" type="checkbox" value=""
-                                            id="form2Example3c" />
-                                        <label class="form-check-label" for="form2Example3">
-                                            I agree all statements in <a href="#!">Terms of service</a>
-                                        </label>
-                                    </div>
-
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="button" class="btn btn-primary btn-lg">Register</button>
+                                        <button type="button" class="btn btn-primary btn-lg" (click)="ajouter()">Register</button>
                                     </div>
 
                                 </form>
@@ -134,7 +107,7 @@
                             </div>
                             <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                <img src="assets/vermeg.jpg" height="100%" width="100%"
                                     class="img-fluid" alt="Sample image">
 
                             </div>

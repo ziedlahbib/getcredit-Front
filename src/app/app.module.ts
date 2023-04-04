@@ -11,11 +11,13 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserManagementComponent } from './pages/user-management/user-management.component';
 import { HttpInterceptorService } from './service/http-interceptor.service';
+import { AddUserComponent } from './pages/user-management/add-user/add-user.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+ 
 
 
   ],

@@ -18,10 +18,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
-import { AddEditUserComponent } from 'src/app/pages/user-management/add-edit-user/add-edit-user.component';
 import { EntrepriseManagementComponent } from 'src/app/pages/entreprise-management/entreprise-management.component';
 import { UserManagementComponent } from 'src/app/pages/user-management/user-management.component';
 import {PanelMenuModule} from 'primeng/panelmenu';
+import { AddUserComponent } from 'src/app/pages/user-management/add-user/add-user.component';
 
 
 
@@ -38,7 +38,7 @@ import {PanelMenuModule} from 'primeng/panelmenu';
     NavbarBackComponent,
     FooterBackComponent,
     UserManagementComponent,
-    AddEditUserComponent,
+    AddUserComponent,
     EntrepriseManagementComponent,
 
     
@@ -59,7 +59,8 @@ import {PanelMenuModule} from 'primeng/panelmenu';
     MatPaginatorModule,
     MatInputModule,
     MatSelectModule,
-    PanelMenuModule
+    PanelMenuModule,
+    
     
   ]
 })
