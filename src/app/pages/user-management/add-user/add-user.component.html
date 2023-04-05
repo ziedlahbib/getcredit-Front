@@ -1,117 +1,120 @@
-
 <section class="vh-100" style="background-color: #eee;">
     <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-lg-12 col-xl-11">
-          <div class="card text-black" style="border-radius: 25px;">
-            <div class="card-body p-md-5">
-              <div class="row justify-content-center">
-                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1" >
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-    <form class="mx-1 mx-md-4" [formGroup]="userform">
+                                <form class="mx-1 mx-md-4" [formGroup]="userform">
 
-        <div class="d-flex flex-row align-items-center mb-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
 
-                <input type="text" pInputText formControlName="username" placeholder="username">
-
-
-            </div>
-        </div>
-        <div class="d-flex flex-row align-items-center mb-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-
-                <input type="text" pInputText formControlName="nom" placeholder="nom">
-
-            </div>
-        </div>
-        <div class="d-flex flex-row align-items-center mb-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-
-                <input type="text" pInputText formControlName="prenom" placeholder="prenom">
+                                            <input type="text" pInputText formControlName="username"
+                                                placeholder="username">
 
 
-            </div>
-        </div>
-        <div class="d-flex flex-row align-items-center mb-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-inbox"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+
+                                            <input type="text" pInputText formControlName="nom" placeholder="nom">
+
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+
+                                            <input type="text" pInputText formControlName="prenom" placeholder="prenom">
 
 
-                <input type="text" pInputText formControlName="email" placeholder="email">
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-inbox"></i></span>
 
 
-            </div>
-        </div>
-
-        <div class="d-flex flex-row align-items-center mb-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                                            <input type="text" pInputText formControlName="email" placeholder="email">
 
 
-                <input type="password" pPassword formControlName="password" placeholder="password">
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
 
 
-
-            </div>
-        </div>
-
-
-        <div class="d-flex flex-row align-items-center mb-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-inbox"></i></span>
-
-
-                <input type="text" pInputText formControlName="tel" placeholder="tel">
+                                            <input type="password" pPassword formControlName="password"
+                                                placeholder="password">
 
 
 
-            </div>
-        </div>
+                                        </div>
+                                    </div>
 
 
-        <div class="d-flex flex-row align-items-center mb-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-inbox"></i></span>
-
-                <input id="float-input" type="text" pInputText formControlName="adresse" placeholder="adresse">
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-inbox"></i></span>
 
 
+                                            <input type="text" pInputText formControlName="tel" placeholder="tel">
 
-            </div>
-        </div>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Choose an option</mat-label>
-            <select matNativeControl formControlName="roles">
-                <option value="" selected></option>
-                <option *ngFor="let c of erole | keyvalue" [value]="c.value">{{c.value}}
-                </option>
-            </select>
-        </mat-form-field>
-        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-            <button type="button" class="btn btn-primary btn-lg" (click)="ajouter()">Register</button>
-        </div>
 
-    </form>
+                                        </div>
+                                    </div>
 
-</div>
- <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                                <img src="assets/vermeg.jpg" height="100%" width="100%" class="img-fluid"
-                                    alt="Sample image">
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-inbox"></i></span>
 
-                                </div>
+                                            <input id="float-input" type="text" pInputText formControlName="adresse"
+                                                placeholder="adresse">
+
+
+
+                                        </div>
+                                    </div>
+
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Choose an option</mat-label>
+                                        <select matNativeControl formControlName="roles">
+                                            <option value="" selected></option>
+                                            <option *ngFor="let c of erole | keyvalue" [value]="c.value">{{c.value}}
+                                            </option>
+                                        </select>
+                                    </mat-form-field>
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="button" class="btn btn-primary btn-lg"
+                                            (click)="ajouter()">Register</button>
+                                    </div>
+
+                                </form>
+
                             </div>
-                          </div>
+                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                <img src="assets/Vermeg_Office.jpg" height="100%" width="100%" 
+                                 >
+
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
-                </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 >
