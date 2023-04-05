@@ -12,13 +12,13 @@
                 text-align: center;
             }
             #main {
-                height :850px;
+                height :900px;
                 margin-top: 200px;
             }
             #menu  {
             float:left;
             width:240px;
-            height: 697px;
+            height: 100%;
             position: fixed;
             top: 62px;
             background-color: #eaeaea;
@@ -37,34 +37,3 @@
             text-align:center;
             clear:both;
             }
-  #navbar {
-    overflow: hidden;
-
-  }
-  
-
-  #navbar a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px;
-    text-decoration: none;
-  }
-  
-
-  .content {
-    padding: 16px;
-  }
-  
-
-  .sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-  }
-  
-  
-  .sticky + .content {
-    padding-top: 60px;
-  }
