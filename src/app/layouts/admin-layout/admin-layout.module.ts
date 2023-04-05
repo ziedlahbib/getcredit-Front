@@ -22,6 +22,7 @@ import { EntrepriseManagementComponent } from 'src/app/pages/entreprise-manageme
 import { UserManagementComponent } from 'src/app/pages/user-management/user-management.component';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import { AddUserComponent } from 'src/app/pages/user-management/add-user/add-user.component';
+import { EditUserComponent } from 'src/app/pages/user-management/edit-user/edit-user.component';
 
 
 
@@ -40,6 +41,7 @@ import { AddUserComponent } from 'src/app/pages/user-management/add-user/add-use
     UserManagementComponent,
     AddUserComponent,
     EntrepriseManagementComponent,
+    EditUserComponent
 
     
   ],

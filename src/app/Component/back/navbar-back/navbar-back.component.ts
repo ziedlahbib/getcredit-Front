@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import jwt_decode from "jwt-decode";
@@ -13,9 +13,10 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 export class NavbarBackComponent implements OnInit {
 
   
-  user?: User;
+  user: User;
   items: MenuItem[]=[];
   item: MenuItem[]=[];
+  isReady=false;
   constructor(private us : UserServiceService,private authenticationService: AuthServiceService) { }
 
   ngOnInit(): void {
@@ -27,13 +28,26 @@ export class NavbarBackComponent implements OnInit {
             routerLink:'/home',
   
         },];
-    this.items = [
+    
+  }
+getuserbyid(){
+  let token=localStorage.getItem('autorisation'|| '');
+  let user:any=jwt_decode(token|| '');
+  console.log('sss',user.jti);
+  this.us.getuserById(user.jti).subscribe(
+    data=>{
+      console.log(data)
+      this.user=data;
+      this.isReady=true;
+      this.items = [
 
         {
             items:[
                 {
                     label:'profil',
-                    icon:'pi pi-user'
+                    icon:'pi pi-user',
+                    routerLink: ['/edit-user',  { id:this.user.id }]
+                    
     
                 },
                 {
@@ -46,19 +60,26 @@ export class NavbarBackComponent implements OnInit {
             ]
         },
     ];
-  }
-getuserbyid(){
-  let token=localStorage.getItem('autorisation'|| '');
-  let user:any=jwt_decode(token|| '');
-  console.log('sss',user.jti);
-  this.us.getuserById(user.jti).subscribe(
-    data=>{
-      console.log(data)
-      this.user=data;
     }
   )
 }
 logout(){
   this.authenticationService.logout();
+}
+menuStyle: any = {};
+@HostListener('window:scroll')
+onWindowScroll() {
+  const menu = document.querySelector('.p-menu') as HTMLElement;
+  if (menu) {
+    const button = document.querySelector('.p-button') as HTMLElement;
+    const buttonRect = button.getBoundingClientRect();
+    const top = buttonRect.bottom + window.scrollY;
+    const left = buttonRect.left + window.scrollX;
+    this.menuStyle = {
+      position: 'fixed',
+      top: `${top}px`,
+      left: `${left}px`,
+    };
+  }
 }
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidenavFrontComponent } from './sidenav-front.component';
+import { EditUserComponent } from './edit-user.component';
 
-describe('SidenavFrontComponent', () => {
-  let component: SidenavFrontComponent;
-  let fixture: ComponentFixture<SidenavFrontComponent>;
+describe('EditUserComponent', () => {
+  let component: EditUserComponent;
+  let fixture: ComponentFixture<EditUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SidenavFrontComponent ]
+      declarations: [ EditUserComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SidenavFrontComponent);
+    fixture = TestBed.createComponent(EditUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

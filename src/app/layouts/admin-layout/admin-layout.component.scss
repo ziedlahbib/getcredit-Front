@@ -1,41 +1,75 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Remove default margin and padding for body */
+body {
+  margin: 0;
+  padding: 0;
+}
+#navbar {
+  text-align: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px; /* Change as needed */
+  /* Change as needed */
+  background-color: #333;
+  /* Change as needed */
+  color: #fff;
+  /* Change as needed */
+  padding: 10px;
+  /* Change as needed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  /* Change as needed */
+  z-index: 1;
+}
+
+#menu {
+  position: fixed;
+  top: 80px;
+  /* Height of navbar */
+  left: 0;
+  width: 300px;
+  /* Change as needed */
+  height: calc(100% - 80px);
+  /* Height of viewport minus height of navbar */
+  background-color: #f2f2f2;
+  /* Change as needed */
+  padding: 10px;
+  /* Change as needed */
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.2);
+  /* Change as needed */
+  overflow: scroll;
+}
+
+#contenu {
+  margin-top: 80px;
+  /* Height of navbar */
+  margin-left: 25%;
+  /* Width of sidenav */
+  margin-right: 15%;
+  padding: 20px;
+  /* Change as needed */
 
 
-        #navbar, #menu, #contenu, #footer {
-            padding:1px 0;
-            }
-            #navbar {
-                overflow: hidden;
-                position: fixed;
-                top: 0;
-                width: 100%;
-                height: 180px;
-                text-align: center;
-            }
-            #main {
-                height :100%;
-            
-            }
-            #menu  {
-            float:left;
-            width:300px;
-            height: 875px;
-            position: fixed;
-            top: 57px;
-            background-color: #eaeaea;
-            overflow: scroll;
+}
 
-
-            
-
-            }
-            #contenu {
-            margin-left:25%;
-            margin-right: 10%;
-            
- 
-            }
-            #footer {
-            background-color:#848484;
-            text-align:center;
-            clear:both;
-            }
+#footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  /* Change as needed */
+  background-color: #333;
+  /* Change as needed */
+  color: #fff;
+  /* Change as needed */
+  padding: 10px;
+  /* Change as needed */
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+  /* Change as needed */
+  z-index: 1;
+}

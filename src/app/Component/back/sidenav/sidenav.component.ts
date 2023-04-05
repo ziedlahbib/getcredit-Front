@@ -23,11 +23,8 @@ export class SidenavComponent implements OnInit {
 
             },
             {
-                label: 'modifier',
-
-            },
-            {
                 label: 'afficher',
+                routerLink: '/affichlistuser',
 
             },
             

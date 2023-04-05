@@ -9,17 +9,15 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
-<div id="navbar">
+<body>
+    <div id="navbar">
 
         <app-navbar-back>
         </app-navbar-back>
 </div>
-<div id="main" >
-    <div  id="menu" ><app-sidenav></app-sidenav></div>
-
-    <div id="contenu">
-        <router-outlet></router-outlet>
-    </div>
-
+<div  id="menu" ><app-sidenav></app-sidenav></div>
+<div id="contenu">
+    <router-outlet></router-outlet>
 </div>
 <div id="footer"><app-footer-back></app-footer-back></div>
+  </body>

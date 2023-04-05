@@ -1,12 +1,12 @@
-<section>
+
     <p-menubar [model]="item">
         <ng-template pTemplate="start">
             <img src="assets/images.png" height="40" class="mr-2">
         </ng-template>
         <ng-template pTemplate="end">
-            <p-chip label="{{user?.nom}} {{user?.prenom}}"  styleClass="mr-2"></p-chip>
-                <p-button icon="pi pi-user" styleClass="p-button-rounded p-button-info p-button-outlined" (click)="menu.toggle($event)"></p-button>
-            <p-menu #menu [popup]="true" [model]="items"></p-menu>
+            <p-chip *ngIf="isReady" label="{{user.nom}} {{user.prenom}}" styleClass="mr-2"></p-chip>
+            <p-button icon="pi pi-user" styleClass="p-button-rounded p-button-info p-button-outlined"
+                (click)="menu.toggle($event)"></p-button>
+            <p-menu #menu [popup]="true" [model]="items" appendTo="body" [style]="menuStyle"></p-menu>
         </ng-template>
     </p-menubar>
-</section>
