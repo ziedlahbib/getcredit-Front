@@ -4,6 +4,7 @@ import { UserServiceService } from 'src/app/service/user-service.service';
 import jwt_decode from "jwt-decode";
 import { User } from 'src/app/model/user';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar-back',
@@ -17,7 +18,7 @@ export class NavbarBackComponent implements OnInit {
   items: MenuItem[]=[];
   item: MenuItem[]=[];
   isReady=false;
-  constructor(private us : UserServiceService,private authenticationService: AuthServiceService) { }
+  constructor(private us : UserServiceService,private authenticationService: AuthServiceService,private router :Router) { }
 
   ngOnInit(): void {
     this.getuserbyid();
@@ -46,7 +47,7 @@ getuserbyid(){
                 {
                     label:'profil',
                     icon:'pi pi-user',
-                    routerLink: ['/edit-user',  { id:this.user.id }]
+                    command: (event) => this.navigateToItem(this.user.id),
                     
     
                 },
@@ -62,6 +63,9 @@ getuserbyid(){
     ];
     }
   )
+}
+navigateToItem(itemId: Number) {
+  this.router.navigate(['/edit-user', itemId]);
 }
 logout(){
   this.authenticationService.logout();
