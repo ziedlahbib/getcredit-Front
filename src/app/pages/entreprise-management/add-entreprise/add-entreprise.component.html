@@ -1,0 +1,33 @@
+<div class="container-fluid mt--7">
+
+    <div class="card shadow" style="height: 500px;;background-image: url('../assets/entreprise.jpg');">
+        <form [formGroup]="entreprsieform" style="text-align: center; margin-top: 10%;">
+            <div class="col">
+                <mat-form-field appearance="fill">
+                    <mat-label>nom</mat-label>
+                    <input matInput formControlName="nom">
+                </mat-form-field>
+
+
+                <mat-form-field appearance="fill" style="margin-left: 50px;">
+                    <mat-label>numero fiscale</mat-label>
+                    <input matInput type="number" formControlName="numfisc">
+                </mat-form-field>
+
+            </div>
+
+            <div class="col">
+                <mat-form-field appearance="fill">
+                    <mat-label>address</mat-label>
+                    <input matInput formControlName="adresse">
+                </mat-form-field>
+            </div>
+
+            <div mat-dialog-actions>
+
+                <button mat-button class="btn btn-success" (click)="ajouter()" style="margin-top: 50px;">ajouter
+                    entreprsie</button>
+            </div>
+        </form>
+    </div>
+</div>

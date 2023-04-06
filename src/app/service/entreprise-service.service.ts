@@ -32,4 +32,7 @@ export class EntrepriseServiceService {
   deleteEntreprise(id:number): any{
     return this.http.delete(`${this.deleteentrepriseUrl}/${id}`);
   }
+  affectentrepriseuser(idu:Number,ide :Number,entreprise :Entreprise): Observable<Entreprise>{
+    return this.http.put<Entreprise>("/api/entreprise/affecter-utilisateur-entreprise/"+idu+"/"+ide,entreprise);
+  }
 }

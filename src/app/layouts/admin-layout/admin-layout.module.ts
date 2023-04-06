@@ -26,6 +26,7 @@ import { EditUserComponent } from 'src/app/pages/user-management/edit-user/edit-
 import { MagasinManagementComponent } from 'src/app/pages/magasin-management/magasin-management.component';
 import { ProduitManagementComponent } from 'src/app/pages/produit-management/produit-management.component';
 import { CreditManagementComponent } from 'src/app/pages/credit-management/credit-management.component';
+import { AddEntrepriseComponent } from 'src/app/pages/entreprise-management/add-entreprise/add-entreprise.component';
 
 
 
@@ -44,6 +45,7 @@ import { CreditManagementComponent } from 'src/app/pages/credit-management/credi
     UserManagementComponent,
     AddUserComponent,
     EntrepriseManagementComponent,
+    AddEntrepriseComponent,
     EditUserComponent,
     MagasinManagementComponent,
     ProduitManagementComponent,
