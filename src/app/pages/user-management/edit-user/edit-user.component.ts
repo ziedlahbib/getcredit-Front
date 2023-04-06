@@ -1,6 +1,6 @@
 import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ERole } from 'src/app/model/erole';
 import { User } from 'src/app/model/user';
 import { UserServiceService } from 'src/app/service/user-service.service';
@@ -16,7 +16,7 @@ export class EditUserComponent implements OnInit {
   erole=ERole;
   user:User;
   isReady=false;
-  constructor(private us :UserServiceService ,private formBuilder: FormBuilder,private router:ActivatedRoute) { }
+  constructor(private us :UserServiceService ,private formBuilder: FormBuilder,private router:ActivatedRoute,private route:Router) { }
 
   ngOnInit(): void {
     this.get(this.router.snapshot.params['id']);
@@ -55,6 +55,7 @@ modifier(){
   this.us.updateuser(this.router.snapshot.params['id'],this.userform.value).subscribe(
     data=>{
       console.log(data);
+      this.route.navigate(['/affichlistuser']);
     }
   )
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ERole } from 'src/app/model/erole';
 import { UserServiceService } from 'src/app/service/user-service.service';
 
@@ -12,7 +13,7 @@ export class AddUserComponent implements OnInit {
 
   public userform!: FormGroup;
   erole=ERole;
-  constructor(private us :UserServiceService ,private formBuilder: FormBuilder) { }
+  constructor(private us :UserServiceService ,private formBuilder: FormBuilder,private route:Router) { }
   ngOnInit(): void {
     this.initForm();
     console.log(this.erole)
@@ -41,7 +42,8 @@ export class AddUserComponent implements OnInit {
 ajouter(){
   this.us.ajoutuser(this.userform.value).subscribe(
     data=>{
-      console.log(data)
+      console.log(data);
+      this.route.navigate(['/affichlistuser']);
     }
   )
 }
