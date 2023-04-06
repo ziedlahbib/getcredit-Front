@@ -9,15 +9,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccordionModule } from 'primeng/accordion'; 
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserManagementComponent } from './pages/user-management/user-management.component';
 import { HttpInterceptorService } from './service/http-interceptor.service';
-import { AddUserComponent } from './pages/user-management/add-user/add-user.component';
-import { EditUserComponent } from './pages/user-management/edit-user/edit-user.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
+
     
  
 

@@ -43,6 +43,7 @@ export class SidenavComponent implements OnInit {
             },
             {
                 label: 'afficher',
+                routerLink:'/affichlistEntreprise'
 
             },
             

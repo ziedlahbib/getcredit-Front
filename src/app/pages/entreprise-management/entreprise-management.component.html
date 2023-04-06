@@ -1,1 +1,109 @@
-<p>entreprise-management works!</p>
+
+  
+  <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">   
+      <!-- <button type="button" class="btn btn-secondary" style="margin: 10px 50px 20px;" routerLink="/ajouter-assurance">ajouter</button>
+    <button  type="button"class="btn btn-primary btn-round" style="margin: 10px 50px 20px;"  routerLink="/home">acceuil</button> -->
+    </div>
+  
+  
+     <div class="container-fluid mt--7">
+  
+  
+      <div class="row">
+        <div class="col">
+          <div class="card shadow">
+  
+            <div class="card-header border-0">
+              <h3 class="mb-0">Entreprsie List</h3>
+            </div>
+  
+            <div>
+              <div class="table-responsive">
+                <div class="example-header">
+                  <mat-form-field>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="search" >
+                  </mat-form-field>
+                </div>
+  
+                <div class="example-container mat-elevation-z8">
+  
+                  <mat-table [dataSource]="dataSource" matSort class="table align-items-center table-flush">
+
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="entrpriseId">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header > entrpriseId </mat-header-cell>
+                      <mat-cell *matCellDef="let row" >
+                        <div >
+                          {{row.entrpriseId}}
+                        </div>
+  
+  
+                      </mat-cell>
+                    </ng-container>
+
+  
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="nom">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header > nom </mat-header-cell>
+                      <mat-cell *matCellDef="let row" >
+                        <div >
+                          {{row.nom}}
+                        </div>
+  
+  
+                      </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="numfisc">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header > numfisc </mat-header-cell>
+                      <mat-cell *matCellDef="let row" >
+                        <div >
+                          {{row.numfisc}}
+                        </div>
+  
+  
+                      </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="adresse">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header > adresse </mat-header-cell>
+                      <mat-cell *matCellDef="let row" >
+                        <div >
+                          {{row.adresse}}
+                        </div>
+  
+  
+                      </mat-cell>
+                    </ng-container>
+                    
+
+
+  
+                    
+                    <!-- Color Column -->
+                    <ng-container matColumnDef="option" >
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
+                      <mat-cell *matCellDef="let row" class="text-right " >
+                          <div >
+                              <!--<button  class="dropdown-item"  id="ziedpag" style="background-color:#DC143C"  [routerLink]="['/assurance-management/modifier', row.assuId ]">modifier</button><br>
+                           <button  class="dropdown-item"  id="ziedpag"  style="background-color: #FA8072;" (click)="supprimer(row)">supprimer</button><br>-->
+                          </div> 
+  
+  
+  
+                       </mat-cell>
+                    </ng-container>
+  
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </mat-row>
+                  </mat-table>
+                  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  
