@@ -28,6 +28,16 @@ getuser() {
     }
   )
 }
+supprimer(user :any){
+  this.us.deleteuser(user.id).subscribe(()=>this.us.getusers().subscribe(
+    data=>{
+      this.usersList=data;
+      this.usersListPagination=this.usersList.slice(this.start, this.end);
+
+    }
+  )
+  );
+}
 paginate(event:PageEvent) {
   let startIndex = event.pageSize * event.pageIndex;
   this.start = startIndex;
