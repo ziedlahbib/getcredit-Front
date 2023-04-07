@@ -48,7 +48,7 @@ export class SidenavComponent implements OnInit {
         ]
     },
     {
-        label: 'Gestionn des magasins',
+        label: 'Gestion des magasins',
         items: [
             {
                 label: 'ajouter',
