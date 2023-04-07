@@ -6,6 +6,7 @@
 body {
   margin: 0;
   padding: 0;
+  background: linear-gradient(to bottom, #ffffff, #00172c);
 }
 #navbar {
   text-align: center;
@@ -44,13 +45,12 @@ body {
 }
 
 #contenu {
-  margin-top: 80px;
-  /* Height of navbar */
-  margin-left: 25%;
-  /* Width of sidenav */
-  margin-right: 15%;
+
+   margin-top: 80px;
+   margin-left: 25%;
+   margin-right: 15%;
   padding: 20px;
-  /* Change as needed */
+
 
 
 }

@@ -21,15 +21,9 @@
                     <div class="card-body">
                         <h5 class="card-title" style="font-weight: bold;font-size: 50px;margin: 50px;">{{u.nom}}</h5>
                         <h5 class="card-title" style="font-weight: bold;font-size: 50px;margin: 50px;">{{u.prenom}}</h5>
-                        <h5 class="card-title" style="font-weight: bold;font-size: 50px;margin: 50px;">{{u.nom}}</h5>
-                        <h5 class="card-title" style="font-weight: bold;font-size: 50px;margin: 50px;">{{u.prenom}}</h5>
-                        <h5 class="card-title" style="font-weight: bold;font-size: 50px;margin: 50px;">{{u.nom}}</h5>
-                        <h5 class="card-title" style="font-weight: bold;font-size: 50px;margin: 50px;">{{u.prenom}}</h5>
-                        <h5 class="card-title" style="font-weight: bold;font-size: 50px;margin: 50px;">{{u.nom}}</h5>
-                        <h5 class="card-title" style="font-weight: bold;font-size: 50px;margin: 50px;">{{u.prenom}}</h5>
                         <p class="card-text " style="color: red;">{{u.email}}</p>
-                        <button  [routerLink]="['/edit-user', u.id ]">edit</button>
-                        <button  (click)="supprimer(u)">supprimer</button>
+                        <button class="btn btn-primary"  [routerLink]="['/edit-user', u.id ]">edit</button>
+                        <button  class="btn btn-danger" (click)="supprimer(u)" style="margin-left: 10px;">supprimer</button>
 
                     </div>
                 </div>
