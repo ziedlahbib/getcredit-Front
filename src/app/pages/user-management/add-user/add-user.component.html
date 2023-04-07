@@ -90,7 +90,7 @@
 
                                     <mat-form-field appearance="fill">
                                         <mat-label>Choose an option</mat-label>
-                                        <select matNativeControl formControlName="roles">
+                                        <select matNativeControl formControlName="role">
                                             <option value="" selected></option>
                                             <option *ngFor="let c of erole | keyvalue" [value]="c.value">{{c.value}}
                                             </option>

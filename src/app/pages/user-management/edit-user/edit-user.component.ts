@@ -24,12 +24,12 @@ export class EditUserComponent implements OnInit {
   initForm(data) {
     this.userform = this.formBuilder.group({
       username: [data.username, Validators.required],
-      nom: [data.username, Validators.required],
-      prenom: [data.username, Validators.required],
-      email: [data.username, Validators.required],
-      tel: [data.username, Validators.required],
-      adresse: [data.username, Validators.required],
-      roles: [data.username, Validators.required],
+      nom: [data.nom, Validators.required],
+      prenom: [data.prenom, Validators.required],
+      email: [data.email, Validators.required],
+      tel: [data.tel, Validators.required],
+      adresse: [data.adresse, Validators.required],
+      roles: [data.roles.name, Validators.required],
   });
     
 
@@ -45,6 +45,7 @@ get(id:number){
     data => {
 
       this.user = data;
+      console.log(data)
       this.isReady=true;
     this.initForm(data);
 

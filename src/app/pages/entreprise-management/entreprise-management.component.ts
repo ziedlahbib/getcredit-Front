@@ -38,4 +38,13 @@ export class EntrepriseManagementComponent implements OnInit {
       }
     )
   }
+  supprimer(entreprise :any){
+    this.es.deleteEntreprise(entreprise.entrpriseId).subscribe(()=>this.es.getEntreprises().subscribe(
+      data=>{
+        this.listofEntreprise=data
+        this.dataSource = new MatTableDataSource(this.listofEntreprise);
+      }
+    )
+    );
+  }
 }
