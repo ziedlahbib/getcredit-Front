@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { User } from 'src/app/model/user';
 import { UserServiceService } from 'src/app/service/user-service.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import jwt_decode from "jwt-decode";
+import { Role } from 'src/app/model/role';
 
 @Component({
   selector: 'app-user-management',
@@ -11,20 +16,30 @@ import { UserServiceService } from 'src/app/service/user-service.service';
 export class UserManagementComponent implements OnInit {
 
   usersList:User[]=[];
-  usersListPagination?:User[];
-  start=0;
-  end=6;
+  displayedColumns = ['id','username','nom', 'prenom','adresse','tel','email','option'];
+  dataSource: MatTableDataSource<User>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   constructor(private us:UserServiceService) { }
   ngOnInit(): void {
     this.getuser();
   }
-
+  applyFilter(event: Event) {
+    let filterValue = (event.target as HTMLInputElement).value;
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
 getuser() {
 
-  return this.us.getusers().subscribe(
+ this.us.getusers().subscribe(
     data=>{
       this.usersList=data;
-      this.usersListPagination=this.usersList.slice(this.start, this.end);
+      this.dataSource=new MatTableDataSource(this.usersList);
+      this.dataSource._renderChangesSubscription;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      
     }
   )
 }
@@ -32,43 +47,11 @@ supprimer(user :any){
   this.us.deleteuser(user.id).subscribe(()=>this.us.getusers().subscribe(
     data=>{
       this.usersList=data;
-      this.usersListPagination=this.usersList.slice(this.start, this.end);
+      this.dataSource = new MatTableDataSource(this.usersList);
 
     }
   )
   );
 }
-paginate(event:PageEvent) {
-  let startIndex = event.pageSize * event.pageIndex;
-  this.start = startIndex;
-  let endIndex = startIndex + event.pageSize;
-  this.end = endIndex;
-  if (endIndex > this.usersList.length) {
-    endIndex = this.usersList.length;
-  }
-  this.usersListPagination = this.usersList.slice(startIndex, endIndex);
-}
-/* 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    if(filterValue!=""){
-      this.articleserveice.affichArticleparName(filterValue).subscribe(
-        res=>{
-          console.log(res)
-            this.articles=res;
-            this.articlePagination=this.articles.slice(this.start, this.end);
-        }
-      )
-    }else{
-      this.articleserveice.affichArticle().subscribe(
-        data=>{
-          this.articles=data;
-          this.articlePagination=this.articles.slice(this.start, this.end);
-        }
-      )
-    }
 
-
-  }
-*/
 }

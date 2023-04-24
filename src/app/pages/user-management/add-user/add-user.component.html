@@ -88,12 +88,19 @@
                                         </div>
                                     </div>
 
-                                    <mat-form-field appearance="fill">
+                                    <mat-form-field *ngIf="role==='ROLE_ADMIN'" appearance="fill">
                                         <mat-label>Choose an option</mat-label>
-                                        <select matNativeControl formControlName="role">
-                                            <option value="" selected></option>
-                                            <option *ngFor="let c of erole | keyvalue" [value]="c.value">{{c.value}}
-                                            </option>
+                                        <select  matNativeControl formControlName="role">
+                                             <!-- <option value="" selected></option>
+                                           <option *ngFor="let c of erole | keyvalue" [value]="c.value">{{c.value}}
+                                            </option> -->
+                                            <option  value="ROLE_ENTREPRENEUR" selected> Entrpreneur</option>
+                                        </select>
+                                    </mat-form-field>
+                                    <mat-form-field *ngIf="role==='ROLE_ENTREPRENEUR'" appearance="fill">
+                                        <mat-label>Choose an option</mat-label>
+                                        <select  matNativeControl formControlName="role">
+                                            <option  value="ROLE_AGENT" selected> Agent</option>
                                         </select>
                                     </mat-form-field>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">

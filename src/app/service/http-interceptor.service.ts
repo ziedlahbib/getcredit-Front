@@ -12,7 +12,6 @@ export class HttpInterceptorService implements HttpInterceptor{
   constructor(private authenticationService: AuthServiceService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       let token=localStorage.getItem('autorisation');
-      console.log('intercep',token);
       if(token!=null){
         const authReq = req.clone({
           headers: new HttpHeaders({

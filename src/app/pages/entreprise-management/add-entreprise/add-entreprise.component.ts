@@ -37,7 +37,6 @@ export class AddEntrepriseComponent implements OnInit {
         console.log(data);
         let token = localStorage.getItem('autorisation' || '');
         let user: any = jwt_decode(token || '');
-        console.log('sss', user.jti);
         this.es.affectentrepriseuser(user.jti,data.entrpriseId,data).subscribe(
           res=>{
             this.route.navigate(['/affichlistEntreprise']);

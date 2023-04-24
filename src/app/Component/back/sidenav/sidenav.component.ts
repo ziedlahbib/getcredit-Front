@@ -67,14 +67,12 @@ export class SidenavComponent implements OnInit {
         items: [
             {
                 label: 'ajouter',
-
-            },
-            {
-                label: 'modifier',
+                routerLink:'/ajoutProduit'
 
             },
             {
                 label: 'afficher',
+                routerLink:'/affichlistProduits'
 
             },
             

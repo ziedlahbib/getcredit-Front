@@ -1,0 +1,27 @@
+<div class="container-fluid mt--7">
+
+    <div class="card shadow" style="height: 500px;background-image: url('../assets/entreprise.jpg'); background-size: 50% auto;">
+        <form [formGroup]="produiteform" style="text-align: center; margin-top: 10%;">
+            <div class="col">
+                <mat-form-field appearance="fill">
+                    <mat-label>nom</mat-label>
+                    <input matInput formControlName="nom">
+                </mat-form-field>
+
+            </div>
+
+            <div class="col">
+                <mat-form-field appearance="fill">
+                    <mat-label>prix</mat-label>
+                    <input matInput formControlName="prix">
+                </mat-form-field>
+            </div>
+
+            <div mat-dialog-actions>
+
+                <button mat-button class="btn btn-dark btn-lg " (click)="ajouter()" style="margin-top: 50px;">ajouter
+                    produit</button>
+            </div>
+        </form>
+    </div>
+</div>

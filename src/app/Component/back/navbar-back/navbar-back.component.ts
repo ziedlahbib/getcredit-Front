@@ -34,10 +34,8 @@ export class NavbarBackComponent implements OnInit {
 getuserbyid(){
   let token=localStorage.getItem('autorisation'|| '');
   let user:any=jwt_decode(token|| '');
-  console.log('sss',user.jti);
   this.us.getuserById(user.jti).subscribe(
     data=>{
-      console.log(data)
       this.user=data;
       this.isReady=true;
       this.items = [

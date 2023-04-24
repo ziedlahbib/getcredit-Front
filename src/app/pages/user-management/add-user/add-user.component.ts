@@ -12,11 +12,12 @@ import { UserServiceService } from 'src/app/service/user-service.service';
 export class AddUserComponent implements OnInit {
 
   public userform!: FormGroup;
-  erole=ERole;
+  //erole=ERole;
+  public role:string |null;
   constructor(private us :UserServiceService ,private formBuilder: FormBuilder,private route:Router) { }
   ngOnInit(): void {
     this.initForm();
-    console.log(this.erole)
+    this.getrole();
    
   }
   initForm() {
@@ -42,9 +43,12 @@ export class AddUserComponent implements OnInit {
 ajouter(){
   this.us.ajoutuser(this.userform.value).subscribe(
     data=>{
-      console.log(data);
       this.route.navigate(['/affichlistuser']);
     }
   )
+}
+getrole(){
+   this.role = localStorage.getItem('role' || '');
+  console.log(this.role)
 }
 }
