@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ERole } from 'src/app/model/erole';
 import { UserServiceService } from 'src/app/service/user-service.service';
+import jwt_decode from "jwt-decode";
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-add-user',
@@ -13,6 +15,7 @@ export class AddUserComponent implements OnInit {
 
   public userform!: FormGroup;
   //erole=ERole;
+  user:User;
   public role:string |null;
   constructor(private us :UserServiceService ,private formBuilder: FormBuilder,private route:Router) { }
   ngOnInit(): void {
@@ -43,6 +46,17 @@ export class AddUserComponent implements OnInit {
 ajouter(){
   this.us.ajoutuser(this.userform.value).subscribe(
     data=>{
+      this.user=data;
+      if(this.role=='ROLE_ENTREPRENEUR'){
+        let token=localStorage.getItem('autorisation'|| '');
+        let user:any=jwt_decode(token|| '');
+        this.us.affecteruserentrepreneur(user.jti,this.user.id,this.user).subscribe(
+          res=>{
+            
+          }
+        );
+        
+      }
       this.route.navigate(['/affichlistuser']);
     }
   )

@@ -9,14 +9,25 @@ import { User } from '../model/user';
 export class UserServiceService {
 
   getbyusersurl="/api/user/get-users";
+  getbyuserbyentrpreneursurl="/api/user/get-userbyentrepreneur";
+  getbyuserbyagentsurl="/api/user/get-userbyagent";
   getbyuserbyIdsurl="/api/user/get-user";
   adduserUrl="/api/auth/signup";
   modifieruserUrl="/api/user/update-utilisateur";
   deleteusersUrl="/api/user/delete-user";
+
   constructor(private http : HttpClient) { }
 
   getusers(): Observable<User[]>{
     return this.http.get<User[]>(`${this.getbyusersurl}`);
+
+  }
+  getuserByentrepreneur(iduser :Number): Observable<User[]>{
+    return this.http.get<User[]>(`${this.getbyuserbyentrpreneursurl}/${iduser}`);
+
+  }
+  getuserBagent(iduser :Number): Observable<User[]>{
+    return this.http.get<User[]>(`${this.getbyuserbyagentsurl}/${iduser}`);
 
   }
   getuserById(iduser :Number): Observable<User>{
@@ -31,5 +42,8 @@ export class UserServiceService {
   }
   deleteuser(id:number): any{
     return this.http.delete(`${this.deleteusersUrl}/${id}`);
+  }
+  affecteruserentrepreneur(ida:Number,ide :Number,user :User): Observable<User>{
+    return this.http.put<User>("/api/user/affecter-utilisateur-entrepreneur/"+ida+"/"+ide,user);
   }
 }

@@ -95,6 +95,7 @@
                                            <option *ngFor="let c of erole | keyvalue" [value]="c.value">{{c.value}}
                                             </option> -->
                                             <option  value="ROLE_ENTREPRENEUR" selected> Entrpreneur</option>
+                                            <option  value="ROLE_ADMIN" selected> admin</option>
                                         </select>
                                     </mat-form-field>
                                     <mat-form-field *ngIf="role==='ROLE_ENTREPRENEUR'" appearance="fill">
