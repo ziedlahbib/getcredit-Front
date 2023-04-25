@@ -10,17 +10,23 @@
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">formulaire d'ajout</p>
 
                                 <form class="mx-1 mx-md-4" [formGroup]="userform">
-
-                                    <div class="d-flex flex-row align-items-center mb-4">
-                                        <div class="p-inputgroup">
-                                            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-
-                                            <input type="text" pInputText formControlName="username"
-                                                placeholder="username">
-
-
+                                    <label>
+                                        username
+                                    </label>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <div class="p-inputgroup">
+                                                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+    
+                                                <input type="text" pInputText formControlName="username"
+                                                    placeholder="username">
+    
+    
+                                            </div>
                                         </div>
-                                    </div>
+                                    
+                                        <label>
+                                            nom
+                                        </label>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
                                             <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
@@ -29,6 +35,9 @@
 
                                         </div>
                                     </div>
+                                    <label>
+                                        prenom
+                                    </label>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
                                             <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
@@ -38,6 +47,9 @@
 
                                         </div>
                                     </div>
+                                    <label>
+                                        email
+                                    </label>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
                                             <span class="p-inputgroup-addon"><i class="pi pi-inbox"></i></span>
@@ -49,20 +61,25 @@
                                         </div>
                                     </div>
 
+                                    <label>
+                                        mot de passe
+                                    </label>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
                                             <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
 
 
                                             <input type="password" pPassword formControlName="password"
-                                                placeholder="password">
+                                                placeholder="mot de passe">
 
 
 
                                         </div>
                                     </div>
 
-
+                                    <label>
+                                        numero de telephone
+                                    </label>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
                                             <span class="p-inputgroup-addon"><i class="pi pi-phone"></i></span>
@@ -75,7 +92,9 @@
                                         </div>
                                     </div>
 
-
+                                    <label>
+                                        adresse
+                                    </label>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
                                             <span class="p-inputgroup-addon"><i class="pi pi-building"></i></span>
@@ -87,7 +106,9 @@
 
                                         </div>
                                     </div>
-
+                                    <label>
+                                        role
+                                    </label>
                                     <mat-form-field *ngIf="role==='ROLE_ADMIN'" appearance="fill">
                                         <mat-label>Choose an option</mat-label>
                                         <select  matNativeControl formControlName="role">
@@ -106,7 +127,7 @@
                                     </mat-form-field>
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <button type="button" class="btn btn-primary btn-lg"
-                                            (click)="ajouter()">Register</button>
+                                            (click)="ajouter()">ajouter</button>
                                     </div>
 
                                 </form>

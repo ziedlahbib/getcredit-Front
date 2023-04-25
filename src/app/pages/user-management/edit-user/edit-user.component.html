@@ -10,7 +10,9 @@
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Information</p>
 
                                 <form class="mx-1 mx-md-4" *ngIf="isReady" [formGroup]="userform">
-
+                                    <label>
+                                        username
+                                    </label>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
                                             <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
@@ -21,6 +23,9 @@
 
                                         </div>
                                     </div>
+                                    <label>
+                                        nom
+                                    </label>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
                                             <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
@@ -29,6 +34,9 @@
 
                                         </div>
                                     </div>
+                                    <label>
+                                        prenom
+                                    </label>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
                                             <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
@@ -38,6 +46,9 @@
 
                                         </div>
                                     </div>
+                                    <label>
+                                        email
+                                    </label>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
                                             <span class="p-inputgroup-addon"><i class="pi pi-inbox"></i></span>
@@ -48,7 +59,9 @@
 
                                         </div>
                                     </div>
-
+                                    <label>
+                                        numero de telephonbe
+                                    </label>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
@@ -62,7 +75,9 @@
                                         </div>
                                     </div>
 
-
+                                    <label>
+                                        adresse
+                                    </label>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
                                             <span class="p-inputgroup-addon"><i class="pi pi-building"></i></span>
@@ -75,17 +90,17 @@
                                         </div>
                                     </div>
 
-                                    <mat-form-field appearance="fill">
+                                    <!-- <mat-form-field appearance="fill">
                                         <mat-label>Choose an option</mat-label>
                                         <select matNativeControl formControlName="roles">
                                             <option value="" selected></option>
                                             <option *ngFor="let c of erole | keyvalue" [value]="c.value">{{c.value}}
                                             </option>
                                         </select>
-                                    </mat-form-field>
+                                    </mat-form-field> -->
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <button type="button" class="btn btn-primary btn-lg"
-                                            (click)="modifier()">Register</button>
+                                            (click)="modifier()">modifier</button>
                                     </div>
 
                                 </form>

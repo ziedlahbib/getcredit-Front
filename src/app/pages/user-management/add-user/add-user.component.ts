@@ -50,9 +50,9 @@ ajouter(){
       if(this.role=='ROLE_ENTREPRENEUR'){
         let token=localStorage.getItem('autorisation'|| '');
         let user:any=jwt_decode(token|| '');
-        this.us.affecteruserentrepreneur(user.jti,this.user.id,this.user).subscribe(
+        this.us.affecteruserentrepreneur(data.id,user.jti,data).subscribe(
           res=>{
-            
+            console.log('ssssss',res)
           }
         );
         

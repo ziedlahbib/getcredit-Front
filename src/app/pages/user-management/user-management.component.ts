@@ -16,7 +16,7 @@ import { ERole } from 'src/app/model/erole';
 })
 export class UserManagementComponent implements OnInit {
 
-  public role:ERole ;
+  public ERole=ERole ;
   usersList:User[]=[];
   userconn:User;
   displayedColumns = ['id','username','nom', 'prenom','adresse','tel','email','option'];

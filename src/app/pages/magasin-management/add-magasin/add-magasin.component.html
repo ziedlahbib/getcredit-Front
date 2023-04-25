@@ -8,13 +8,29 @@
                     <mat-label>addresse</mat-label>
                     <textarea matInput formControlName="addresse"></textarea>
                 </mat-form-field>
-   
+                <label>
+                    entreprise
+                </label>
+        </form>
+        <form [formGroup]="entform" >
+            <mat-form-field appearance="fill">
+                <mat-label>Choose an option</mat-label>
+                <select  matNativeControl formControlName="entrpriseId">
+                      <option value="" selected></option>
+                      <option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId">{{ c.nom }}</option>
 
+                </select>
+            </mat-form-field>
+
+        </form>
             <div mat-dialog-actions>
 
                 <button mat-button class="btn btn-dark btn-lg " (click)="ajouter()" style="margin-top: 50px;">ajouter
                     Magasin</button>
             </div>
+
+        <form>
+            
         </form>
     </div>
 </div>

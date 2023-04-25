@@ -116,7 +116,7 @@
                     <mat-cell *matCellDef="let row" class="text-right " >
                         <div >
                             <!--<button  class="dropdown-item"  id="ziedpag" style="background-color:#DC143C"  [routerLink]="['/assurance-management/modifier', row.assuId ]">modifier</button><br>-->
-                         <button  class="btn btn-danger"   (click)="supprimer(row)">supprimer</button><br>
+                         <button *ngIf="this.userconn.roles.name!=ERole.ROLE_AGENT"  class="btn btn-danger"   (click)="supprimer(row)">supprimer</button><br>
                         </div> 
 
 

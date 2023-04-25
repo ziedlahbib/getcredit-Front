@@ -32,4 +32,7 @@ export class MagasinServiceService {
   deleteMagasin(id:number): any{
     return this.http.delete(`${this.deletemagasinUrl}/${id}`);
   }
+  affectemaghasinentreprise(idm:Number,ide :Number,magasin :Magasin): Observable<Magasin>{
+    return this.http.put<Magasin>("/api/magasin/affecter-magasin-entreprise/"+idm+"/"+ide,magasin);
+  }
 }
