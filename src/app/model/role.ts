@@ -1,4 +1,6 @@
+import { ERole } from "./erole";
+
 export class Role {
-    id?:Number;
-    role?:Role;
+    id:Number;
+    name:ERole;
 }

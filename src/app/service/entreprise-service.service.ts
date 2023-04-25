@@ -10,6 +10,7 @@ export class EntrepriseServiceService {
 
   getbyentreprisesurl="/api/entreprise/get-entreprises";
   getbyentreprisebyIdsurl="/api/entreprise/get-entreprsier";
+  getbyentreprisebyentrepreneursurl="/api/entreprise/get-entreprisesparuser";
   addentrepriseUrl="/api/entreprise/add-entreprise";
   modifierentrepriseUrl="/api/entreprise/update-entreprise";
   deleteentrepriseUrl="/api/entreprise/delete-entreprise";
@@ -21,6 +22,10 @@ export class EntrepriseServiceService {
   }
   getEntrepriseById(ident :Number): Observable<Entreprise>{
     return this.http.get<Entreprise>(`${this.getbyentreprisebyIdsurl}/${ident}`);
+
+  }
+  getEntrepriseByentrepreneur(ident :Number): Observable<Entreprise[]>{
+    return this.http.get<Entreprise[]>(`${this.getbyentreprisebyentrepreneursurl}/${ident}`);
 
   }
   ajoutEntreprise(entreprise :Entreprise): Observable<Entreprise>{
