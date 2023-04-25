@@ -3,16 +3,19 @@
     <div class="card shadow" style="height: 500px;background-image: url('../assets/entreprise.jpg'); background-size: 50% auto;">
         <form [formGroup]="magasinform" style="text-align: center; margin-top: 10%;">
         
-            
+            <label>
+                adresse
+            </label>
                 <mat-form-field appearance="fill">
                     <mat-label>addresse</mat-label>
                     <textarea matInput formControlName="addresse"></textarea>
                 </mat-form-field>
-                <label>
-                    entreprise
-                </label>
+
         </form>
-        <form [formGroup]="entform" >
+        <form [formGroup]="entform" style="text-align: center" >
+            <label>
+                entreprise
+            </label>
             <mat-form-field appearance="fill">
                 <mat-label>Choose an option</mat-label>
                 <select  matNativeControl formControlName="entrpriseId">
@@ -25,7 +28,7 @@
         </form>
             <div mat-dialog-actions>
 
-                <button mat-button class="btn btn-dark btn-lg " (click)="ajouter()" style="margin-top: 50px;">ajouter
+                <button mat-button class="btn btn-dark btn-lg " (click)="ajouter()" style="margin-top: 50px; margin-left: 45%;">ajouter
                     Magasin</button>
             </div>
 
