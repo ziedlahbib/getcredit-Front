@@ -34,6 +34,10 @@ export class UserManagementComponent implements OnInit {
     this.getuser();
   
   }
+  isAdmin():boolean{
+    let role=localStorage.getItem('role'|| '');
+    return role=="ROLE_ADMIN"
+}
   applyFilter(event: Event) {
     let filterValue = (event.target as HTMLInputElement).value;
     filterValue = filterValue.trim(); // Remove whitespace

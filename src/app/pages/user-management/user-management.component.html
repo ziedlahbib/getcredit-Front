@@ -151,7 +151,7 @@
 </div>
 <!--Entreprsie table-->
 
-<div class="container-fluid mt--7" style="margin-top: 50px;margin-bottom: 50px;">
+<div *ngIf="isAdmin()" class="container-fluid mt--7" style="margin-top: 50px;margin-bottom: 50px;">
 
 
   <div class="row">
@@ -252,7 +252,7 @@
   </div>
 </div>
 <!--magasin-->
-<div class="container-fluid mt--7" style="margin-top: 50px;margin-bottom: 50px;">
+<div *ngIf="isAdmin()"  class="container-fluid mt--7" style="margin-top: 50px;margin-bottom: 50px;">
 
 
   <div class="row">

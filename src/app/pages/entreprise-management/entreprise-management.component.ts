@@ -7,6 +7,8 @@ import { EntrepriseServiceService } from 'src/app/service/entreprise-service.ser
 import jwt_decode from "jwt-decode";
 import { UserServiceService } from 'src/app/service/user-service.service';
 import { ERole } from 'src/app/model/erole';
+import { Magasin } from 'src/app/model/magasin';
+import { MagasinServiceService } from 'src/app/service/magasin-service.service';
 
 @Component({
   selector: 'app-entreprise-management',
@@ -20,7 +22,7 @@ export class EntrepriseManagementComponent implements OnInit {
   dataSource: MatTableDataSource<Entreprise>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private es:EntrepriseServiceService,private us:UserServiceService) { }
+  constructor(private es:EntrepriseServiceService,private us:UserServiceService,private ms :MagasinServiceService) { }
   ngOnInit(): void {
    this.getentreprise();
   }
@@ -69,4 +71,39 @@ export class EntrepriseManagementComponent implements OnInit {
     )
     );
   }
+  isEntrepreneur():boolean{
+    let role=localStorage.getItem('role'|| '');
+    return role=="ROLE_ENTREPRENEUR"
+}
+  handleRowClickmagasin(rowData: any) {
+    console.log('Row clicked:', rowData);
+    // Call your function here
+    this.myFunctionmagasin(rowData);
+  }
+  myFunctionmagasin(rowData:any) {
+    console.log('Function called');
+    // Do something here
+    this.ms.getmagasinsbyentreprise(rowData.entrpriseId).subscribe(
+      res=>{
+        this.listofMagasins=res;
+        this.dataSourcemagasin=new MatTableDataSource(this.listofMagasins);
+        this.dataSourcemagasin._renderChangesSubscription;
+        this.dataSourcemagasin.paginator = this.paginatormagasin;
+        this.dataSourcemagasin.sort = this.sortmagasin;
+      }
+    )
+  
+  }
+/////////////////////////////////magasin////////////////:
+listofMagasins:Magasin[];
+displayedColumnsmagasin = ['magasinId','addresse','option'];
+dataSourcemagasin: MatTableDataSource<Magasin>;
+@ViewChild(MatPaginator) paginatormagasin: MatPaginator;
+@ViewChild(MatSort) sortmagasin: MatSort;
+applyFiltermagasin(event: Event) {
+  let filterValue = (event.target as HTMLInputElement).value;
+  filterValue = filterValue.trim(); // Remove whitespace
+  filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+  this.dataSourcemagasin.filter = filterValue;
+}
 }
