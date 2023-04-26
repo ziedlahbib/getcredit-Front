@@ -1,4 +1,4 @@
-<section class="vh-100" style="background-color: #eee;">
+<section >
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-12 col-xl-11">
@@ -13,20 +13,20 @@
                                     <label>
                                         username
                                     </label>
-                                        <div class="d-flex flex-row align-items-center mb-4">
-                                            <div class="p-inputgroup">
-                                                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-    
-                                                <input type="text" pInputText formControlName="username"
-                                                    placeholder="username">
-    
-    
-                                            </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+
+                                            <input type="text" pInputText formControlName="username"
+                                                placeholder="username">
+
+
                                         </div>
-                                    
-                                        <label>
-                                            nom
-                                        </label>
+                                    </div>
+
+                                    <label>
+                                        nom
+                                    </label>
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <div class="p-inputgroup">
                                             <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
@@ -106,57 +106,60 @@
 
                                         </div>
                                     </div>
-                                    <div style="display: flex;" >
+                                    <div style="display: flex;">
                                         <label style="margin-top: 10%;">
                                             role
                                         </label>
                                         <mat-form-field *ngIf="role==='ROLE_ADMIN'" appearance="fill">
                                             <mat-label>Choose an option</mat-label>
-                                            <select  matNativeControl formControlName="role">
-                                                 <!-- <option value="" selected></option>
+                                            <select matNativeControl formControlName="role">
+                                                <!-- <option value="" selected></option>
                                                <option *ngFor="let c of erole | keyvalue" [value]="c.value">{{c.value}}
                                                 </option> -->
-                                                <option  value="ROLE_ENTREPRENEUR" selected> Entrpreneur</option>
-                                                <option  value="ROLE_ADMIN" > admin</option>
+                                                <option value="ROLE_ENTREPRENEUR" selected> Entrpreneur</option>
+                                                <option value="ROLE_ADMIN"> admin</option>
                                             </select>
                                         </mat-form-field>
                                         <mat-form-field *ngIf="role==='ROLE_ENTREPRENEUR'" appearance="fill">
                                             <mat-label>Choose an option</mat-label>
-                                            <select  matNativeControl formControlName="role">
-                                                <option  value="ROLE_AGENT" selected> Agent</option>
+                                            <select matNativeControl formControlName="role">
+                                                <option value="ROLE_AGENT" selected> Agent</option>
                                             </select>
                                         </mat-form-field>
-    
-    
+
+
                                     </div>
                                 </form>
-                                <form [formGroup]="entform" style="text-align: center" >
+                                <form [formGroup]="entform" style="text-align: center">
                                     <label>
                                         entreprise
                                     </label>
                                     <mat-form-field appearance="fill">
                                         <mat-label>Choose an option</mat-label>
-                                        <select  matNativeControl formControlName="entrpriseId">
-                                              <option value="" selected></option>
-                                              <option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId">{{ c.nom }}</option>
-                        
+                                        <select matNativeControl formControlName="entrpriseId">
+                                            <option value="" selected></option>
+                                            <option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId">{{ c.nom
+                                                }}</option>
+
                                         </select>
                                     </mat-form-field>
-                        
+
                                 </form>
-                                <form *ngIf="role=='ROLE_ENTREPRENEUR'" [formGroup]="magform" style="text-align: center" >
+                                <form *ngIf="role=='ROLE_ENTREPRENEUR'" [formGroup]="magform"
+                                    style="text-align: center">
                                     <label>
                                         Magasin
                                     </label>
                                     <mat-form-field appearance="fill">
                                         <mat-label>Choose an option</mat-label>
-                                        <select  matNativeControl formControlName="magasinId">
-                                              <option value="" selected></option>
-                                              <option *ngFor="let c of listofMagasin" [value]="c.magasinId">{{ c.addresse }}</option>
-                        
+                                        <select matNativeControl formControlName="magasinId">
+                                            <option value="" selected></option>
+                                            <option *ngFor="let c of listofMagasin" [value]="c.magasinId">{{ c.addresse
+                                                }}</option>
+
                                         </select>
                                     </mat-form-field>
-                        
+
                                 </form>
                                 <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                     <button type="button" class="btn btn-primary btn-lg"
@@ -166,8 +169,7 @@
 
                             <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                                <img src="assets/Vermeg_Office.jpg" height="100%" width="100%" 
-                                 >
+                                <img src="assets/Vermeg_Office.jpg" height="100%" width="100%">
 
                             </div>
                         </div>
