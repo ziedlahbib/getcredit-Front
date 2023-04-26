@@ -20,6 +20,8 @@ import { MagasinServiceService } from 'src/app/service/magasin-service.service';
 })
 export class UserManagementComponent implements OnInit {
 
+  isReadyE:Boolean=false;
+  isReadyM:Boolean=false;
   public ERole=ERole ;
   usersList:User[]=[];
   userconn:User;
@@ -32,6 +34,7 @@ export class UserManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getuser();
+
   
   }
   isAdmin():boolean{
@@ -105,6 +108,7 @@ supprimer(user :any){
 handleRowClick(rowData: any) {
   console.log('Row clicked:', rowData);
   // Call your function here
+
   this.myFunction(rowData);
 }
 myFunction(rowData:any) {
@@ -117,6 +121,7 @@ myFunction(rowData:any) {
       this.dataSourceentreprise._renderChangesSubscription;
       this.dataSourceentreprise.paginator = this.paginatorentreprise;
       this.dataSourceentreprise.sort = this.sortentreprise;
+      this.verifier(res);
     }
   )
 }
@@ -147,6 +152,7 @@ myFunctionmagasin(rowData:any) {
       this.dataSourcemagasin._renderChangesSubscription;
       this.dataSourcemagasin.paginator = this.paginatormagasin;
       this.dataSourcemagasin.sort = this.sortmagasin;
+      this.verifierMagasin(this.listofEntreprise,res);
     }
   )
 
@@ -163,4 +169,31 @@ applyFiltermagasin(event: Event) {
   filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
   this.dataSourcemagasin.filter = filterValue;
 }
+//////////////////verifier entreprise/////////////
+verifier(listE:Entreprise[]){
+  if(  listE.length>0 ){
+    this.isReadyE=true;
+    console.log('E',this.isReadyE)
+  }else if(listE.length==0){
+    this.isReadyE=false;
+    console.log('E',this.isReadyE)
+  } 
+  }
+  //////////////////verifiermagasin/////////////
+verifierMagasin(listE:Entreprise[],listM:Magasin[]){
+  if(  listE.length>0 ){
+    this.isReadyE=true;
+    console.log('E',this.isReadyE)
+  }else if(listE.length==0){
+    this.isReadyE=false;
+    console.log('E',this.isReadyE)
+  } 
+  if(  listM.length>0){
+    this.isReadyM=true;
+    console.log('M',this.isReadyM)
+  }else if(listM.length==0){
+    this.isReadyM=false;
+    console.log('M',this.isReadyM)
+  }
+  }
 }
