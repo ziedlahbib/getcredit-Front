@@ -20,6 +20,7 @@ export class SidenavComponent implements OnInit {
             {
                 label: 'ajouter',
                 routerLink: '/ajoutuser',
+                visible:this.isEntrepreneur() || this.isAdmin()
 
             },
             {

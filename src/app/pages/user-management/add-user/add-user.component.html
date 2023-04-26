@@ -130,7 +130,7 @@
 
                                     </div>
                                 </form>
-                                <form [formGroup]="entform" style="text-align: center">
+                                <form *ngIf="role=='ROLE_ENTREPRENEUR'" [formGroup]="entform" style="text-align: center">
                                     <label>
                                         entreprise
                                     </label>

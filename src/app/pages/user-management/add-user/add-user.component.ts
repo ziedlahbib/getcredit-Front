@@ -93,9 +93,19 @@ ajouter(){
         this.us.affecteruserentrepreneur(data.id,user.jti,data).subscribe(
           res=>{
             console.log('ssssss',res)
+            this.us.affecteragentmagasin(data.id,this.magform.get('magasinId')?.value,data).subscribe(
+              val=>{
+                console.log(val)
+              }
+            )
           }
         );
         
+      }else if(this.role=='ROLE_ADMIN'){
+        this.us.ajoutuser(this.userform.value).subscribe(
+          v=>{
+          }
+        )
       }
       this.route.navigate(['/affichlistuser']);
     }

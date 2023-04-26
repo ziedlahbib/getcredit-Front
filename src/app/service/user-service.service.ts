@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
+import { Magasin } from '../model/magasin';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,8 @@ export class UserServiceService {
   }
   affecteruserentrepreneur(ida:Number,ide :Number,user :User): Observable<User>{
     return this.http.put<User>("/api/user/affecter-utilisateur-entrepreneur/"+ida+"/"+ide,user);
+  }
+  affecteragentmagasin(ida:Number,idm:Number,user:User):Observable<User>{
+    return this.http.put<User>("/api/user/affecter-utilisateur-magasin/"+ida+"/"+idm,user);
   }
 }
