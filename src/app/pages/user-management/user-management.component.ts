@@ -19,7 +19,7 @@ export class UserManagementComponent implements OnInit {
   public ERole=ERole ;
   usersList:User[]=[];
   userconn:User;
-  displayedColumns = ['id','username','nom', 'prenom','adresse','tel','email','option'];
+  displayedColumns = ['id','username','nom', 'prenom','adresse','tel','email','role','option'];
   dataSource: MatTableDataSource<User>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -93,5 +93,13 @@ supprimer(user :any){
   )
   );
 }
-
+handleRowClick(rowData: any) {
+  console.log('Row clicked:', rowData);
+  // Call your function here
+  this.myFunction();
+}
+myFunction() {
+  console.log('Function called');
+  // Do something here
+}
 }

@@ -35,7 +35,8 @@ export class SidenavComponent implements OnInit {
         items: [
             {
                 label: 'ajouter',
-                routerLink:'/ajoutEntreprise'
+                routerLink:'/ajoutEntreprise',
+                visible:this.isEntrepreneur()
 
             },
 
@@ -52,7 +53,8 @@ export class SidenavComponent implements OnInit {
         items: [
             {
                 label: 'ajouter',
-                routerLink:'/ajoutMagasin'
+                routerLink:'/ajoutMagasin',
+                visible:this.isEntrepreneur()
 
             },
             {
@@ -67,7 +69,8 @@ export class SidenavComponent implements OnInit {
         items: [
             {
                 label: 'ajouter',
-                routerLink:'/ajoutProduit'
+                routerLink:'/ajoutProduit',
+                visible:this.isEntrepreneur() || this.isAgent()
 
             },
             {
@@ -81,21 +84,26 @@ export class SidenavComponent implements OnInit {
         label: 'Gestion des crédits',
         items: [
             {
-                label: 'ajouter',
-
-            },
-            {
-                label: 'modifier',
-
-            },
-            {
                 label: 'afficher',
+                visible:this.isAdmin()
 
             },
             
         ]
     },
   ]
+}
+isAdmin():boolean{
+    let role=localStorage.getItem('role'|| '');
+    return role=="ROLE_ADMIN"
+}
+isEntrepreneur():boolean{
+    let role=localStorage.getItem('role'|| '');
+    return role=="ROLE_ENTREPRENEUR"
+}
+isAgent():boolean{
+    let role=localStorage.getItem('role'|| '');
+    return role=="ROLE_AGENT"
 }
 }
 
