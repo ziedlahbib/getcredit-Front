@@ -8,6 +8,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import jwt_decode from "jwt-decode";
 import { Role } from 'src/app/model/role';
 import { ERole } from 'src/app/model/erole';
+import { Entreprise } from 'src/app/model/entreprise';
+import { EntrepriseServiceService } from 'src/app/service/entreprise-service.service';
+import { Magasin } from 'src/app/model/magasin';
+import { MagasinServiceService } from 'src/app/service/magasin-service.service';
 
 @Component({
   selector: 'app-user-management',
@@ -23,7 +27,8 @@ export class UserManagementComponent implements OnInit {
   dataSource: MatTableDataSource<User>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private us:UserServiceService) { }
+
+  constructor(private us:UserServiceService,private es:EntrepriseServiceService,private ms :MagasinServiceService) { }
 
   ngOnInit(): void {
     this.getuser();
@@ -96,10 +101,62 @@ supprimer(user :any){
 handleRowClick(rowData: any) {
   console.log('Row clicked:', rowData);
   // Call your function here
-  this.myFunction();
+  this.myFunction(rowData);
 }
-myFunction() {
+myFunction(rowData:any) {
   console.log('Function called');
   // Do something here
+  this.es.getEntrepriseByentrepreneur(rowData.id).subscribe(
+    res=>{
+      this.listofEntreprise=res;
+      this.dataSourceentreprise=new MatTableDataSource(this.listofEntreprise);
+      this.dataSourceentreprise._renderChangesSubscription;
+      this.dataSourceentreprise.paginator = this.paginatorentreprise;
+      this.dataSourceentreprise.sort = this.sortentreprise;
+    }
+  )
+}
+  /////////////////////////////////Entreprise////////////////:
+  listofEntreprise:Entreprise[];
+  displayedColumnsentreprise = ['entrpriseId','nom','numfisc', 'adresse','option'];
+  dataSourceentreprise: MatTableDataSource<Entreprise>;
+  @ViewChild(MatPaginator) paginatorentreprise: MatPaginator;
+  @ViewChild(MatSort) sortentreprise: MatSort;
+applyFilterentreprise(event: Event) {
+  let filterValue = (event.target as HTMLInputElement).value;
+  filterValue = filterValue.trim(); // Remove whitespace
+  filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+  this.dataSourceentreprise.filter = filterValue;
+}
+handleRowClickmagasin(rowData: any) {
+  console.log('Row clicked:', rowData);
+  // Call your function here
+  this.myFunctionmagasin(rowData);
+}
+myFunctionmagasin(rowData:any) {
+  console.log('Function called');
+  // Do something here
+  this.ms.getmagasinsbyentreprise(rowData.entrpriseId).subscribe(
+    res=>{
+      this.listofMagasins=res;
+      this.dataSourcemagasin=new MatTableDataSource(this.listofMagasins);
+      this.dataSourcemagasin._renderChangesSubscription;
+      this.dataSourcemagasin.paginator = this.paginatormagasin;
+      this.dataSourcemagasin.sort = this.sortmagasin;
+    }
+  )
+
+}
+/////////////////////////////////magasin////////////////:
+listofMagasins:Magasin[];
+displayedColumnsmagasin = ['magasinId','addresse','option'];
+dataSourcemagasin: MatTableDataSource<Magasin>;
+@ViewChild(MatPaginator) paginatormagasin: MatPaginator;
+@ViewChild(MatSort) sortmagasin: MatSort;
+applyFiltermagasin(event: Event) {
+  let filterValue = (event.target as HTMLInputElement).value;
+  filterValue = filterValue.trim(); // Remove whitespace
+  filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+  this.dataSourcemagasin.filter = filterValue;
 }
 }
