@@ -5,6 +5,8 @@ import { ERole } from 'src/app/model/erole';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import jwt_decode from "jwt-decode";
 import { User } from 'src/app/model/user';
+import { Magasin } from 'src/app/model/magasin';
+import { Entreprise } from 'src/app/model/entreprise';
 
 @Component({
   selector: 'app-add-user',
@@ -14,12 +16,17 @@ import { User } from 'src/app/model/user';
 export class AddUserComponent implements OnInit {
 
   public userform!: FormGroup;
-  //erole=ERole;
+  public magform :FormGroup;
+  public entform :FormGroup;
   user:User;
+  listofMagasin:Magasin[];
+  listofEntreprise:Entreprise[]
   public role:string |null;
   constructor(private us :UserServiceService ,private formBuilder: FormBuilder,private route:Router) { }
   ngOnInit(): void {
     this.initForm();
+    this.magasinform();
+    this.entrepriseform();
     this.getrole();
    
   }
@@ -40,6 +47,32 @@ export class AddUserComponent implements OnInit {
     data=>{
       console.log(this.userform?.value);
      
+    }
+  )
+}
+magasinform() {
+  this.magform = this.formBuilder.group({
+    magasinId: ['', Validators.required],
+  });
+
+
+  this.magform.valueChanges.subscribe(
+    data => {
+      console.log(this.magform.value);
+
+    }
+  )
+}
+entrepriseform() {
+  this.entform = this.formBuilder.group({
+    entrpriseId: ['', Validators.required],
+  });
+
+
+  this.entform.valueChanges.subscribe(
+    data => {
+      console.log(this.entform.value);
+
     }
   )
 }
