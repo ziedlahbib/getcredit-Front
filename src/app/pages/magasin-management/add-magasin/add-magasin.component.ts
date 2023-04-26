@@ -6,6 +6,7 @@ import { EntrepriseServiceService } from 'src/app/service/entreprise-service.ser
 import { MagasinServiceService } from 'src/app/service/magasin-service.service';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import jwt_decode from "jwt-decode";
+import { Magasin } from 'src/app/model/magasin';
 
 @Component({
   selector: 'app-add-magasin',
@@ -79,4 +80,5 @@ export class AddMagasinComponent implements OnInit {
         }
   )
   }
+
 }

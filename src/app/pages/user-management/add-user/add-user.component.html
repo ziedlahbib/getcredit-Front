@@ -136,9 +136,9 @@
                                     </label>
                                     <mat-form-field appearance="fill">
                                         <mat-label>Choose an option</mat-label>
-                                        <select matNativeControl formControlName="entrpriseId">
+                                        <select matNativeControl formControlName="entrpriseId" (click)="getmagasins()" >
                                             <option value="" selected></option>
-                                            <option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId">{{ c.nom
+                                            <option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId"  >{{ c.nom
                                                 }}</option>
 
                                         </select>

@@ -7,6 +7,8 @@ import jwt_decode from "jwt-decode";
 import { User } from 'src/app/model/user';
 import { Magasin } from 'src/app/model/magasin';
 import { Entreprise } from 'src/app/model/entreprise';
+import { MagasinServiceService } from 'src/app/service/magasin-service.service';
+import { EntrepriseServiceService } from 'src/app/service/entreprise-service.service';
 
 @Component({
   selector: 'app-add-user',
@@ -22,12 +24,14 @@ export class AddUserComponent implements OnInit {
   listofMagasin:Magasin[];
   listofEntreprise:Entreprise[]
   public role:string |null;
-  constructor(private us :UserServiceService ,private formBuilder: FormBuilder,private route:Router) { }
+  constructor(private us :UserServiceService ,private formBuilder: FormBuilder,private route:Router,
+    private es:EntrepriseServiceService,private ms:MagasinServiceService) { }
   ngOnInit(): void {
     this.initForm();
     this.magasinform();
     this.entrepriseform();
     this.getrole();
+    this.getentreprise();
    
   }
   initForm() {
@@ -97,5 +101,30 @@ ajouter(){
 getrole(){
    this.role = localStorage.getItem('role' || '');
   console.log(this.role)
+}
+getentreprise(){
+  let token=localStorage.getItem('autorisation'|| '');
+  let user:any=jwt_decode(token|| '');
+  this.us.getuserById(user.jti).subscribe(
+    data=>{
+
+        this.es.getEntrepriseByentrepreneur(data.id).subscribe(
+          res=>{
+            this.listofEntreprise=res;
+
+          }
+        )
+      }
+)
+}
+getmagasins(){
+  const value = this.entform.get(['entrpriseId'])?.value
+  console.log(value)
+  this.ms.getmagasinsbyentreprise(value).subscribe(
+    res=>{
+      console.log(res)
+      this.listofMagasin=res;
+    }
+  )
 }
 }

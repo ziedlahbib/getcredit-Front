@@ -20,8 +20,8 @@ export class MagasinServiceService {
     return this.http.get<Magasin[]>(`${this.getmagasinssurl}`);
 
   }
-  getmagasinsbyentreprise(iduser :Number): Observable<Magasin[]>{
-    return this.http.get<Magasin[]>(`${this.getmagasinsbyentrepriseurl}/${iduser}`);
+  getmagasinsbyentreprise(identreprise :Number): Observable<Magasin[]>{
+    return this.http.get<Magasin[]>(`${this.getmagasinsbyentrepriseurl}/${identreprise}`);
 
   }
   getMagasinById(ident :Number): Observable<Magasin>{
