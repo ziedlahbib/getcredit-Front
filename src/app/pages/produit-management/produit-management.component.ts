@@ -97,6 +97,10 @@ export class ProduitManagementComponent {
       res => {
         console.log(res)
         this.listofProduit = res;
+        this.dataSource=new MatTableDataSource(this.listofProduit);
+        this.dataSource._renderChangesSubscription;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         // Make changes to the component's data
         this.matFormFieldHidePlaceholder = false;
 

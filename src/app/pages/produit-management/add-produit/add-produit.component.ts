@@ -9,6 +9,7 @@ import { Entreprise } from 'src/app/model/entreprise';
 import { EntrepriseServiceService } from 'src/app/service/entreprise-service.service';
 import { MagasinServiceService } from 'src/app/service/magasin-service.service';
 import { MatSelectChange } from '@angular/material/select';
+import { ERole } from 'src/app/model/erole';
 
 @Component({
   selector: 'app-add-produit',
@@ -85,12 +86,23 @@ export class AddProduitComponent {
         console.log('sss', user.jti);
         this.us.getuserById(user.jti).subscribe(
          res=>{
-          this.ps.affecterproduitmagasin(res.magasin.magasinId,data.produitId,data).subscribe(
-            res=>{
-              this.route.navigate(['/affichlistProduits']);
-         }
-        )
-
+          if(this.role==ERole.ROLE_AGENT){
+            console.log(res.magasin.magasinId)
+            this.ps.affecterproduitmagasin(res.magasin.magasinId,data.produitId,data).subscribe(
+              res=>{
+                this.route.navigate(['/affichlistProduits']);
+           }
+          )
+  
+          }else if(this.role==ERole.ROLE_ENTREPRENEUR){
+            console.log(this.magform.get('magasinId')?.value)
+            this.ps.affecterproduitmagasin(this.magform.get('magasinId')?.value,data.produitId,data).subscribe(
+              res=>{
+                this.route.navigate(['/affichlistProduits']);
+           }
+          )
+          }
+          
           }
         )
       }
