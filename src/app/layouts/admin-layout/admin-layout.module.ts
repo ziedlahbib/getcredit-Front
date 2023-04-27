@@ -29,6 +29,7 @@ import { CreditManagementComponent } from 'src/app/pages/credit-management/credi
 import { AddEntrepriseComponent } from 'src/app/pages/entreprise-management/add-entreprise/add-entreprise.component';
 import { AddMagasinComponent } from 'src/app/pages/magasin-management/add-magasin/add-magasin.component';
 import { AddProduitComponent } from 'src/app/pages/produit-management/add-produit/add-produit.component';
+import { AddCreditComponent } from 'src/app/pages/credit-management/add-credit/add-credit.component';
 
 
 
@@ -54,6 +55,7 @@ import { AddProduitComponent } from 'src/app/pages/produit-management/add-produi
     ProduitManagementComponent,
     CreditManagementComponent,
     AddProduitComponent,
+    AddCreditComponent,
 
     
   ],
