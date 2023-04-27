@@ -16,6 +16,7 @@ export class UserServiceService {
   adduserUrl="/api/auth/signup";
   modifieruserUrl="/api/user/update-utilisateur";
   deleteusersUrl="/api/user/delete-user";
+  getbyuserbymagsinsurl="/api/user/get-userbymagasin"
 
   constructor(private http : HttpClient) { }
 
@@ -29,6 +30,10 @@ export class UserServiceService {
   }
   getuserBagent(iduser :Number): Observable<User[]>{
     return this.http.get<User[]>(`${this.getbyuserbyagentsurl}/${iduser}`);
+
+  }
+  getuserBymagasin(idmagsin :Number): Observable<User[]>{
+    return this.http.get<User[]>(`${this.getbyuserbymagsinsurl}/${idmagsin}`);
 
   }
   getuserById(iduser :Number): Observable<User>{

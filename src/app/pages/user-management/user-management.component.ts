@@ -22,6 +22,7 @@ export class UserManagementComponent implements OnInit {
 
   isReadyE:Boolean=false;
   isReadyM:Boolean=false;
+  isReadyU:Boolean=false;
   public ERole=ERole ;
   usersList:User[]=[];
   userconn:User;
@@ -66,6 +67,7 @@ getuser() {
             
           }
         )
+        
       }else if(this.userconn.roles.name==ERole.ROLE_ENTREPRENEUR){
         this.us.getuserByentrepreneur(this.userconn.id).subscribe(
           res=>{
@@ -169,6 +171,38 @@ applyFiltermagasin(event: Event) {
   filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
   this.dataSourcemagasin.filter = filterValue;
 }
+handleRowClickusermagasin(rowData: any) {
+  console.log('Row clicked:', rowData);
+  // Call your function here
+  this.myFunctionusermagasin(rowData);
+}
+myFunctionusermagasin(rowData:any) {
+  console.log('Function called');
+  // Do something here
+  this.us.getuserBymagasin(rowData.magasinId).subscribe(
+    res=>{
+      this.usersListparmagasin=res;
+      this.dataSourceusersListparmagasin=new MatTableDataSource(this.usersListparmagasin);
+      this.dataSourceusersListparmagasin._renderChangesSubscription;
+      this.dataSourceusersListparmagasin.paginator = this.paginatorusersListparmagasin;
+      this.dataSourceusersListparmagasin.sort = this.sortusersListparmagasin;
+      this.verifierUserMagasin(this.listofEntreprise,this.listofMagasins,res);
+    }
+  )
+
+}
+////////////////////////////////userparmagasin////////////////
+usersListparmagasin:User[]=[];
+displayedColumnsusersListparmagasin = ['id','username','nom', 'prenom','adresse','tel','email','role','option'];
+dataSourceusersListparmagasin: MatTableDataSource<User>;
+@ViewChild(MatPaginator) paginatorusersListparmagasin: MatPaginator;
+@ViewChild(MatSort) sortusersListparmagasin: MatSort;
+applyFilterusersListparmagasin(event: Event) {
+  let filterValue = (event.target as HTMLInputElement).value;
+  filterValue = filterValue.trim(); // Remove whitespace
+  filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+  this.dataSourceusersListparmagasin.filter = filterValue;
+}
 //////////////////verifier entreprise/////////////
 verifier(listE:Entreprise[]){
   if(  listE.length>0 ){
@@ -196,4 +230,28 @@ verifierMagasin(listE:Entreprise[],listM:Magasin[]){
     console.log('M',this.isReadyM)
   }
   }
+    //////////////////verifierusermagasin/////////////
+    verifierUserMagasin(listE:Entreprise[],listM:Magasin[],listU:User[]){
+      if(  listE.length>0 ){
+        this.isReadyE=true;
+        console.log('E',this.isReadyE)
+      }else if(listE.length==0){
+        this.isReadyE=false;
+        console.log('E',this.isReadyE)
+      } 
+      if(  listM.length>0){
+        this.isReadyM=true;
+        console.log('M',this.isReadyM)
+      }else if(listM.length==0){
+        this.isReadyM=false;
+        console.log('M',this.isReadyM)
+      }
+      if(  listU.length>0){
+        this.isReadyU=true;
+        console.log('U',this.isReadyU)
+      }else if(listU.length==0){
+        this.isReadyU=false;
+        console.log('U',this.isReadyU)
+      }
+      }
 }
