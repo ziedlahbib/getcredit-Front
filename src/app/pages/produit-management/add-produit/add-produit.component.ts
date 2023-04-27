@@ -124,6 +124,7 @@ export class AddProduitComponent {
       res => {
         console.log(res)
         this.listofMagasin = res;
+        this.verifiermagasin(res);
         // Make changes to the component's data
         this.matFormFieldHidePlaceholder = false;
 
@@ -131,5 +132,16 @@ export class AddProduitComponent {
         this.cdr.detectChanges();
       }
     )
+  }
+  loadingm=false;
+  verifiermagasin(listM:Magasin[])
+  {
+    if(  listM.length>0 ){
+      this.loadingm=true;
+      console.log('E',this.loadingm)
+    }else if(listM.length==0){
+      this.loadingm=false;
+      console.log('E',this.loadingm)
+    } 
   }
 }

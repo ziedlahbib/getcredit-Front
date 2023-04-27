@@ -37,7 +37,7 @@
                   </mat-form-field>
 
             </form>
-            <form *ngIf="role=='ROLE_ENTREPRENEUR'" [formGroup]="magform">
+            <form *ngIf="(role=='ROLE_ENTREPRENEUR')&&this.loadingm" [formGroup]="magform" >
                 <label>
                     Magasin
                 </label>
