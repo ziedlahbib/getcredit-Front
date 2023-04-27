@@ -89,6 +89,21 @@ export class ProduitManagementComponent {
       }
     )
   }
+  getproduitsbymagasin(event: MatSelectChange){
+    const value = event.value;
+    //const value = this.entform.get(['entrpriseId'])?.value
+    console.log(value)
+    this.ps.getProduitBymagasin(Number(value)).subscribe(
+      res => {
+        console.log(res)
+        this.listofProduit = res;
+        // Make changes to the component's data
+        this.matFormFieldHidePlaceholder = false;
+
+        // Manually trigger a change detection cycle
+        this.cdr.detectChanges();
+      }
+    )
   }
   supprimer(entreprise :any){
     this.ps.deleteProduit(entreprise.entrpriseId).subscribe(()=>this.ps.getProduits().subscribe(
