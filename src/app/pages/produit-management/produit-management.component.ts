@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ProduitServiceService } from 'src/app/service/produit-service.service';
 import { Entreprise } from 'src/app/model/entreprise';
 import { Magasin } from 'src/app/model/magasin';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EntrepriseServiceService } from 'src/app/service/entreprise-service.service';
 import { MagasinServiceService } from 'src/app/service/magasin-service.service';
@@ -15,6 +15,8 @@ import { UserServiceService } from 'src/app/service/user-service.service';
 import { User } from 'src/app/model/user';
 import { MatSelectChange } from '@angular/material/select';
 import { ERole } from 'src/app/model/erole';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { Observable, map, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-produit-management',
@@ -23,13 +25,19 @@ import { ERole } from 'src/app/model/erole';
 })
 
 export class ProduitManagementComponent {
+  loading = false;
+  loadingm=false;
+  myControl = new FormControl();
+  myControlmagasin = new FormControl();
+  filteredOptionsmagasin: Observable<any[]>;
+  filteredOptions: Observable<any[]>;
   matFormFieldHidePlaceholder: boolean = false;
   public magform: FormGroup;
   public entform: FormGroup;
   user: User;
   public ERole=ERole ;
   listofMagasin: Magasin[] = [];
-  listofEntreprise: Entreprise[]
+  listofEntreprise: Entreprise[]=[]
   public role: string | null;
   listofProduit:Produit[]=[]
   displayedColumns = ['produitId','nom','reference', 'prix','option'];
@@ -39,10 +47,30 @@ export class ProduitManagementComponent {
   constructor(private ps:ProduitServiceService,private us: UserServiceService, private formBuilder: FormBuilder, private route: Router,
     private es: EntrepriseServiceService, private ms: MagasinServiceService, private cdr: ChangeDetectorRef) { }
   ngOnInit(): void {
+    this.getrole();
     this.magasinform();
     this.entrepriseform();
-    this.getproduits();
     this.getentreprise();
+    if(this.role==ERole.ROLE_ADMIN){
+      this.getproduits
+    }
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+    this.filteredOptionsmagasin = this.myControlmagasin.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filtermagasin(value))
+    );
+  }
+
+  private _filter(value: string): any[] {
+    const filterValue = value.toLowerCase();
+    return this.listofEntreprise.filter(option => option.nom.toLowerCase().includes(filterValue));
+  }
+  private _filtermagasin(value: string): any[] {
+    const filterValue = value.toLowerCase();
+    return this.listofMagasin.filter(option => option.addresse.toLowerCase().includes(filterValue));
   }
   applyFilter(event: Event) {
     let filterValue = (event.target as HTMLInputElement).value;
@@ -60,6 +88,7 @@ export class ProduitManagementComponent {
         this.dataSource.sort = this.sort;
       }
     )
+  }
   }
   supprimer(entreprise :any){
     this.ps.deleteProduit(entreprise.entrpriseId).subscribe(()=>this.ps.getProduits().subscribe(
@@ -105,16 +134,27 @@ export class ProduitManagementComponent {
     let user: any = jwt_decode(token || '');
     this.us.getuserById(user.jti).subscribe(
       data => {
-        if(data.roles.name=ERole.ROLE_ADMIN){
+        if(data.roles.name==ERole.ROLE_ADMIN){
             this.es.getEntreprises().subscribe(
               res=>{
                 this.listofEntreprise = res;
+                this.verifierentreprise(res);
+                
               }
             )
-        }else if(data.roles.name=ERole.ROLE_ENTREPRENEUR){
+        }else if(data.roles.name==ERole.ROLE_ENTREPRENEUR){
           this.es.getEntrepriseByentrepreneur(data.id).subscribe(
             res => {
               this.listofEntreprise = res;
+              this.verifierentreprise(res);
+  
+            }
+          )
+        }else if(data.roles.name==ERole.ROLE_AGENT){
+          this.es.getEntrepriseByAgent(data.id).subscribe(
+            res => {
+              this.listofEntreprise.push(res);
+              this.verifierentreprise(this.listofEntreprise);
   
             }
           )
@@ -131,12 +171,35 @@ export class ProduitManagementComponent {
       res => {
         console.log(res)
         this.listofMagasin = res;
+
         // Make changes to the component's data
         this.matFormFieldHidePlaceholder = false;
 
         // Manually trigger a change detection cycle
         this.cdr.detectChanges();
+        this.verifiermagasin(this.listofMagasin);
+
       }
     )
+  }
+  verifierentreprise(listE:Entreprise[])
+  {
+    if(  listE.length>0 ){
+      this.loading=true;
+      console.log('E',this.loading)
+    }else if(listE.length==0){
+      this.loading=false;
+      console.log('E',this.loading)
+    } 
+  }
+  verifiermagasin(listM:Magasin[])
+  {
+    if(  listM.length>0 ){
+      this.loadingm=true;
+      console.log('E',this.loading)
+    }else if(listM.length==0){
+      this.loadingm=false;
+      console.log('E',this.loading)
+    } 
   }
 }

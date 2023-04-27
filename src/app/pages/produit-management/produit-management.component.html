@@ -3,128 +3,131 @@
     <label>
       entreprise
     </label>
-    <mat-form-field appearance="fill">
-      <mat-label>Choose an option</mat-label>
+    <mat-form-field *ngIf="loading">
+      <mat-label>choisir une option</mat-label>
+      <input matInput placeholder="Search" [formControl]="myControl">
       <mat-select formControlName="entrpriseId" (selectionChange)="getmagasins($event)">
-        <mat-option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId">
-          {{ c.nom }}
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.entrpriseId">
+          {{ option.nom }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+  </form>
+  <form [formGroup]="magform" style="text-align: center" *ngIf="loadingm">
+    <label>
+      Magasin
+    </label>
+    <mat-form-field >
+      <mat-label>choisir une option</mat-label>
+      <input matInput placeholder="Search" [formControl]="myControlmagasin">
+      <mat-select formControlName="magasinId" (selectionChange)="getproduitsbymagasin($event)">
+        <mat-option *ngFor="let option of filteredOptionsmagasin | async" [value]="option.magasinId">
+          {{ option.addresse }}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
   </form>
-  <form [formGroup]="magform" style="text-align: center">
-    <label>
-      Magasin
-    </label>
-    <mat-form-field appearance="fill">
-      <mat-label>Choose an option</mat-label>
-      <mat-select matNativeControl formControlName="magasinId">
-        <mat-option *ngFor="let c of listofMagasin" [value]="c.magasinId">{{ c.addresse
-          }}</mat-option>
-
-      </mat-select>
-    </mat-form-field>
-
-  </form>
- </div>
+</div>
 
 
-  <div class="container-fluid mt--7">
+<div class="container-fluid mt--7">
 
 
-    <div class="row">
-      <div class="col">
-        <div class="card shadow">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
 
-          <div class="card-header border-0">
-            <h3 class="mb-0">Liste des Produits</h3>
-          </div>
+        <div class="card-header border-0">
+          <h3 class="mb-0">Liste des Produits</h3>
+        </div>
 
-          <div>
-            <div class="table-responsive">
-              <div class="example-header" style="margin: 10px;">
-                <mat-form-field>
-                  <input matInput (keyup)="applyFilter($event)" placeholder="search">
-                </mat-form-field>
-              </div>
+        <div>
+          <div class="table-responsive">
+            <div class="example-header" style="margin: 10px;">
+              <mat-form-field>
+                <input matInput (keyup)="applyFilter($event)" placeholder="search">
+              </mat-form-field>
+            </div>
 
-              <div class="example-container mat-elevation-z8">
+            <div class="example-container mat-elevation-z8">
 
-                <mat-table [dataSource]="dataSource" matSort class="table align-items-center table-flush">
+              <mat-table [dataSource]="dataSource" matSort class="table align-items-center table-flush">
 
-                  <!-- ID Column -->
-                  <ng-container matColumnDef="produitId">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> produitId </mat-header-cell>
-                    <mat-cell *matCellDef="let row">
-                      <div>
-                        {{row.produitId}}
-                      </div>
-
-
-                    </mat-cell>
-                  </ng-container>
+                <!-- ID Column -->
+                <ng-container matColumnDef="produitId">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> produitId </mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                    <div>
+                      {{row.produitId}}
+                    </div>
 
 
-                  <!-- ID Column -->
-                  <ng-container matColumnDef="nom">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> nom </mat-header-cell>
-                    <mat-cell *matCellDef="let row">
-                      <div>
-                        {{row.nom}}
-                      </div>
+                  </mat-cell>
+                </ng-container>
 
 
-                    </mat-cell>
-                  </ng-container>
-                  <ng-container matColumnDef="reference">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> reference </mat-header-cell>
-                    <mat-cell *matCellDef="let row">
-                      <div>
-                        {{row.reference}}
-                      </div>
+                <!-- ID Column -->
+                <ng-container matColumnDef="nom">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> nom </mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                    <div>
+                      {{row.nom}}
+                    </div>
 
 
-                    </mat-cell>
-                  </ng-container>
-                  <ng-container matColumnDef="prix">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> prix </mat-header-cell>
-                    <mat-cell *matCellDef="let row">
-                      <div>
-                        {{row.prix}}
-                      </div>
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="reference">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> reference </mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                    <div>
+                      {{row.reference}}
+                    </div>
 
 
-                    </mat-cell>
-                  </ng-container>
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="prix">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> prix </mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                    <div>
+                      {{row.prix}}
+                    </div>
+
+
+                  </mat-cell>
+                </ng-container>
 
 
 
 
 
-                  <!-- Color Column -->
-                  <ng-container matColumnDef="option">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
-                    <mat-cell *matCellDef="let row" class="text-right ">
-                      <div>
-                        <!--<button  class="dropdown-item"  id="ziedpag" style="background-color:#DC143C"  [routerLink]="['/assurance-management/modifier', row.assuId ]">modifier</button><br>-->
-                        <button class="btn btn-danger" (click)="supprimer(row)">supprimer</button><br>
-                      </div>
+                <!-- Color Column -->
+                <ng-container matColumnDef="option">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
+                  <mat-cell *matCellDef="let row" class="text-right ">
+                    <div>
+                      <!--<button  class="dropdown-item"  id="ziedpag" style="background-color:#DC143C"  [routerLink]="['/assurance-management/modifier', row.assuId ]">modifier</button><br>-->
+                      <button class="btn btn-danger" (click)="supprimer(row)">supprimer</button><br>
+                    </div>
 
 
 
-                    </mat-cell>
-                  </ng-container>
+                  </mat-cell>
+                </ng-container>
 
-                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                  <mat-row *matRowDef="let row; columns: displayedColumns;">
-                  </mat-row>
-                </mat-table>
-                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+              </mat-table>
+              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 
 
-              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>

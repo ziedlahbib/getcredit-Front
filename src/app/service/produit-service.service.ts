@@ -10,6 +10,7 @@ export class ProduitServiceService {
 
   getProduitssurl="/api/produit/get-produits";
   getProduitbyIdsurl="/api/produit/get-produit";
+  getProduitbymagasinsurl="/api/produit/get-produits-bymagasin";
   addmagsinUrl="/api/produit/add-produit";
   modifierProduitUrl="/api/produit/update-produit";
   deleteProduitUrl="/api/produit/delete-produit";
@@ -21,6 +22,10 @@ export class ProduitServiceService {
   }
   getProduitById(ident :Number): Observable<Produit>{
     return this.http.get<Produit>(`${this.getProduitbyIdsurl}/${ident}`);
+
+  }
+  getProduitBymagasin(idmag :Number): Observable<Produit[]>{
+    return this.http.get<Produit[]>(`${this.getProduitbymagasinsurl}/${idmag}`);
 
   }
   ajoutProduit(Produit :Produit): Observable<Produit>{
