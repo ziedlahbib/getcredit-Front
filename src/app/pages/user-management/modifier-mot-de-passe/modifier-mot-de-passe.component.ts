@@ -32,12 +32,30 @@ export class ModifierMotDePasseComponent {
       }
     );
   }
+  ConfirmedValidator(controlName: string, matchingControlName: string){
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+        if (matchingControl.errors && !matchingControl.errors['confirmedValidator']) {
+            return;
+        }
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ confirmedValidator: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
+}
   initForm() {
     this.pwform = this.formBuilder.group({
       oldpassword: ['',Validators.required],
       newpassword: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
 
-  })
+  },
+  {
+    validator: this.ConfirmedValidator('newpassword', 'confirmPassword')
+  });
   this.pwform.valueChanges.subscribe(
     data=>{
       console.log(this.pwform.value)
