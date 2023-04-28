@@ -31,6 +31,7 @@ import { AddMagasinComponent } from 'src/app/pages/magasin-management/add-magasi
 import { AddProduitComponent } from 'src/app/pages/produit-management/add-produit/add-produit.component';
 import { AddCreditComponent } from 'src/app/pages/credit-management/add-credit/add-credit.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ModifierMotDePasseComponent } from 'src/app/pages/user-management/modifier-mot-de-passe/modifier-mot-de-passe.component';
 
 
 
@@ -60,6 +61,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     CreditManagementComponent,
     AddProduitComponent,
     AddCreditComponent,
+    ModifierMotDePasseComponent
 
     
   ],
@@ -81,6 +83,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatSelectModule,
     PanelMenuModule,
     MatAutocompleteModule,
+
 
     
     

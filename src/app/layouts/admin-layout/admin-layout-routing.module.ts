@@ -8,6 +8,7 @@ import { AddProduitComponent } from 'src/app/pages/produit-management/add-produi
 import { ProduitManagementComponent } from 'src/app/pages/produit-management/produit-management.component';
 import { AddUserComponent } from 'src/app/pages/user-management/add-user/add-user.component';
 import { EditUserComponent } from 'src/app/pages/user-management/edit-user/edit-user.component';
+import { ModifierMotDePasseComponent } from 'src/app/pages/user-management/modifier-mot-de-passe/modifier-mot-de-passe.component';
 import { UserManagementComponent } from 'src/app/pages/user-management/user-management.component';
 
 
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: 'affichlistuser',       component: UserManagementComponent },
   { path: 'ajoutuser',       component: AddUserComponent },
   { path: 'edit-user/:id',       component: EditUserComponent },
+  { path: 'modifier-mot-de-passe/:id',       component: ModifierMotDePasseComponent },
+  { path: 'ajoutProduit',       component: AddProduitComponent },
   { path: 'affichlistEntreprise',       component: EntrepriseManagementComponent },
   { path: 'ajoutEntreprise',       component: AddEntrepriseComponent },
   { path: 'affichlistMagasins',       component: MagasinManagementComponent },

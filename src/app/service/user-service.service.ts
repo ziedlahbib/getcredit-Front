@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
 import { Magasin } from '../model/magasin';
+import { ChangePasswordRequest } from '../model/changePasswordRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class UserServiceService {
   getbyuserbyIdsurl="/api/user/get-user";
   adduserUrl="/api/auth/signup";
   modifieruserUrl="/api/user/update-utilisateur";
+  modifierpwuserUrl="/api/user/update-password";
   deleteusersUrl="/api/user/delete-user";
   getbyuserbymagsinsurl="/api/user/get-userbymagasin"
 
@@ -45,6 +47,16 @@ export class UserServiceService {
   }
   updateuser(id:Number, user:User):Observable<User>{
     return this.http.put<User>(`${this.modifieruserUrl}/${id}`,user);
+  }
+  updatepassword(iduser:Number,request:ChangePasswordRequest):Observable<HttpEvent<any>>{
+    //return this.http.put<string>(`${this.modifierpwuserUrl}/${iduser}`,request);
+    const req = new HttpRequest('PUT', `${this.modifierpwuserUrl}/${iduser}`, request, {
+      reportProgress: true,
+      responseType: 'text',
+     
+    },);
+   
+    return this.http.request(req);
   }
   deleteuser(id:number): any{
     return this.http.delete(`${this.deleteusersUrl}/${id}`);
