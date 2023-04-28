@@ -1,40 +1,43 @@
-<div  class="card">
-    <form [formGroup]="pwform">
-        <label>
-            mot de passe actuelle
-        </label>
-        <div class="d-flex flex-row align-items-center mb-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
-    
-    
-                <input type="password" pPassword formControlName="oldpassword"
-                    placeholder="mot de passe">
-    
-    
-    
-            </div>
+<div class="card">
+    <div class="container">
+        <div class="centered-div">
+            <form [formGroup]="pwform">
+                <label>
+                    mot de passe actuelle
+                </label>
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+
+
+                        <input type="password" pPassword formControlName="oldpassword" placeholder="mot de passe">
+
+
+
+                    </div>
+                </div>
+                <label>
+                    nouveau mot de passe
+                </label>
+                <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+
+
+                        <input type="password" pPassword formControlName="newpassword" placeholder="mot de passe">
+
+
+
+                    </div>
+                </div>
+            </form>
+
         </div>
-        <label>
-            nouveau mot de passe 
-        </label>
-        <div class="d-flex flex-row align-items-center mb-4">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
-    
-    
-                <input type="password" pPassword formControlName="newpassword"
-                    placeholder="mot de passe">
-    
-    
-    
-            </div>
-        </div>
-    </form>
+    </div>
+
     <div class="alert alert-warning" *ngIf='invalidpw'>{{message}}</div>
-    <div class="alert alert-success" *ngIf='Successpw'>{{message}}</div> 
+    <div class="alert alert-success" *ngIf='Successpw'>{{message}}</div>
     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-        <button type="button" class="btn btn-primary btn-lg"
-            (click)="update()">modifier</button>
+        <button type="button" class="btn btn-primary btn-lg" (click)="update()">modifier</button>
     </div>
 </div>
