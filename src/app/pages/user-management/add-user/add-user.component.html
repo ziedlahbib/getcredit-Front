@@ -78,6 +78,26 @@
                                     </div>
 
                                     <label>
+                                       retaper mot de passe
+                                    </label>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+
+
+                                            <input type="password" pPassword formControlName="confirmPassword"
+                                                placeholder="confirmer mot de passe">
+
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div *ngIf="userform.get('confirmPassword')?.invalid && userform.get('confirmPassword')?.touched">
+                                        <div *ngIf="userform.get('confirmPassword')?.hasError('required')">Confirm Password is required</div>
+                                        <div *ngIf="userform.get('confirmPassword')?.hasError('confirmedValidator')">Passwords do not match</div>
+                                      </div>
+
+                                    <label>
                                         numero de telephone
                                     </label>
                                     <div class="d-flex flex-row align-items-center mb-4">
@@ -161,7 +181,7 @@
                                 </form>
                                 <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                     <button type="button" class="btn btn-primary btn-lg"
-                                        (click)="ajouter()">ajouter</button>
+                                        (click)="ajouter()" [disabled]="userform.invalid">ajouter</button>
                                 </div>
                             </div>
 

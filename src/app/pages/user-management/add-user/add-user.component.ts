@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ERole } from 'src/app/model/erole';
 import { UserServiceService } from 'src/app/service/user-service.service';
@@ -11,6 +11,7 @@ import { MagasinServiceService } from 'src/app/service/magasin-service.service';
 import { EntrepriseServiceService } from 'src/app/service/entreprise-service.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-user',
@@ -24,6 +25,7 @@ export class AddUserComponent implements OnInit {
   public magform: FormGroup;
   public entform: FormGroup;
   user: User;
+  isConfirmed:boolean=true;
   listofMagasin: Magasin[] = [];
   listofEntreprise: Entreprise[]
   public role: string | null;
@@ -36,7 +38,22 @@ export class AddUserComponent implements OnInit {
     this.getrole();
     this.getentreprise();
 
+
   }
+  ConfirmedValidator(controlName: string, matchingControlName: string){
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+        if (matchingControl.errors && !matchingControl.errors['confirmedValidator']) {
+            return;
+        }
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ confirmedValidator: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
+}
   initForm() {
     this.userform = this.formBuilder.group({
       username: ['', Validators.required],
@@ -44,16 +61,19 @@ export class AddUserComponent implements OnInit {
       prenom: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
       tel: ['', Validators.required],
       adresse: ['', Validators.required],
       role: ['', Validators.required],
+    }, {
+      validator: this.ConfirmedValidator('password', 'confirmPassword')
     });
 
 
     this.userform.valueChanges.subscribe(
       data => {
         console.log(this.userform?.value);
-
+        
       }
     )
   }
