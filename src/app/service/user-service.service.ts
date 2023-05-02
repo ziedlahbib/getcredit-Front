@@ -1,9 +1,10 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { User } from '../model/user';
 import { Magasin } from '../model/magasin';
 import { ChangePasswordRequest } from '../model/changePasswordRequest';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,29 @@ export class UserServiceService {
   modifieruserUrl="/api/user/update-utilisateur";
   modifierpwuserUrl="/api/user/update-password";
   deleteusersUrl="/api/user/delete-user";
-  getbyuserbymagsinsurl="/api/user/get-userbymagasin"
+  getbyuserbymagsinsurl="/api/user/get-userbymagasin";
+  forgotpassworduril="/api/forgot";
+  resetpassworduril="/api/reset";
 
   constructor(private http : HttpClient) { }
 
+  forgotPassword(email: string): Observable<string> {
+    const params = new HttpParams().set('email', email);
+    return this.http.put(`${this.forgotpassworduril}`, null, { params, responseType: 'text' })
+      .pipe(
+        map(response => response),
+        catchError(error => throwError(error))
+      );
+  }
+  
+  resettpassword(us: string, rt: string): Observable<string> {
+    return this.http.put(`${this.resetpassworduril}/${rt}`, us, { responseType: 'text' })
+      .pipe(
+        map(response => response),
+        catchError(error => throwError(error))
+      );
+  }
+  
   getusers(): Observable<User[]>{
     return this.http.get<User[]>(`${this.getbyusersurl}`);
 

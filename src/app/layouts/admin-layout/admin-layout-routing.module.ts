@@ -4,6 +4,7 @@ import { AddEntrepriseComponent } from 'src/app/pages/entreprise-management/add-
 import { EntrepriseManagementComponent } from 'src/app/pages/entreprise-management/entreprise-management.component';
 import { AddMagasinComponent } from 'src/app/pages/magasin-management/add-magasin/add-magasin.component';
 import { MagasinManagementComponent } from 'src/app/pages/magasin-management/magasin-management.component';
+import { ForgotPasswordComponent } from 'src/app/pages/passwordmanagement/forgot-password/forgot-password.component';
 import { AddProduitComponent } from 'src/app/pages/produit-management/add-produit/add-produit.component';
 import { ProduitManagementComponent } from 'src/app/pages/produit-management/produit-management.component';
 import { AddUserComponent } from 'src/app/pages/user-management/add-user/add-user.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'ajoutMagasin',       component: AddMagasinComponent },
   { path: 'affichlistProduits',       component: ProduitManagementComponent },
   { path: 'ajoutProduit',       component: AddProduitComponent },
+
 ];
 
 @NgModule({

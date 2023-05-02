@@ -44,6 +44,8 @@ import { ModifierMotDePasseComponent } from 'src/app/pages/user-management/modif
 
 
 
+
+
 @NgModule({
   declarations: [
     AdminLayoutComponent,
@@ -61,7 +63,8 @@ import { ModifierMotDePasseComponent } from 'src/app/pages/user-management/modif
     CreditManagementComponent,
     AddProduitComponent,
     AddCreditComponent,
-    ModifierMotDePasseComponent
+    ModifierMotDePasseComponent,
+
 
     
   ],
