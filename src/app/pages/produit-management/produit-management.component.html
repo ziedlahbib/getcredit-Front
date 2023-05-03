@@ -19,7 +19,7 @@
     <label>
       Magasin
     </label>
-    <mat-form-field >
+    <mat-form-field>
       <mat-label>choisir une option</mat-label>
       <input matInput placeholder="Search" [formControl]="myControlmagasin">
       <mat-select formControlName="magasinId" (selectionChange)="getproduitsbymagasin($event)">
@@ -110,6 +110,8 @@
                   <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
                   <mat-cell *matCellDef="let row" class="text-right ">
                     <div>
+                      <button [routerLink]="['/addcredit', row.assuId ]" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-info"><i
+                          class="fa fa-info"></i> passer credit</button>
                       <!--<button  class="dropdown-item"  id="ziedpag" style="background-color:#DC143C"  [routerLink]="['/assurance-management/modifier', row.assuId ]">modifier</button><br>-->
                       <button class="btn btn-danger" (click)="supprimer(row)">supprimer</button><br>
                     </div>

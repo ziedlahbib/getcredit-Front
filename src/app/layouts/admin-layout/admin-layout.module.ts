@@ -32,6 +32,8 @@ import { AddProduitComponent } from 'src/app/pages/produit-management/add-produi
 import { AddCreditComponent } from 'src/app/pages/credit-management/add-credit/add-credit.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ModifierMotDePasseComponent } from 'src/app/pages/user-management/modifier-mot-de-passe/modifier-mot-de-passe.component';
+import { StepsModule } from 'primeng/steps';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 
@@ -86,6 +88,8 @@ import { ModifierMotDePasseComponent } from 'src/app/pages/user-management/modif
     MatSelectModule,
     PanelMenuModule,
     MatAutocompleteModule,
+    StepsModule,
+    MatStepperModule
 
 
     

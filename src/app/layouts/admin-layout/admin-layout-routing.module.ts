@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddCreditComponent } from 'src/app/pages/credit-management/add-credit/add-credit.component';
 import { AddEntrepriseComponent } from 'src/app/pages/entreprise-management/add-entreprise/add-entreprise.component';
 import { EntrepriseManagementComponent } from 'src/app/pages/entreprise-management/entreprise-management.component';
 import { AddMagasinComponent } from 'src/app/pages/magasin-management/add-magasin/add-magasin.component';
@@ -19,13 +20,13 @@ const routes: Routes = [
   { path: 'ajoutuser',       component: AddUserComponent },
   { path: 'edit-user/:id',       component: EditUserComponent },
   { path: 'modifier-mot-de-passe/:id',       component: ModifierMotDePasseComponent },
-  { path: 'ajoutProduit',       component: AddProduitComponent },
   { path: 'affichlistEntreprise',       component: EntrepriseManagementComponent },
   { path: 'ajoutEntreprise',       component: AddEntrepriseComponent },
   { path: 'affichlistMagasins',       component: MagasinManagementComponent },
   { path: 'ajoutMagasin',       component: AddMagasinComponent },
   { path: 'affichlistProduits',       component: ProduitManagementComponent },
   { path: 'ajoutProduit',       component: AddProduitComponent },
+  { path: 'addcredit/:id',       component: AddCreditComponent },
 
 ];
 
