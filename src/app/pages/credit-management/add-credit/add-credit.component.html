@@ -1,10 +1,12 @@
-<mat-vertical-stepper [linear]="false" #stepper >
-    <mat-step [stepControl]="agentform">
-      <form [formGroup]="agentform">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-        </mat-form-field>
+<mat-vertical-stepper [linear]="false" #stepper *ngIf="this.uisReaydu&&this.uisReaydp" >
+    <mat-step >
+      <form >
+        <ng-template matStepLabel>Information</ng-template>
+
+
+        <span class="label" >adresse magasin </span><label>{{user.magasin.addresse}}</label>
+          <span class="label" >nom de l'agent </span><label>{{user.nom}}</label>
+        
         <div>
           <button mat-button matStepperNext>Next</button>
         </div>

@@ -5,3 +5,11 @@
   label {
     margin-right: 4px;
   }
+  .label {
+    color: #2e228a;
+    font-weight: bold;
+    width: 130px;
+    
+  
+  }
+  .label:after { content: ": " }

@@ -35,6 +35,7 @@ export class ProduitManagementComponent {
   public magform: FormGroup;
   public entform: FormGroup;
   user: User;
+  uisReaydu:boolean=false;
   public ERole=ERole ;
   listofMagasin: Magasin[] = [];
   listofEntreprise: Entreprise[]=[]
@@ -51,9 +52,7 @@ export class ProduitManagementComponent {
     this.magasinform();
     this.entrepriseform();
     this.getentreprise();
-    if(this.role==ERole.ROLE_ADMIN){
-      this.getproduits
-    }
+    this.getproduitss()
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
@@ -63,7 +62,44 @@ export class ProduitManagementComponent {
       map(value => this._filtermagasin(value))
     );
   }
+  getproduitss(){;
+    if(this.role==ERole.ROLE_ADMIN){
+      this.getproduits()
+    }else if(this.role==ERole.ROLE_AGENT){
+      let token=localStorage.getItem('autorisation'|| '');
+    let user:any=jwt_decode(token|| '');
+    this.us.getuserById(user.jti).subscribe(
+      data=>{
+        this.user=data;
+        this.uisReaydu=true;
+        console.log(this.user)
+      this.ps.getProduitBymagasin(data.magasin.magasinId).subscribe(
+        res=>{
+          console.log(res)
+          this.listofProduit=res;
+          this.dataSource=new MatTableDataSource(this.listofProduit);
+          this.dataSource._renderChangesSubscription;
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort
+        }
+      )
+      }
+    )
+      
+    }
+  }
+  getuserbyid(){
+    let token=localStorage.getItem('autorisation'|| '');
+    let user:any=jwt_decode(token|| '');
+    this.us.getuserById(user.jti).subscribe(
+      data=>{
+        console.log(data)
+        this.user=data;
+        this.uisReaydu=true;
 
+      }
+    )
+  }
   private _filter(value: string): any[] {
     const filterValue = value.toLowerCase();
     return this.listofEntreprise.filter(option => option.nom.toLowerCase().includes(filterValue));
