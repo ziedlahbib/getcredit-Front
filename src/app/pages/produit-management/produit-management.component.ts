@@ -63,9 +63,9 @@ export class ProduitManagementComponent {
     );
   }
   getproduitss(){;
-    if(this.role==ERole.ROLE_ADMIN){
+    if(this.role!=ERole.ROLE_AGENT){
       this.getproduits()
-    }else if(this.role==ERole.ROLE_AGENT){
+    }else {
       let token=localStorage.getItem('autorisation'|| '');
     let user:any=jwt_decode(token|| '');
     this.us.getuserById(user.jti).subscribe(
