@@ -19,6 +19,7 @@ export class AddCreditComponent implements OnInit {
   credit :Credit;
   produit:Produit;
   creidtform:FormGroup;
+  clientform:FormGroup;
   isDisabled:boolean=true;
   uisReaydu:boolean=false;
   uisReaydp:boolean=false;
@@ -27,7 +28,17 @@ export class AddCreditComponent implements OnInit {
   ngOnInit(): void {
     this.getuserbyid();
     this.getproduitbyid();
+    this.initform()
 
+  }
+  initform(){
+    this. clientform = this._formBuilder.group({
+      nom:[''],
+      prenom:[''],
+      adresse:[''],
+      email:['']
+  
+  });
   }
   agentform: FormGroup = this._formBuilder.group({firstCtrl: ['']});
   creditform(){

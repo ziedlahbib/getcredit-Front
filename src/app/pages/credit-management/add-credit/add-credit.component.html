@@ -58,7 +58,31 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>formulaire du client</ng-template>
-    You are now done.
+    <div style="margin: 30px;">
+      <form [formGroup]="clientform" >
+          <div>
+            <span class="label">nom</span>
+            <input class="form-control" type="text"  formControlName="nom" >
+
+          </div>
+          <div style="margin-top: 30px;">
+            <span class="label">prenom</span>
+            <input class="form-control" type="text"  formControlName="prenom">
+
+          </div>
+          <div style="margin-top: 30px;">
+            <span class="label">adresse</span>
+            <input class="form-control" type="text"  formControlName="adresse">
+
+          </div>
+          <div style="margin-top: 30px;">
+            <span class="label">email</span>
+            <input class="form-control" type="text"  formControlName="email">
+
+          </div>
+  
+      </form>
+    </div>
     <div>
       <button type="button" class="btn btn-warning" (click)="stepper.reset()">Reset</button>
       &nbsp;
