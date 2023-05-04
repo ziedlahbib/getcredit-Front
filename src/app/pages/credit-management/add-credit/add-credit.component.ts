@@ -74,4 +74,7 @@ export class AddCreditComponent implements OnInit {
       }
     )
   }
+  submit(){
+    
+  }
 }

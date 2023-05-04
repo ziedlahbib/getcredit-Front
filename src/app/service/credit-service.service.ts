@@ -31,4 +31,7 @@ export class CreditServiceService {
   affectecreditagent(idc:Number,ida :Number,Credit :Credit): Observable<Credit>{
     return this.http.put<Credit>("/api/credit/affecter-credit-agent/"+idc+"/"+ida,Credit);
   }
+  affectecreditproduit(idc:Number,idp :Number,Credit :Credit): Observable<Credit>{
+    return this.http.put<Credit>("/api/credit/affecter-credit-produit/"+idc+"/"+idp,Credit);
+  }
 }
