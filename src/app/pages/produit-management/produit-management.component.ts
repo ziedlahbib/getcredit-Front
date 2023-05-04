@@ -52,7 +52,7 @@ export class ProduitManagementComponent {
     this.magasinform();
     this.entrepriseform();
     this.getentreprise();
-    this.getproduitss()
+    this.getproduitss();
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
@@ -63,9 +63,8 @@ export class ProduitManagementComponent {
     );
   }
   getproduitss(){;
-    if(this.role!=ERole.ROLE_AGENT){
-      this.getproduits()
-    }else {
+    if(this.role==ERole.ROLE_AGENT){
+
       let token=localStorage.getItem('autorisation'|| '');
     let user:any=jwt_decode(token|| '');
     this.us.getuserById(user.jti).subscribe(
@@ -86,6 +85,12 @@ export class ProduitManagementComponent {
       }
     )
       
+    }else if (this.role==ERole.ROLE_ADMIN) {
+      this.getuserbyid()
+      this.getproduits()
+    }else if (this.role==ERole.ROLE_ENTREPRENEUR) {
+      this.getuserbyid()
+      this.listofProduit=[]
     }
   }
   getuserbyid(){

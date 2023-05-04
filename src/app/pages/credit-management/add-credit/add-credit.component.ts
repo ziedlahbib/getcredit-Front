@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
 import { Credit } from 'src/app/model/credit';
 import { Produit } from 'src/app/model/produit';
@@ -23,7 +23,7 @@ export class AddCreditComponent implements OnInit {
   isDisabled:boolean=true;
   uisReaydu:boolean=false;
   uisReaydp:boolean=false;
-  constructor(private _formBuilder: FormBuilder,private us:UserServiceService,private router:ActivatedRoute,
+  constructor(private _formBuilder: FormBuilder,private us:UserServiceService,private router:ActivatedRoute, private route :Router,
     private cs:CreditServiceService,private ps :ProduitServiceService) {}
   ngOnInit(): void {
     this.getuserbyid();
@@ -39,16 +39,28 @@ export class AddCreditComponent implements OnInit {
       email:['']
   
   });
+  this.clientform.valueChanges.subscribe(
+    data => {
+      console.log(this.clientform.value);
+
+    }
+  )
   }
   agentform: FormGroup = this._formBuilder.group({firstCtrl: ['']});
   creditform(){
     console.log(this.produit)
     console.log(this.uisReaydp)
     this. creidtform = this._formBuilder.group({
-      montant: new FormControl({ value: this.produit.prix, disabled: true }),
+      montant: [ this.produit.prix ],
       nbrdumois:['']
   
   });
+  this.creidtform.valueChanges.subscribe(
+    data => {
+      console.log(this.creidtform.value);
+
+    }
+  )
   }
   
   getuserbyid(){
@@ -75,6 +87,30 @@ export class AddCreditComponent implements OnInit {
     )
   }
   submit(){
+    this.cs.ajoutCredit(this.creidtform.value).subscribe(
+      data=>{
+        this.credit=data;
+        this.cs.affectecreditagent(data.creditId,this.user.id,data).subscribe(
+          res=>{
+
+          }
+        )
+        this.us.ajoutclient(this.clientform.value).subscribe(
+          res=>{
+            this.cs.affectecreditclient(data.creditId,res.id,data).subscribe(
+              res=>{
     
+              }
+            )
+          }
+        )
+        this.cs.affectecreditproduit(data.creditId,this.produit.produitId,data).subscribe(
+          res=>{
+
+          }
+        )
+        this.route.navigate(['/affichlistProduits'])
+      }
+    )
   }
 }

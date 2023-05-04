@@ -16,6 +16,7 @@ export class UserServiceService {
   getbyuserbyagentsurl="/api/user/get-userbyagent";
   getbyuserbyIdsurl="/api/user/get-user";
   adduserUrl="/api/auth/signup";
+  ajoutclienturl="/api/user/add-client"
   modifieruserUrl="/api/user/update-utilisateur";
   modifierpwuserUrl="/api/user/update-password";
   deleteusersUrl="/api/user/delete-user";
@@ -64,6 +65,9 @@ export class UserServiceService {
   }
   ajoutuser(user :User): Observable<User>{
     return this.http.post<User>(`${this.adduserUrl}`,user);
+  }
+  ajoutclient(user :User): Observable<User>{
+    return this.http.post<User>(`${this.ajoutclienturl}`,user);
   }
   updateuser(id:Number, user:User):Observable<User>{
     return this.http.put<User>(`${this.modifieruserUrl}/${id}`,user);
