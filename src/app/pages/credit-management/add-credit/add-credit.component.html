@@ -24,45 +24,47 @@
     <div style="margin: 30px;">
       <form [formGroup]="creidtform" *ngIf="uisReaydp">
           <div>
+            <span class="label">montant du credit</span>
             <input class="form-control" type="text"  formControlName="montant" aria-label="Disabled input example" [disabled]="isDisabled">
 
           </div>
-          <div>
+          <div style="margin-top: 30px;">
+            <span class="label">nombre du mois</span>
             <input class="form-control" type="text"  formControlName="nbrdumois">
 
           </div>
   
       </form>
     </div>
-    <div>
-      <div style="margin: 30px;">
-        <button type="button" class="btn btn-primary" matStepperPrevious>Back</button>
-        &nbsp;
-        <button type="button" class="btn btn-primary" matStepperNext>Next</button>
-        
-      </div>
-      
+    <div style="margin: 30px;">
+
+      <button type="button" class="btn btn-primary" matStepperNext>Next</button>
       
     </div>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
+    <ng-template matStepLabel>signe du contrat</ng-template>
     <div>
       <a>terme du contrat</a>
-      <button mat-button>signé contrat</button>
+      &nbsp;
+      <button type="button" class="btn btn-success">signé contrat</button>
     </div>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+    <div style="margin: 30px;">
+      <button type="button" class="btn btn-secondary" matStepperPrevious>Back</button>
+      &nbsp;
+      <button type="button" class="btn btn-primary" matStepperNext>Next</button>
+      
     </div>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
+    <ng-template matStepLabel>formulaire du client</ng-template>
     You are now done.
     <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button type="button" class="btn btn-warning" (click)="stepper.reset()">Reset</button>
+      &nbsp;
+      <button type="button" class="btn btn-secondary" matStepperPrevious>Back</button>
+      &nbsp;
+      <button type="button" class="btn btn-primary">confirmer</button>
     </div>
   </mat-step>
 </mat-vertical-stepper>
