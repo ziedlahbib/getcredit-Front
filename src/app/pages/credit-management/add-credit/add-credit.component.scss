@@ -13,3 +13,8 @@
   
   }
   .label:after { content: ": " }
+
+  .url:hover {
+    color: blue;
+    text-decoration: underline;
+  }
