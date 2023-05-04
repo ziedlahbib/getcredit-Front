@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import jwt_decode from "jwt-decode";
 import { Credit } from 'src/app/model/credit';
@@ -18,16 +18,28 @@ export class AddCreditComponent implements OnInit {
   user:User;
   credit :Credit;
   produit:Produit;
+  creidtform:FormGroup;
+  isDisabled:boolean=true;
   uisReaydu:boolean=false;
   uisReaydp:boolean=false;
   constructor(private _formBuilder: FormBuilder,private us:UserServiceService,private router:ActivatedRoute,
     private cs:CreditServiceService,private ps :ProduitServiceService) {}
   ngOnInit(): void {
     this.getuserbyid();
-    this.getproduitbyid()
+    this.getproduitbyid();
+
   }
   agentform: FormGroup = this._formBuilder.group({firstCtrl: ['']});
-  creidtform: FormGroup = this._formBuilder.group({secondCtrl: ['']});
+  creditform(){
+    console.log(this.produit)
+    console.log(this.uisReaydp)
+    this. creidtform = this._formBuilder.group({
+      montant: new FormControl({ value: this.produit.prix, disabled: true }),
+      nbrdumois:['']
+  
+  });
+  }
+  
   getuserbyid(){
     let token=localStorage.getItem('autorisation'|| '');
     let user:any=jwt_decode(token|| '');
@@ -46,6 +58,7 @@ export class AddCreditComponent implements OnInit {
         console.log(this.router.snapshot.params['id'])
         this.produit=data;
         this.uisReaydp=true;
+        this.creditform();
 
       }
     )

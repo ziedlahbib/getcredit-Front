@@ -3,9 +3,10 @@
     <form>
       <ng-template matStepLabel>Information</ng-template>
 
-
       <div style="margin: 30px;">
-        <span class="label">adresse magasin </span><label>{{user.magasin.addresse}}</label>
+        <span class="label" >adresse magasin </span><label>{{user.magasin.addresse}}</label>
+      </div>
+      <div style="margin: 30px;">
         <div >
           <span class="label ">nom de l'agent </span><label>{{user.nom}}</label>
           <span class="label ">prenom de l'agent </span><label>{{user.prenom}}</label>
@@ -17,22 +18,32 @@
         <span class="label">prix du produit</span><label>{{produit.prix}} dt</label>
       </div>
 
+      
+    </form>
+
+    <div style="margin: 30px;">
+      <form [formGroup]="creidtform" *ngIf="uisReaydp">
+          <div>
+            <input class="form-control" type="text"  formControlName="montant" aria-label="Disabled input example" [disabled]="isDisabled">
+
+          </div>
+          <div>
+            <input class="form-control" type="text"  formControlName="nbrdumois">
+
+          </div>
+  
+      </form>
+    </div>
+    <div>
       <div style="margin: 30px;">
+        <button type="button" class="btn btn-primary" matStepperPrevious>Back</button>
+        &nbsp;
         <button type="button" class="btn btn-primary" matStepperNext>Next</button>
+        
       </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="creidtform">
-    <form [formGroup]="creidtform">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
+      
+      
+    </div>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
