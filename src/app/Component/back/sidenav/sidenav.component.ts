@@ -86,6 +86,7 @@ export class SidenavComponent implements OnInit {
         items: [
             {
                 label: 'afficher',
+                routerLink:'/affichcredit',
                 visible:this.isAdmin()
 
             },

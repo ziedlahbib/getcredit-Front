@@ -1,1 +1,161 @@
-<p>credit-management works!</p>
+<div class="container-fluid mt--7">
+
+
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+  
+          <div class="card-header border-0">
+            <h3 class="mb-0">User List</h3>
+          </div>
+  
+          <div>
+            <div class="table-responsive">
+              <div class="example-header" style="margin: 10px;">
+                <mat-form-field>
+                  <input matInput (keyup)="applyFilter($event)" placeholder="search">
+                </mat-form-field>
+              </div>
+  
+              <div class="example-container mat-elevation-z8">
+  
+                <mat-table [dataSource]="dataSource" matSort class="table align-items-center table-flush">
+  
+                  <!-- ID Column -->
+                  <ng-container matColumnDef="creditId">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> creditId </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.creditId}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+  
+                  <!-- ID Column -->
+                  <ng-container matColumnDef="montant">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> montant </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.montant}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="nbrdumois">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> nombre du mois </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.nbrdumois}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="montantparmois">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> montant par mois </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.montantparmois}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <ng-container matColumnDef="dateDebut">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> date Debut </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.dateDebut}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <ng-container matColumnDef="dateFin">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> date Fin </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.dateFin}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <ng-container matColumnDef="clientId">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> client Id </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.user.id}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <ng-container matColumnDef="clientnom">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> clientnom </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.user.nom}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+  
+
+                  <ng-container matColumnDef="clientprenom">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> client prenom </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.user.prenom}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <ng-container matColumnDef="agentId">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> agent Id </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.agent.id}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <ng-container matColumnDef="agentnom">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> agent nom  </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.agent.nom}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumns;">
+                  </mat-row>
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

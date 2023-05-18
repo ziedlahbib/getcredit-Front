@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CreditServiceService {
 
-  getcreditssurl="/api/credit/get-credits";
+  getcreditssurl="/api/credit/get-Credits";
   getcreditbyIdsurl="/api/credit/get-credit";
   addcreditUrl="/api/credit/add-credit";
   constructor(private http : HttpClient) { }

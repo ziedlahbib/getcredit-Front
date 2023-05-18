@@ -107,14 +107,13 @@
   
   
                   <!-- Color Column -->
-                  <ng-container matColumnDef="option">
+                  <ng-container matColumnDef="option" >
                     <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
                     <mat-cell *matCellDef="let row" class="text-right ">
-                      <div>
-                        <button [routerLink]="['/addcredit', row.produitId ]" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-info"><i
-                            class="fa fa-info"></i> passer credit</button>
+                      <div *ngIf="this.role!=ERole.ROLE_ADMIN">
+                        <button [routerLink]="['/addcredit', row.produitId ]" type="button" class="btn btn-info" style="width: 150px;" > passer credit</button>
                         <!--<button  class="dropdown-item"  id="ziedpag" style="background-color:#DC143C"  [routerLink]="['/assurance-management/modifier', row.assuId ]">modifier</button><br>-->
-                        <button class="btn btn-danger" (click)="supprimer(row)">supprimer</button><br>
+                        <button class="btn btn-danger" style="width: 150px;" (click)="supprimer(row)">supprimer</button><br>
                       </div>
   
   
