@@ -47,7 +47,8 @@ export class SidenavComponent implements OnInit {
 
             },
             
-        ]
+        ],
+        visible:this.isAdmin()||this.isEntrepreneur()
     },
     {
         label: 'Gestion des magasins',
@@ -64,7 +65,8 @@ export class SidenavComponent implements OnInit {
 
             },
             
-        ]
+        ],
+        visible:this.isAdmin()||this.isEntrepreneur()
     }, {
         label: 'Gestion des produits',
         items: [
@@ -87,11 +89,12 @@ export class SidenavComponent implements OnInit {
             {
                 label: 'afficher',
                 routerLink:'/affichcredit',
-                visible:this.isAdmin()
+                
 
             },
             
-        ]
+        ],
+        visible:this.isAdmin()
     },
   ]
 }
