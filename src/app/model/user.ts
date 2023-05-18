@@ -16,7 +16,6 @@ export class User {
     password:String;
     resetToken:String;
     active:Boolean;
-
     roles:Role;
     files:FileDB[];
     entreprise:Entreprise[];
