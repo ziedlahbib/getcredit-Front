@@ -10,27 +10,25 @@ import jwt_decode from "jwt-decode";
 export class HttpInterceptorService implements HttpInterceptor{
 
   constructor(private authenticationService: AuthServiceService) { }
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       let token=localStorage.getItem('autorisation');
-      if(token!=null){
-        const authReq = req.clone({
-          headers: new HttpHeaders({
-
-              'Authorization': `Bearer  ${token}`
-          })
-
-      });
-      return next.handle(authReq);
-      }else{
-        const authReq = req.clone({
-          headers: new HttpHeaders({
-          })
-
-      });
-      return next.handle(req)
+      if (request.url.includes('/api/django/')) {
+        // Do not add the bearer token for Django API requests
+        return next.handle(request);
       }
-      
+  
+      // Add the bearer token for other requests
+      if (token) {
+        request = request.clone({
+          setHeaders: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      }
+  
+      return next.handle(request);
+    }
 
 
   }
-}
+

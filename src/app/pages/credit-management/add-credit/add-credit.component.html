@@ -4,12 +4,8 @@
     <ng-template matStepLabel>formulaire du client</ng-template>
     <div style="margin: 30px;">
       <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupFile01">cin 1:</label>
-        <input type="file" class="form-control" id="inputGroupFile01">
-      </div>
-      <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupFile01">cin2:</label>
-        <input type="file" class="form-control" id="inputGroupFile01">
+        <input type="file" class="form-control" id="inputGroupFile01" (change)="selectFile($event);getuserinfo()">
       </div>
       <form [formGroup]="clientform" >
           <div>
@@ -89,6 +85,49 @@
     </div>
 
   </mat-step>
+
+  <mat-step>
+    <form [formGroup]="clienteleigibiliteform" >
+      <ng-template matStepLabel>Information du client</ng-template>
+
+      <div style="margin: 30px;">
+        <span class="label" >age </span><input class="form-control" type="text"  formControlName="age">
+      </div>
+      <div style="margin: 30px;">
+        <div >
+          <span class="label ">workclass </span><input class="form-control" type="text"  formControlName="workclass">
+          <span class="label ">education </span><input class="form-control" type="text"  formControlName="education">
+        </div>
+      </div>
+      <div style="margin: 30px;">
+        <span class="label">education_num </span><input class="form-control" type="text"  formControlName="education_num">
+        <span class="label">marital_status</span><input class="form-control" type="text"  formControlName="marital_status">
+        <span class="label">occupation</span><input class="form-control" type="text"  formControlName="occupation">
+      </div>
+      <div style="margin: 30px;">
+        <span class="label">relationship </span><input class="form-control" type="text"  formControlName="relationship">
+        <span class="label">race</span><input class="form-control" type="text"  formControlName="race">
+        <span class="label">gender</span><input class="form-control" type="text"  formControlName="gender">
+      </div>
+      <div style="margin: 30px;">
+        <span class="label">capital_gain </span><input class="form-control" type="text"  formControlName="capital_gain">
+        <span class="label">capital_loss</span><input class="form-control" type="text"  formControlName="capital_loss">
+        <span class="label">hours_per_week</span><input class="form-control" type="text"  formControlName="hours_per_week">
+        <span class="label">native_country</span><input class="form-control" type="text"  formControlName="native_country">
+      </div>
+    </form>
+
+    
+
+    <div style="margin: 30px;">
+      <button type="button" class="btn btn-secondary" matStepperPrevious>Back</button>
+      &nbsp;
+      <button type="button" class="btn btn-primary" (click)="checkEligibility()" matStepperNext>Next</button>
+      
+    </div>
+
+  </mat-step>
+
   <mat-step>
     <ng-template matStepLabel>signature du contrat</ng-template>
     <div style="margin: 30px;">
