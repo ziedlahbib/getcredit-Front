@@ -99,19 +99,19 @@ export class AddCreditComponent implements OnInit {
   // Subscribe to the valueChanges of the form controls
   this.clienteleigibiliteform.valueChanges.subscribe((data) => {
     // Add space to the beginning of the values for selected controls
-    const controlsWithSpace = ['workclass', 'education', 'marital_status', 'occupation', 'relationship','race','gender','native_country'];
-    for (const controlName of controlsWithSpace) {
-      const controlValue = this.clienteleigibiliteform.get(controlName)?.value;
-      if (controlValue) {
-        // Check if the value does not already start with a space
-        if (!controlValue.startsWith(' ')) {
-          // Add space at the beginning and update the form control
-          this.clienteleigibiliteform.get(controlName)?.setValue(' ' + controlValue);
-          // Trigger form control revalidation and update
-          this.clienteleigibiliteform.get(controlName)?.updateValueAndValidity();
-        }
-      }
-    }
+    // const controlsWithSpace = ['workclass', 'education', 'marital_status', 'occupation', 'relationship','race','gender','native_country'];
+    // for (const controlName of controlsWithSpace) {
+    //   const controlValue = this.clienteleigibiliteform.get(controlName)?.value;
+    //   if (controlValue) {
+    //     // Check if the value does not already start with a space
+    //     if (!controlValue.startsWith(' ')) {
+    //       // Add space at the beginning and update the form control
+    //       this.clienteleigibiliteform.get(controlName)?.setValue(' ' + controlValue);
+    //       // Trigger form control revalidation and update
+    //       this.clienteleigibiliteform.get(controlName)?.updateValueAndValidity();
+    //     }
+    //   }
+    // }
 
     console.log(this.clienteleigibiliteform.value);
   });
