@@ -17,6 +17,8 @@ import { UserServiceService } from 'src/app/service/user-service.service';
 })
 export class AddCreditComponent implements OnInit {
   client:any[];
+  client2:any[];
+  isEligible:boolean=true
   selectedFiles: FileList ;
   currentFile: any;
   user:User;
@@ -24,6 +26,7 @@ export class AddCreditComponent implements OnInit {
   produit:Produit;
   creidtform:FormGroup;
   clientform:FormGroup;
+  clientform2:FormGroup;
   clienteleigibiliteform:FormGroup
   isDisabled:boolean=true;
   uisReaydu:boolean=false;
@@ -34,24 +37,31 @@ export class AddCreditComponent implements OnInit {
   ngOnInit(): void {
     this.getuserbyid();
     this.getproduitbyid();
-    this.initform();
     this.clienteleigibiliteinitform()
 
   }
-  initform(){
-    this. clientform = this._formBuilder.group({
-      nom:[''],
-      prenom:[''],
-      adresse:[''],
-      email:['']
-  
-  });
-  this.clientform.valueChanges.subscribe(
-    data => {
-      console.log(this.clientform.value);
+  initform(data) {
+    this.clientform = this._formBuilder.group({
+      nom: [data[5]],
+      prenom: [data[10]],
+      email: ['']
+    });
 
-    }
-  )
+
+    this.clientform.valueChanges.subscribe(data => {
+      console.log(this.clientform.value);
+    });
+  }
+  initform2(data) {
+    const concatenatedString = `${data[7]}${data[8]}${data[9]}${data[10]}`;
+    this.clientform2 = this._formBuilder.group({
+      adresse: [concatenatedString],
+    });
+
+
+    this.clientform.valueChanges.subscribe(data => {
+      console.log(this.clientform.value);
+    });
   }
   agentform: FormGroup = this._formBuilder.group({firstCtrl: ['']});
   creditform(){
@@ -116,10 +126,10 @@ export class AddCreditComponent implements OnInit {
     this.dj.checkEligibility(this.clienteleigibiliteform.value).subscribe(
       (response) => {
         // Access the 'eligibilite' field and store it as a boolean variable
-        const isEligible: boolean = response.eligibilite;
+         this.isEligible = response.eligibilite;
 
         // Now you can use 'isEligible' in your application logic
-        console.log('Is eligible:', isEligible);
+        console.log('Is eligible:', this.isEligible);
       },
       (error) => {
         // Handle errors here
@@ -138,6 +148,20 @@ export class AddCreditComponent implements OnInit {
       data=>{
         console.log(data)
         this.client=data
+        this.initform(data);
+      }
+    )
+    
+  }
+  getuserinfo2(){
+    this.currentFile = this.selectedFiles.item(0);
+    console.log(this.selectedFiles)
+    console.log(this.currentFile)
+     this.dj.upload(this.currentFile).subscribe(
+      data=>{
+        console.log(data)
+        this.client2=data
+        this.initform2(data);
       }
     )
     

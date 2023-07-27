@@ -4,10 +4,14 @@
     <ng-template matStepLabel>formulaire du client</ng-template>
     <div style="margin: 30px;">
       <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupFile01">cin2:</label>
+        <label class="input-group-text" for="inputGroupFile01">cin1:</label>
         <input type="file" class="form-control" id="inputGroupFile01" (change)="selectFile($event);getuserinfo()">
       </div>
-      <form [formGroup]="clientform" >
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupFile01">cin2:</label>
+        <input type="file" class="form-control" id="inputGroupFile01" (change)="selectFile($event);getuserinfo2()">
+      </div>
+      <form *ngIf="client!=null" [formGroup]="clientform"  >
           <div>
             <span class="label">nom</span>
             <input class="form-control" type="text"  formControlName="nom" >
@@ -19,16 +23,18 @@
 
           </div>
           <div style="margin-top: 30px;">
-            <span class="label">adresse</span>
-            <input class="form-control" type="text"  formControlName="adresse">
-
-          </div>
-          <div style="margin-top: 30px;">
             <span class="label">email</span>
             <input class="form-control" type="text"  formControlName="email">
 
           </div>
   
+      </form>
+      <form *ngIf="client2!=null" [formGroup]="clientform2">
+        <div style="margin-top: 30px;">
+          <span class="label">adresse</span>
+          <input class="form-control" type="text"  formControlName="adresse">
+
+        </div>
       </form>
     </div>
     <div style="margin: 30px;">
@@ -127,8 +133,21 @@
     </div>
 
   </mat-step>
-
-  <mat-step>
+  <mat-step *ngIf="!isEligible">
+    <ng-template matStepLabel>client non eligible</ng-template>
+    <div style="margin: 30px;">
+      <a class="url">sorry ! ce client n'est pas eligible pour un crédit </a>
+      &nbsp;
+    </div>
+    <div>
+      <button type="button" class="btn btn-warning" (click)="stepper.reset()">Reset</button>
+      &nbsp;
+      <button type="button" class="btn btn-secondary" matStepperPrevious>Back</button>
+      &nbsp;
+      <button type="button" class="btn btn-primary" (click)="submit()">confirmer</button>
+    </div>
+  </mat-step>
+  <mat-step *ngIf="isEligible">
     <ng-template matStepLabel>signature du contrat</ng-template>
     <div style="margin: 30px;">
       <a class="url">terme du contrat</a>
