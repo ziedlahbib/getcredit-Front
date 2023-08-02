@@ -91,6 +91,11 @@ export class SidenavComponent implements OnInit {
                 routerLink:'/affichcredit',
                 
 
+            },{
+                label: 'afficher credit refusé',
+                routerLink:'/affichcreditref',
+                
+
             },
             
         ],

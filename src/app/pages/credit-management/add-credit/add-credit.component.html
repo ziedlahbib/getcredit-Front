@@ -484,7 +484,8 @@
       &nbsp;
       <button type="button" class="btn btn-secondary" matStepperPrevious>Back</button>
       &nbsp;
-      <button type="button" class="btn btn-primary" (click)="submit()">confirmer</button>
+      <button *ngIf="isEligible" type="button" class="btn btn-primary" (click)="submit()">confirmer</button>
+      <button *ngIf="!isEligible" type="button" class="btn btn-primary" (click)="submitr()">confirmer</button>
     </div>
   </mat-step>
 </mat-vertical-stepper>

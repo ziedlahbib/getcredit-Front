@@ -10,6 +10,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpInterceptorService } from './service/http-interceptor.service';
+import { CreditrefmanagmentComponent } from './pages/creditrefmanagment/creditrefmanagment.component';
 
 
 
@@ -22,6 +23,7 @@ import { HttpInterceptorService } from './service/http-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
+
 
 
 

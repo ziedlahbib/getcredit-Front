@@ -3,9 +3,11 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
 import { Credit } from 'src/app/model/credit';
+import { Creditrefuse } from 'src/app/model/creditrefuse.model';
 import { Produit } from 'src/app/model/produit';
 import { User } from 'src/app/model/user';
 import { CreditServiceService } from 'src/app/service/credit-service.service';
+import { CreditrefuseService } from 'src/app/service/creditrefuse.service';
 import { DjangoService } from 'src/app/service/django.service';
 import { ProduitServiceService } from 'src/app/service/produit-service.service';
 import { UserServiceService } from 'src/app/service/user-service.service';
@@ -23,6 +25,7 @@ export class AddCreditComponent implements OnInit {
   currentFile: any;
   user:User;
   credit :Credit;
+  creditref:Creditrefuse
   produit:Produit;
   creidtform:FormGroup;
   clientform:FormGroup;
@@ -33,7 +36,7 @@ export class AddCreditComponent implements OnInit {
   uisReaydp:boolean=false;
   constructor(private _formBuilder: FormBuilder,private us:UserServiceService,private router:ActivatedRoute, private route :Router,
     private cs:CreditServiceService,private ps :ProduitServiceService,
-    private dj:DjangoService) {}
+    private dj:DjangoService,private crs :CreditrefuseService) {}
   ngOnInit(): void {
     this.getuserbyid();
     this.getproduitbyid();
@@ -208,6 +211,33 @@ export class AddCreditComponent implements OnInit {
           }
         )
         this.cs.affectecreditproduit(data.creditId,this.produit.produitId,data).subscribe(
+          res=>{
+
+          }
+        )
+        this.route.navigate(['/affichlistProduits'])
+      }
+    )
+  }
+  submitr(){
+    this.crs.ajoutCredit(this.creidtform.value).subscribe(
+      data=>{
+        this.creditref=data;
+        this.crs.affectecreditagent(data.creditId,this.user.id,data).subscribe(
+          res=>{
+
+          }
+        )
+        this.us.ajoutclient(this.clientform.value).subscribe(
+          res=>{
+            this.crs.affectecreditclient(data.creditId,res.id,data).subscribe(
+              res=>{
+    
+              }
+            )
+          }
+        )
+        this.crs.affectecreditproduit(data.creditId,this.produit.produitId,data).subscribe(
           res=>{
 
           }

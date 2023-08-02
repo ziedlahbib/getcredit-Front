@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddCreditComponent } from 'src/app/pages/credit-management/add-credit/add-credit.component';
 import { CreditManagementComponent } from 'src/app/pages/credit-management/credit-management.component';
+import { CreditrefmanagmentComponent } from 'src/app/pages/creditrefmanagment/creditrefmanagment.component';
 import { AddEntrepriseComponent } from 'src/app/pages/entreprise-management/add-entreprise/add-entreprise.component';
 import { EntrepriseManagementComponent } from 'src/app/pages/entreprise-management/entreprise-management.component';
 import { AddMagasinComponent } from 'src/app/pages/magasin-management/add-magasin/add-magasin.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'ajoutProduit',       component: AddProduitComponent },
   { path: 'addcredit/:id',       component: AddCreditComponent },
   { path: 'affichcredit',       component: CreditManagementComponent },
+  { path: 'affichcreditref',       component: CreditrefmanagmentComponent },
 
 ];
 
