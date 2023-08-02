@@ -12,6 +12,7 @@ import { CreditServiceService } from 'src/app/service/credit-service.service';
 })
 
 export class CreditManagementComponent implements OnInit {
+  isReady:boolean=false;
   listofCredit:Credit[];
   displayedColumns = ['creditId','montant','nbrdumois','montantparmois','dateDebut','dateFin','clientId','clientnom','clientprenom','agentId','agentnom'];
   dataSource: MatTableDataSource<Credit>;
@@ -30,6 +31,8 @@ export class CreditManagementComponent implements OnInit {
         this.dataSource._renderChangesSubscription;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        console.log(data[0].user)
+        this.isReady=true
       }
     )
   }

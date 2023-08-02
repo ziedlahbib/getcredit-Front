@@ -1,4 +1,4 @@
-<div class="container-fluid mt--7">
+<div class="container-fluid mt--7" *ngIf="isReady">
 
 
     <div class="row">
@@ -92,7 +92,7 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header> client Id </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
-                        {{row.user.id}}
+                        {{row.user?.id}}
                       </div>
   
   
@@ -103,7 +103,7 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header> clientnom </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
-                        {{row.user.nom}}
+                        {{row.user?.nom}}
                       </div>
   
   
@@ -116,7 +116,7 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header> client prenom </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
-                        {{row.user.prenom}}
+                        {{row.user?.prenom}}
                       </div>
   
   
@@ -127,7 +127,7 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header> agent Id </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
-                        {{row.agent.id}}
+                        {{row.agent?.id}}
                       </div>
   
   
@@ -138,7 +138,7 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header> agent nom  </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
-                        {{row.agent.nom}}
+                        {{row.agent?.nom}}
                       </div>
   
   

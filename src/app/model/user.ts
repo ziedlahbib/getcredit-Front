@@ -21,4 +21,5 @@ export class User {
     entreprise:Entreprise[];
     magasin:Magasin;
     credits:Credit[];
+    credit:Credit[]
 }
