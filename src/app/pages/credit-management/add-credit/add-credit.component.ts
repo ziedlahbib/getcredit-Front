@@ -201,23 +201,26 @@ export class AddCreditComponent implements OnInit {
         console.log(this.user.id)
         this.cs.affectecreditagent(data.creditId,this.user.id,data).subscribe(
           res=>{
-              
-          }
-        )
-        this.us.ajoutclient(this.clientform.value).subscribe(
-          res=>{
-            this.cs.affectecreditclient(data.creditId,res.id,data).subscribe(
+
+            console.log(res)
+            this.us.ajoutclient(this.clientform.value).subscribe(
               res=>{
-    
+                this.cs.affectecreditclient(data.creditId,res.id,data).subscribe(
+                  res=>{
+                    console.log(this.produit.produitId)
+                    this.cs.affectecreditproduit(data.creditId,this.produit.produitId,data).subscribe(
+                      res=>{
+            
+                      }
+                    )
+                  }
+                )
               }
             )
+            
           }
         )
-        this.cs.affectecreditproduit(data.creditId,this.produit.produitId,data).subscribe(
-          res=>{
-
-          }
-        )
+       
         this.route.navigate(['/affichlistProduits'])
       }
     )
@@ -231,25 +234,27 @@ export class AddCreditComponent implements OnInit {
           res=>{
             console.log(data.creditId)
             console.log(this.user.id)
-          }
-        )
-        this.us.ajoutclient(this.clientform.value).subscribe(
-          res=>{
-            this.crs.affectecreditclient(data.creditId,res.id,data).subscribe(
-              resu=>{
-                console.log(data.creditId)
-                console.log(res.id)
+            this.us.ajoutclient(this.clientform.value).subscribe(
+              res=>{
+                this.crs.affectecreditclient(data.creditId,res.id,data).subscribe(
+                  resu=>{
+                    console.log(data.creditId)
+                    console.log(res.id)
+                    console.log(this.produit.produitId)
+                    this.crs.affectecreditproduit(data.creditId,this.produit.produitId,data).subscribe(
+                      resul=>{
+                        console.log(data.creditId)
+                        console.log(this.produit.produitId)
+                      }
+                    )
+                  }
+                )
               }
             )
           }
         )
-        console.log(this.produit.produitId)
-        this.crs.affectecreditproduit(data.creditId,this.produit.produitId,data).subscribe(
-          res=>{
-            console.log(data.creditId)
-            console.log(this.produit.produitId)
-          }
-        )
+        
+        
         this.route.navigate(['/affichlistProduits'])
       }
     )
