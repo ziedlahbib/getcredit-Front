@@ -20,7 +20,7 @@ import { UserServiceService } from 'src/app/service/user-service.service';
 export class AddCreditComponent implements OnInit {
   client:any[];
   client2:any[];
-  isEligible:boolean=true
+  isEligible:boolean
   selectedFiles: FileList ;
   currentFile: any;
   user:User;
@@ -40,7 +40,8 @@ export class AddCreditComponent implements OnInit {
   ngOnInit(): void {
     this.getuserbyid();
     this.getproduitbyid();
-    this.clienteleigibiliteinitform()
+    this.clienteleigibiliteinitform();
+
 
   }
   initform(data) {
@@ -196,9 +197,11 @@ export class AddCreditComponent implements OnInit {
     this.cs.ajoutCredit(this.creidtform.value).subscribe(
       data=>{
         this.credit=data;
+        console.log(data.creditId)
+        console.log(this.user.id)
         this.cs.affectecreditagent(data.creditId,this.user.id,data).subscribe(
           res=>{
-
+              
           }
         )
         this.us.ajoutclient(this.clientform.value).subscribe(
@@ -223,23 +226,28 @@ export class AddCreditComponent implements OnInit {
     this.crs.ajoutCredit(this.creidtform.value).subscribe(
       data=>{
         this.creditref=data;
+
         this.crs.affectecreditagent(data.creditId,this.user.id,data).subscribe(
           res=>{
-
+            console.log(data.creditId)
+            console.log(this.user.id)
           }
         )
         this.us.ajoutclient(this.clientform.value).subscribe(
           res=>{
             this.crs.affectecreditclient(data.creditId,res.id,data).subscribe(
-              res=>{
-    
+              resu=>{
+                console.log(data.creditId)
+                console.log(res.id)
               }
             )
           }
         )
+        console.log(this.produit.produitId)
         this.crs.affectecreditproduit(data.creditId,this.produit.produitId,data).subscribe(
           res=>{
-
+            console.log(data.creditId)
+            console.log(this.produit.produitId)
           }
         )
         this.route.navigate(['/affichlistProduits'])

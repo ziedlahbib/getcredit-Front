@@ -25,12 +25,12 @@ export class CreditrefuseService {
     return this.http.post<Creditrefuse>(`${this.addcreditUrl}`,Credit);
   }
   affectecreditclient(idcr:Number,idc :Number,Credit :Creditrefuse): Observable<Creditrefuse>{
-    return this.http.put<Creditrefuse>("/api/credit/affecter-credit-client/"+idcr+"/"+idc,Credit);
+    return this.http.put<Creditrefuse>("/api/creditRef/affecter-creditref-client/"+idcr+"/"+idc,Credit);
   }
   affectecreditagent(idc:Number,ida :Number,Credit :Creditrefuse): Observable<Creditrefuse>{
-    return this.http.put<Creditrefuse>("/api/credit/affecter-credit-agent/"+idc+"/"+ida,Credit);
+    return this.http.put<Creditrefuse>("/api/creditRef/affecter-creditref-agent/"+idc+"/"+ida,Credit);
   }
   affectecreditproduit(idc:Number,idp :Number,Credit :Creditrefuse): Observable<Creditrefuse>{
-    return this.http.put<Creditrefuse>("/api/credit/affecter-credit-produit/"+idc+"/"+idp,Credit);
+    return this.http.put<Creditrefuse>("/api/creditRef/affecter-creditref-produit/"+idc+"/"+idp,Credit);
   }
 }

@@ -469,7 +469,7 @@
       &nbsp;
       <button type="button" class="btn btn-secondary" matStepperPrevious>Back</button>
       &nbsp;
-      <button type="button" class="btn btn-primary" (click)="submit()">confirmer</button>
+      <button type="button" class="btn btn-primary" (click)="submitr()">confirmer client</button>
     </div>
   </mat-step>
   <mat-step *ngIf="isEligible">
@@ -479,13 +479,13 @@
       &nbsp;
       <button type="button" class="btn btn-success">signé contrat</button>
     </div>
-    <div>
+    <div >
       <button type="button" class="btn btn-warning" (click)="stepper.reset()">Reset</button>
       &nbsp;
       <button type="button" class="btn btn-secondary" matStepperPrevious>Back</button>
       &nbsp;
-      <button *ngIf="isEligible" type="button" class="btn btn-primary" (click)="submit()">confirmer</button>
-      <button *ngIf="!isEligible" type="button" class="btn btn-primary" (click)="submitr()">confirmer</button>
+      <button  type="button" class="btn btn-primary" (click)="submit()">confirmer</button>
     </div>
   </mat-step>
+
 </mat-vertical-stepper>
