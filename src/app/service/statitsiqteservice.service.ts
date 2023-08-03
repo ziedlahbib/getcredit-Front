@@ -29,4 +29,12 @@ export class StatitsiqteserviceService {
     return this.http.get<number>("api/statistic/get-credit-ent/"+ident);
 
   }
+  getCreditsperparmag(idmag:Number): Observable<number>{
+    return this.http.get<number>("api/statistic/get-creditref-mag/"+idmag);
+
+  }
+  getCreditrefsperparmag(idmag:Number): Observable<number>{
+    return this.http.get<number>("api/statistic/get-credit-mag/"+idmag);
+
+  }
 }

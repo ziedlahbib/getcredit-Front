@@ -9,13 +9,21 @@
       </mat-select>
     </mat-form-field>
   </form>
-  
-  <div *ngIf="isChartOptionsDefined()">
+  <div class="chart-container" *ngIf="isChartOptionsDefined()" class="statistique-magasin-container">
+    <!-- Chart code here -->
     <apx-chart
+      #apexChart
       [series]="chartOptions.series"
       [chart]="chartOptions.chart"
-      [labels]="chartOptions.labels"
+      [dataLabels]="chartOptions.dataLabels"
+      [plotOptions]="chartOptions.plotOptions"
       [responsive]="chartOptions.responsive"
+      [xaxis]="chartOptions.xaxis"
+      [legend]="chartOptions.legend"
+      [fill]="chartOptions.fill"
     ></apx-chart>
   </div>
+  
+
+  
   

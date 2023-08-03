@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { Observable, map, startWith } from 'rxjs';
 import { forkJoin } from 'rxjs';
 import { MatSelectChange } from '@angular/material/select';
@@ -37,6 +37,7 @@ export type ChartOptions = {
   styleUrls: ['./statistique-magasin.component.scss']
 })
 export class StatistiqueMagasinComponent {
+  @ViewChild('apexChart', { static: false }) apexChart: ElementRef;
   public chartOptions: Partial<ChartOptions> | any = {}; // Initialize chartOptions as an empty object
   loading = false;
   listofMagasin: Magasin[] = [];
@@ -137,15 +138,7 @@ export class StatistiqueMagasinComponent {
     this.loadingm = listM.length > 0;
   }
 
-  updateChart(): void {
-    // Update the chart data with the new data
-    if (this.chartOptions.series && this.chartOptions.series.length > 0) {
-      this.chartOptions.series[0].data = this.approvedDataArray;
-      this.chartOptions.series[1].data = this.notApprovedDataArray;
-      this.chartOptions.xaxis.categories = this.listofMagasin.map((magasin) => magasin.addresse);
-      this.chartOptions = { ...this.chartOptions }; // Make a shallow copy to trigger change detection
-    }
-  }
+ 
 
   getentreprise() {
     this.es.getEntreprises().subscribe((data) => {
@@ -156,17 +149,19 @@ export class StatistiqueMagasinComponent {
 
   // ... (previous code)
 
-  getmagasins(event: MatSelectChange) {
-    const value = event.value;
-    this.ms.getmagasinsbyentreprise(Number(value)).subscribe((res) => {
-      this.listofMagasin = res;
-      this.verifiermagasin(this.listofMagasin);
+getmagasins(event: MatSelectChange) {
+  const value = event.value;
+  this.ms.getmagasinsbyentreprise(Number(value)).subscribe((res) => {
+    this.listofMagasin = res;
+    this.verifiermagasin(this.listofMagasin);
 
+    // Check if there are any magasins, and only proceed if there are
+    if (this.listofMagasin.length > 0) {
       // Fetch approved and notApproved data for each magasin using forkJoin
       const observablesArray: Observable<any>[] = this.listofMagasin.map((magasin) =>
         forkJoin({
-          approved: this.ss.getCreditsperparent(magasin.magasinId),
-          notApproved: this.ss.getCreditrefsperparent(magasin.magasinId),
+          approved: this.ss.getCreditsperparmag(magasin.magasinId),
+          notApproved: this.ss.getCreditrefsperparmag(magasin.magasinId),
         })
       );
 
@@ -181,9 +176,41 @@ export class StatistiqueMagasinComponent {
 
         // Update the chart data with the new data
         this.updateChart();
+
+        // Detect changes in the component to trigger re-rendering with updated chart data
+        this.cdr.detectChanges();
       });
-    });
+    } else {
+      // If there are no magasins, reset the chart data
+      this.approvedDataArray = [];
+      this.notApprovedDataArray = [];
+      this.chartOptions.series[0].data = this.approvedDataArray;
+      this.chartOptions.series[1].data = this.notApprovedDataArray;
+      this.chartOptions.xaxis.categories = [];
+      this.updateChart();
+      this.cdr.detectChanges();
+    }
+  });
+}
+
+  updateChart(): void {
+    // Update the chart data with the new data
+    if (this.chartOptions.series && this.chartOptions.series.length > 0) {
+      this.chartOptions.series[0].data = this.approvedDataArray;
+      this.chartOptions.series[1].data = this.notApprovedDataArray;
+      this.chartOptions.xaxis.categories = this.listofMagasin.map((magasin) => magasin.addresse);
+      this.chartOptions = { ...this.chartOptions }; // Make a shallow copy to trigger change detection
+
+      // Manually force the chart to update
+      if (this.apexChart && this.apexChart.nativeElement && this.apexChart.nativeElement.updateOptions) {
+        this.apexChart.nativeElement.updateOptions(this.chartOptions);
+      }
+    }
   }
+  
+  
+  
+  
 
   private _filter(value: string): any[] {
     const filterValue = value.toLowerCase();
