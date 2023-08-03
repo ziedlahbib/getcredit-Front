@@ -67,6 +67,10 @@ export class StatistiqueMagasinComponent {
     this.filteredOptionsmagasin = this.myControlmagasin.valueChanges.pipe(startWith(''), map(value => this._filtermagasin(value)));
 
     // Initialize the chart with some default data
+
+  }
+
+  initchart(){
     this.chartOptions = {
       series: [
         {
@@ -119,7 +123,6 @@ export class StatistiqueMagasinComponent {
       },
     };
   }
-
   entrepriseform() {
     this.entform = this.formBuilder.group({
       entrpriseId: ['', Validators.required],
@@ -195,6 +198,7 @@ getmagasins(event: MatSelectChange) {
 
   updateChart(): void {
     // Update the chart data with the new data
+    this.initchart();
     if (this.chartOptions.series && this.chartOptions.series.length > 0) {
       this.chartOptions.series[0].data = this.approvedDataArray;
       this.chartOptions.series[1].data = this.notApprovedDataArray;
