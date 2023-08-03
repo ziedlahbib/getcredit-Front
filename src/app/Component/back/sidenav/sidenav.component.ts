@@ -100,6 +100,18 @@ export class SidenavComponent implements OnInit {
             
         ],
         visible:this.isAdmin()
+    },{
+        label: 'statistique',
+        items: [
+            {
+                label: 'afficher',
+                routerLink:'/affichstatitistique',
+                
+
+            },
+            
+        ],
+        visible:this.isAdmin()
     },
   ]
 }

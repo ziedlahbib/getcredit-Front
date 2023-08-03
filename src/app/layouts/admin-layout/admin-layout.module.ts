@@ -35,8 +35,15 @@ import { ModifierMotDePasseComponent } from 'src/app/pages/user-management/modif
 import { StepsModule } from 'primeng/steps';
 import {MatStepperModule} from '@angular/material/stepper';
 import { CreditrefmanagmentComponent } from 'src/app/pages/creditrefmanagment/creditrefmanagment.component';
+import { StatistiqueComponent } from 'src/app/pages/statistique/statistique.component';
 
 
+
+
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { StatistiqueEntrepriseComponent } from 'src/app/pages/statistique-entreprise/statistique-entreprise.component';
 
 
 
@@ -68,6 +75,8 @@ import { CreditrefmanagmentComponent } from 'src/app/pages/creditrefmanagment/cr
     AddCreditComponent,
     ModifierMotDePasseComponent,
     CreditrefmanagmentComponent,
+    StatistiqueComponent,
+    StatistiqueEntrepriseComponent
 
 
     
@@ -91,8 +100,9 @@ import { CreditrefmanagmentComponent } from 'src/app/pages/creditrefmanagment/cr
     PanelMenuModule,
     MatAutocompleteModule,
     StepsModule,
-    MatStepperModule
-
+    MatStepperModule,
+    NgApexchartsModule,
+    
 
     
     
