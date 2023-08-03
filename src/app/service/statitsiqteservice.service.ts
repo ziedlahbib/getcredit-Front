@@ -26,7 +26,7 @@ export class StatitsiqteserviceService {
 
   }
   getCreditrefsperparent(ident:Number): Observable<number>{
-    return this.http.get<number>("api/statistic/get-creditref-ent/"+ident);
+    return this.http.get<number>("api/statistic/get-credit-ent/"+ident);
 
   }
 }

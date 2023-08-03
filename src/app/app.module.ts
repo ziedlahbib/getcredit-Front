@@ -13,6 +13,7 @@ import { HttpInterceptorService } from './service/http-interceptor.service';
 import { CreditrefmanagmentComponent } from './pages/creditrefmanagment/creditrefmanagment.component';
 import { StatistiqueComponent } from './pages/statistique/statistique.component';
 import { StatistiqueEntrepriseComponent } from './pages/statistique-entreprise/statistique-entreprise.component';
+import { StatistiqueMagasinComponent } from './pages/statistique-magasin/statistique-magasin.component';
 
 
 
@@ -25,6 +26,7 @@ import { StatistiqueEntrepriseComponent } from './pages/statistique-entreprise/s
 @NgModule({
   declarations: [
     AppComponent,
+    
 
 
 

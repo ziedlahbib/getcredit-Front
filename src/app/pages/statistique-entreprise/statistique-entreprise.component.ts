@@ -50,19 +50,20 @@ export class StatistiqueEntrepriseComponent {
       );
 
       forkJoin(observablesArray).subscribe((results) => {
+        console.log('Results:', results);
         results.forEach((result) => {
           approvedDataArray.push(result.approved);
           notApprovedDataArray.push(result.notApproved);
         });
-
+        console.log(approvedDataArray, notApprovedDataArray); // Log the processed data
         this.chartOptions = {
           series: [
             {
-              name: 'credit accepte',
+              name: 'credit refusé',
               data: approvedDataArray,
             },
             {
-              name: 'credit refusé',
+              name: 'credit accepté',
               data: notApprovedDataArray,
             },
           ],
@@ -106,6 +107,7 @@ export class StatistiqueEntrepriseComponent {
             opacity: 1,
           },
         };
+        this.updateChart();
       });
     });
   }
@@ -115,5 +117,17 @@ export class StatistiqueEntrepriseComponent {
     if (this.chartOptions.series && this.chartOptions.series.length > 0) {
       this.chartOptions = { ...this.chartOptions }; // Make a shallow copy to trigger change detection
     }
+  }
+  ngOnInit(): void {
+    this.ss.getCreditrefsperparent(3).subscribe(
+      data=>{
+        console.log("data",data);
+      }
+    )
+    this.ss.getCreditsperparent(3).subscribe(
+      data=>{
+        console.log("data",data);
+      }
+    )
   }
 }

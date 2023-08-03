@@ -1,0 +1,21 @@
+<form [formGroup]="entform" style="text-align: center">
+    <label>entreprise</label>
+    <mat-form-field *ngIf="loading">
+      <mat-label>choisir une option</mat-label>
+      <mat-select formControlName="entrpriseId" (selectionChange)="getmagasins($event)">
+        <mat-option *ngFor="let option of listofEntreprise" [value]="option.entrpriseId">
+          {{ option.nom }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  
+  <div *ngIf="isChartOptionsDefined()">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [labels]="chartOptions.labels"
+      [responsive]="chartOptions.responsive"
+    ></apx-chart>
+  </div>
+  

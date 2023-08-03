@@ -1,11 +1,17 @@
-<div class="chart-container">
-  <div *ngIf="isChartOptionsDefined()">
-    <apx-chart
-      [series]="chartOptions.series"
-      [chart]="chartOptions.chart"
-      [labels]="chartOptions.labels"
-      [responsive]="chartOptions.responsive"
-    ></apx-chart>
-  </div>
+<!-- Main template for StatistiqueMagasinComponent -->
+
+
+<div class="chart-container" *ngIf="isChartOptionsDefined()">
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [dataLabels]="chartOptions.dataLabels"
+    [plotOptions]="chartOptions.plotOptions"
+    [responsive]="chartOptions.responsive"
+    [xaxis]="chartOptions.xaxis"
+    [legend]="chartOptions.legend"
+    [fill]="chartOptions.fill"
+  ></apx-chart>
 </div>
 <app-statistique-entreprise></app-statistique-entreprise>
+<app-statistique-magasin></app-statistique-magasin>
