@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class MagasinServiceService {
 
   getmagasinssurl="/api/magasin/get-magasins";
+  getmagasinsbyentrepreneursurl="/api/magasin/get-magasinsbyentrepreneur";
   getmagasinsbyentrepriseurl="/api/magasin/get-magasinsparentreprise";
   getmagasinbyIdsurl="/api/magasin/get-magasin";
   addmagsinUrl="/api/magasin/add-magasin";
@@ -19,6 +20,9 @@ export class MagasinServiceService {
   getMagasins(): Observable<Magasin[]>{
     return this.http.get<Magasin[]>(`${this.getmagasinssurl}`);
 
+  }
+  getmagasinbyentrepreneur(iduser:Number):Observable<Magasin[]>{
+    return this.http.get<Magasin[]>(`${this.getmagasinsbyentrepreneursurl}/${iduser}`);
   }
   getmagasinsbyentreprise(identreprise :Number): Observable<Magasin[]>{
     return this.http.get<Magasin[]>(`${this.getmagasinsbyentrepriseurl}/${identreprise}`);

@@ -26,13 +26,22 @@ export class MagasinManagementComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   constructor(private ms:MagasinServiceService,private us:UserServiceService) { }
   ngOnInit(): void {
-    this.getmagasins();
+    
     let token=localStorage.getItem('autorisation'|| '');
     let user:any=jwt_decode(token|| '');
     this.us.getuserById(user.jti).subscribe(
       data=>{
         console.log('user',data)
         this.userconn=data;
+        if(this.isAdmin()){
+          console.log(this.isAdmin())
+          this.getmagasins()
+        }
+        else if(this.isEntrepreneur())
+        {
+          console.log(this.isAdmin())
+          this.getmagasinparentrepreneur()}
+        
       }
     );
   }
@@ -41,6 +50,25 @@ export class MagasinManagementComponent implements OnInit {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+  getmagasinparentrepreneur(){
+    let token=localStorage.getItem('autorisation'|| '');
+    let user:any=jwt_decode(token|| '');
+    this.us.getuserById(user.jti).subscribe(
+      data=>{
+        console.log('user',data)
+        this.userconn=data;
+        this.ms.getmagasinbyentrepreneur(this.userconn.id).subscribe(
+          res=>{
+            this.listofMagasins=res;
+            this.dataSource=new MatTableDataSource(this.listofMagasins);
+            this.dataSource._renderChangesSubscription;
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+          }
+        )
+      }
+    );
   }
   getmagasins(){
     this.ms.getMagasins().subscribe(
