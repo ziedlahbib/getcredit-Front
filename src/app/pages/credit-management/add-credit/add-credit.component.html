@@ -437,7 +437,7 @@
     <form [formGroup]="clienteleigibiliteform">
       <mat-form-field appearance="fill" *ngFor="let column of columns">
         <mat-label>{{ columnTranslations[column].label }}</mat-label>
-        <mat-select formControlName="{{ column }}">
+        <mat-select [formControlName]="column">
           <mat-option [value]="null">{{ placeholder }}</mat-option>
           <mat-option *ngFor="let option of uniqueValues[column]" [value]="option">
             {{ columnTranslations[column].values[option] }}
@@ -448,6 +448,7 @@
         </mat-error>
       </mat-form-field>
     </form>
+    
     
     
     
