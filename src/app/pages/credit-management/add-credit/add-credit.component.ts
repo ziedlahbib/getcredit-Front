@@ -316,19 +316,19 @@ export class AddCreditComponent implements OnInit {
   }
   clienteleigibiliteinitform(){
     this. clienteleigibiliteform = this._formBuilder.group({
-      age:['', [Validators.required, this.customValidator]],
-      workclass:['', [Validators.required, this.customValidator]],
-      education:['', [Validators.required, this.customValidator]],
-      education_num:['', [Validators.required, this.customValidator]],
-      marital_status:['', [Validators.required, this.customValidator]],
-      occupation:['', [Validators.required, this.customValidator]],
-      relationship:['', [Validators.required, this.customValidator]],
-      race:['', [Validators.required, this.customValidator]],
-      gender:['', [Validators.required, this.customValidator]],
-      capital_gain:['', [Validators.required, this.customValidator]],
-      capital_loss:['', [Validators.required, this.customValidator]],
-      hours_per_week:['', [Validators.required, this.customValidator]],
-      native_country:['', [Validators.required, this.customValidator]],
+      age:['', [Validators.required]],
+      workclass:['', [Validators.required]],
+      education:['', [Validators.required]],
+      education_num:['', [Validators.required]],
+      marital_status:['', [Validators.required]],
+      occupation:['', [Validators.required]],
+      relationship:['', [Validators.required]],
+      race:['', [Validators.required]],
+      gender:['', [Validators.required]],
+      capital_gain:['', [Validators.required]],
+      capital_loss:['', [Validators.required]],
+      hours_per_week:['', [Validators.required]],
+      native_country:['', [Validators.required]],
   
   });
   // Subscribe to the valueChanges of the form controls
@@ -357,12 +357,8 @@ export class AddCreditComponent implements OnInit {
     }
   )
   }
-  customValidator(control: FormControl) {
-    if (!control.value) {
-      return { required: true };
-    }
-    return null;
-  }
+
+  
   checkEligibility(): void {
     this.dj.checkEligibility(this.clienteleigibiliteform.value).subscribe(
       (response) => {
