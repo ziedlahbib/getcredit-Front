@@ -94,34 +94,9 @@
   </mat-step>
 
   <mat-step>
-    <form [formGroup]="clienteleigibiliteform">
+    <!-- <form [formGroup]="clienteleigibiliteform">
       <ng-template matStepLabel>Information du client</ng-template>
 
-      <!-- <div style="margin: 30px;">
-        <span class="label" >age </span><input class="form-control" type="text"  formControlName="age">
-      </div>
-      <div style="margin: 30px;">
-        <div >
-          <span class="label ">workclass </span><input class="form-control" type="text"  formControlName="workclass">
-          <span class="label ">education </span><input class="form-control" type="text"  formControlName="education">
-        </div>
-      </div>
-      <div style="margin: 30px;">
-        <span class="label">education_num </span><input class="form-control" type="text"  formControlName="education_num">
-        <span class="label">marital_status</span><input class="form-control" type="text"  formControlName="marital_status">
-        <span class="label">occupation</span><input class="form-control" type="text"  formControlName="occupation">
-      </div>
-      <div style="margin: 30px;">
-        <span class="label">relationship </span><input class="form-control" type="text"  formControlName="relationship">
-        <span class="label">race</span><input class="form-control" type="text"  formControlName="race">
-        <span class="label">gender</span><input class="form-control" type="text"  formControlName="gender">
-      </div>
-      <div style="margin: 30px;">
-        <span class="label">capital_gain </span><input class="form-control" type="text"  formControlName="capital_gain">
-        <span class="label">capital_loss</span><input class="form-control" type="text"  formControlName="capital_loss">
-        <span class="label">hours_per_week</span><input class="form-control" type="text"  formControlName="hours_per_week">
-        <span class="label">native_country</span><input class="form-control" type="text"  formControlName="native_country">
-      </div> -->
       <mat-form-field appearance="fill">
         <mat-label>Choose age</mat-label>
         <mat-select matNativeControl formControlName="age">
@@ -446,8 +421,37 @@
             Ireland</mat-option><mat-option value=" Hungary"> Hungary</mat-option><mat-option
             value=" Holand-Netherlands"> Holand-Netherlands</mat-option> </mat-select>
       </mat-form-field>
+    </form> -->
+    <!-- <form [formGroup]="clienteleigibiliteform">
+      <mat-form-field appearance="fill" *ngFor="let column of columns">
+        <mat-label>{{ translations.columns[column] }}</mat-label>
+        <mat-select formControlName="{{ column }}">
+          <mat-option value="">{{ translations.select.anOption }}</mat-option>
+          <mat-option *ngFor="let option of uniqueValues[column]" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form> -->
+    <form [formGroup]="clienteleigibiliteform">
+      <mat-form-field appearance="fill" *ngFor="let column of columns">
+        <mat-label>{{ columnTranslations[column].label }}</mat-label>
+        <mat-select formControlName="{{ column }}">
+          <mat-option [value]="null">{{ placeholder }}</mat-option>
+          <mat-option *ngFor="let option of uniqueValues[column]" [value]="option">
+            {{ columnTranslations[column].values[option] }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="clienteleigibiliteform.get(column)?.hasError('required')">
+          Veuillez choisir une option
+        </mat-error>
+      </mat-form-field>
     </form>
-
+    
+    
+    
+    
+    
 
 
     <div style="margin: 30px;">
