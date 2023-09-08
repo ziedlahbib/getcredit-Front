@@ -5,7 +5,20 @@
 
 
 <div class="container-fluid mt--7">
+  <form  [formGroup]="entform">
+    <label>
+        entreprise
+    </label>
+    <mat-form-field appearance="fill">
+        <mat-label>Choose an option</mat-label>
+        <mat-select formControlName="entrpriseId" (selectionChange)="getmagasins($event)">
+          <mat-option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId">
+            {{ c.nom }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
+</form>
 
   <div class="row">
     <div class="col">
@@ -14,7 +27,7 @@
         <div class="card-header border-0">
           <h3 class="mb-0">Magasin List</h3>
         </div>
-
+        
         <div>
           <div class="table-responsive">
             <div class="example-header" style="margin: 10px;">

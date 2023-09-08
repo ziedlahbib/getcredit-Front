@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -8,6 +8,10 @@ import { User } from 'src/app/model/user';
 import { MagasinServiceService } from 'src/app/service/magasin-service.service';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import jwt_decode from "jwt-decode";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Entreprise } from 'src/app/model/entreprise';
+import { EntrepriseServiceService } from 'src/app/service/entreprise-service.service';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-magasin-management',
@@ -15,7 +19,10 @@ import jwt_decode from "jwt-decode";
   styleUrls: ['./magasin-management.component.scss']
 })
 export class MagasinManagementComponent implements OnInit {
-
+  public entform: FormGroup;
+  listofEntreprise: Entreprise[];
+  public role: string | null;
+  matFormFieldHidePlaceholder: boolean = false;
   isReadyU:Boolean=false;
   userconn:User;
   public ERole=ERole ;
@@ -24,26 +31,98 @@ export class MagasinManagementComponent implements OnInit {
   dataSource: MatTableDataSource<Magasin>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private ms:MagasinServiceService,private us:UserServiceService) { }
+  formBuilder: any;
+  constructor(private ms:MagasinServiceService,private us:UserServiceService,private es: EntrepriseServiceService,
+     private cdr: ChangeDetectorRef, private fb: FormBuilder) { }
   ngOnInit(): void {
+    this.entrepriseform();
+    //this.getrole();
+    this.getent()
     
-    let token=localStorage.getItem('autorisation'|| '');
-    let user:any=jwt_decode(token|| '');
-    this.us.getuserById(user.jti).subscribe(
-      data=>{
-        console.log('user',data)
-        this.userconn=data;
-        if(this.isAdmin()){
-          console.log(this.isAdmin())
-          this.getmagasins()
-        }
-        else if(this.isEntrepreneur())
-        {
-          console.log(this.isAdmin())
-          this.getmagasinparentrepreneur()}
+   
+  }
+  getent() {
+    this.role = localStorage.getItem('role' || '');
+    
+    if(this.role==ERole.ROLE_ADMIN){
+      console.log(this.role)
+      this.getentrepriseAdmin()
+    }
+    else if(this.role==ERole.ROLE_ENTREPRENEUR)
+    {
+      console.log(this.role)
+      this.getentrepriseparentrepreneur()
+
         
+    }
+  }
+  getentreprise() {
+    let token = localStorage.getItem('autorisation' || '');
+    let user: any = jwt_decode(token || '');
+    this.us.getuserById(user.jti).subscribe(
+      data => {
+
+        this.es.getEntrepriseByentrepreneur(data.id).subscribe(
+          res => {
+            this.listofEntreprise = res;
+
+          }
+        )
       }
-    );
+    )
+  }
+  getentrepriseAdmin() {
+    this.es.getEntreprises().subscribe(
+      data=>{
+        console.log(this.role)
+        this.listofEntreprise=data;
+      }
+    )
+  }
+  getmagasins(event: MatSelectChange) {
+    const value = event.value;
+    //const value = this.entform.get(['entrpriseId'])?.value
+    console.log(value)
+    this.ms.getmagasinsbyentreprise(Number(value)).subscribe(
+      res => {
+        console.log(res)
+        this.listofMagasins = res;
+        this.verifiermagasin(res);
+        this.dataSource=new MatTableDataSource(this.listofMagasins);
+        this.dataSource._renderChangesSubscription;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        // Make changes to the component's data
+        this.matFormFieldHidePlaceholder = false;
+
+        // Manually trigger a change detection cycle
+        this.cdr.detectChanges();
+      }
+    )
+  }
+  loadingm=false;
+  verifiermagasin(listM:Magasin[])
+  {
+    if(  listM.length>0 ){
+      this.loadingm=true;
+      console.log('E',this.loadingm)
+    }else if(listM.length==0){
+      this.loadingm=false;
+      console.log('E',this.loadingm)
+    } 
+  }
+  entrepriseform() {
+    this.entform = this.fb.group({
+      entrpriseId: ['', Validators.required],
+    });
+
+
+    this.entform.valueChanges.subscribe(
+      data => {
+        console.log(this.entform.value);
+
+      }
+    )
   }
   applyFilter(event: Event) {
     let filterValue = (event.target as HTMLInputElement).value;
@@ -51,36 +130,22 @@ export class MagasinManagementComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-  getmagasinparentrepreneur(){
-    let token=localStorage.getItem('autorisation'|| '');
-    let user:any=jwt_decode(token|| '');
+  getentrepriseparentrepreneur(){
+    let token = localStorage.getItem('autorisation' || '');
+    let user: any = jwt_decode(token || '');
     this.us.getuserById(user.jti).subscribe(
-      data=>{
-        console.log('user',data)
-        this.userconn=data;
-        this.ms.getmagasinbyentrepreneur(this.userconn.id).subscribe(
-          res=>{
-            this.listofMagasins=res;
-            this.dataSource=new MatTableDataSource(this.listofMagasins);
-            this.dataSource._renderChangesSubscription;
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
+      data => {
+
+        this.es.getEntrepriseByentrepreneur(data.id).subscribe(
+          res => {
+            this.listofEntreprise = res;
+
           }
         )
       }
-    );
-  }
-  getmagasins(){
-    this.ms.getMagasins().subscribe(
-      data=>{
-        this.listofMagasins=data;
-        this.dataSource=new MatTableDataSource(this.listofMagasins);
-        this.dataSource._renderChangesSubscription;
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      }
     )
   }
+
   supprimer(magasin :any){
     this.ms.deleteMagasin(magasin.magasinId).subscribe(()=>this.ms.getMagasins().subscribe(
       data=>{
