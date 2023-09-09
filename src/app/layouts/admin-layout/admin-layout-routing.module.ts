@@ -10,6 +10,7 @@ import { MagasinManagementComponent } from 'src/app/pages/magasin-management/mag
 import { ForgotPasswordComponent } from 'src/app/pages/passwordmanagement/forgot-password/forgot-password.component';
 import { AddProduitComponent } from 'src/app/pages/produit-management/add-produit/add-produit.component';
 import { ProduitManagementComponent } from 'src/app/pages/produit-management/produit-management.component';
+import { UpdateproduitComponent } from 'src/app/pages/produit-management/updateproduit/updateproduit.component';
 import { StatistiqueComponent } from 'src/app/pages/statistique/statistique.component';
 import { AddUserComponent } from 'src/app/pages/user-management/add-user/add-user.component';
 import { EditUserComponent } from 'src/app/pages/user-management/edit-user/edit-user.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'ajoutMagasin',       component: AddMagasinComponent },
   { path: 'affichlistProduits',       component: ProduitManagementComponent },
   { path: 'ajoutProduit',       component: AddProduitComponent },
+  { path: 'updateProduit/:id',       component: UpdateproduitComponent },
   { path: 'addcredit/:id',       component: AddCreditComponent },
   { path: 'affichcredit',       component: CreditManagementComponent },
   { path: 'affichcreditref',       component: CreditrefmanagmentComponent },

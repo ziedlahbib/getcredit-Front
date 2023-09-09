@@ -1,0 +1,32 @@
+<div class="container-fluid mt--7" *ngIf="isReady==true">
+
+    <div class="card shadow" style="height: 500px;background-image: url('../assets/entreprise.jpg'); background-size: 50% auto;">
+        <div style="text-align: center;margin-top: 10%;margin-left: 130px;">
+            <form [formGroup]="produiteform">
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>nom</mat-label>
+                        <input matInput formControlName="nom">
+                    </mat-form-field>
+    
+                </div>
+    
+                <div >
+                    <mat-form-field appearance="fill">
+                        <mat-label>prix</mat-label>
+                        <input matInput formControlName="prix">
+                    </mat-form-field>
+                </div>
+                
+                
+            </form>
+        </div>
+
+
+        <div mat-dialog-actions>
+
+            <button mat-button class="btn btn-dark btn-lg " (click)="modifier()" style="text-align: center;margin-left: 400px;">modifier
+                produit</button>
+        </div>
+    </div>
+</div>

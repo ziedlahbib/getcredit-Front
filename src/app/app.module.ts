@@ -14,6 +14,7 @@ import { CreditrefmanagmentComponent } from './pages/creditrefmanagment/creditre
 import { StatistiqueComponent } from './pages/statistique/statistique.component';
 import { StatistiqueEntrepriseComponent } from './pages/statistique-entreprise/statistique-entreprise.component';
 import { StatistiqueMagasinComponent } from './pages/statistique-magasin/statistique-magasin.component';
+import { UpdateproduitComponent } from './pages/produit-management/updateproduit/updateproduit.component';
 
 
 
@@ -26,6 +27,7 @@ import { StatistiqueMagasinComponent } from './pages/statistique-magasin/statist
 @NgModule({
   declarations: [
     AppComponent,
+
     
 
 

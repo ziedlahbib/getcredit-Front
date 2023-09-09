@@ -45,6 +45,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { StatistiqueEntrepriseComponent } from 'src/app/pages/statistique-entreprise/statistique-entreprise.component';
 import { StatistiqueMagasinComponent } from 'src/app/pages/statistique-magasin/statistique-magasin.component';
+import { UpdateproduitComponent } from 'src/app/pages/produit-management/updateproduit/updateproduit.component';
 
 
 
@@ -73,6 +74,7 @@ import { StatistiqueMagasinComponent } from 'src/app/pages/statistique-magasin/s
     ProduitManagementComponent,
     CreditManagementComponent,
     AddProduitComponent,
+    UpdateproduitComponent,
     AddCreditComponent,
     ModifierMotDePasseComponent,
     CreditrefmanagmentComponent,

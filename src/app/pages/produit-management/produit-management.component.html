@@ -111,9 +111,9 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
                     <mat-cell *matCellDef="let row" class="text-right ">
                       <div *ngIf="this.role!=ERole.ROLE_ADMIN">
-                        <button [routerLink]="['/addcredit', row.produitId ]" type="button" class="btn btn-info" style="width: 150px;" > passer credit</button>
-                        <!--<button  class="dropdown-item"  id="ziedpag" style="background-color:#DC143C"  [routerLink]="['/assurance-management/modifier', row.assuId ]">modifier</button><br>-->
-                        <button class="btn btn-danger" style="width: 150px;" (click)="supprimer(row)">supprimer</button><br>
+                        <button [routerLink]="['/addcredit', row.produitId ]" type="button" class="btn btn-info" style="width: 150px;margin: 5px;" > passer credit</button>
+                        <button  class="btn btn-warning" style="width: 150px;margin: 5px;"  [routerLink]="['/updateProduit/', row.produitId ]">modifier</button>
+                        <button class="btn btn-danger" style="width: 150px;margin: 5px;" (click)="supprimer(row)">supprimer</button><br>
                       </div>
   
   
