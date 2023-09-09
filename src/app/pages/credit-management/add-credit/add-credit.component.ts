@@ -272,6 +272,7 @@ export class AddCreditComponent implements OnInit {
   };
   client: any[];
   client2: any[];
+  card:any[];
   isEligible: boolean
   selectedFiles: FileList;
   currentFile: any;
@@ -295,12 +296,13 @@ export class AddCreditComponent implements OnInit {
     this.clienteleigibiliteinitform();
 
 
+
   }
   initform(data) {
     this.clientform = this._formBuilder.group({
-      nom: [data[5]],
-      prenom: [data[10]],
-      email: ['']
+      nom: [data[5], Validators.required],
+      prenom: [data[10], Validators.required],
+      email: ['', Validators.required]
     });
 
 
@@ -311,7 +313,7 @@ export class AddCreditComponent implements OnInit {
   initform2(data) {
     const concatenatedString = `${data[7]}${data[8]}${data[9]}${data[10]}`;
     this.clientform2 = this._formBuilder.group({
-      adresse: [concatenatedString],
+      adresse: [concatenatedString, Validators.required],
     });
 
 
@@ -324,8 +326,9 @@ export class AddCreditComponent implements OnInit {
     console.log(this.produit)
     console.log(this.uisReaydp)
     this.creidtform = this._formBuilder.group({
-      montant: [this.produit.prix],
-      nbrdumois: ['']
+      montant: [this.produit.prix, Validators.required],
+      nbrdumois: ['', Validators.required],
+      iban:['', Validators.required]
 
     });
     this.creidtform.valueChanges.subscribe(
@@ -418,6 +421,23 @@ export class AddCreditComponent implements OnInit {
         this.initform(data);
       }
     )
+
+  }
+  getcardinfo() {
+    this.currentFile = this.selectedFiles.item(0);
+    console.log(this.selectedFiles)
+    console.log(this.currentFile)
+    this.dj.upload(this.currentFile).subscribe(
+      data => {
+        console.log(data)
+        this.card = data;
+        
+          this.creidtform.patchValue({
+            iban: data[4]  // Assuming this.card contains the IBAN text
+          });
+        }
+    );
+        
 
   }
   getuserinfo2() {
