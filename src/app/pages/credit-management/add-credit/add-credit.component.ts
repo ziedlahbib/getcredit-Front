@@ -287,6 +287,10 @@ export class AddCreditComponent implements OnInit {
   isDisabled: boolean = true;
   uisReaydu: boolean = false;
   uisReaydp: boolean = false;
+  step0valid:boolean = false;
+  step1valid:boolean = false;
+  step2valid:boolean = false;
+  step3valid:boolean = false;
   constructor(private _formBuilder: FormBuilder, private us: UserServiceService, private router: ActivatedRoute, private route: Router,
     private cs: CreditServiceService, private ps: ProduitServiceService,
     private dj: DjangoService, private crs: CreditrefuseService) { }
@@ -298,6 +302,7 @@ export class AddCreditComponent implements OnInit {
 
 
   }
+  
   initform(data) {
     this.clientform = this._formBuilder.group({
       nom: [data[5], Validators.required],
@@ -397,7 +402,7 @@ export class AddCreditComponent implements OnInit {
       (response) => {
         // Access the 'eligibilite' field and store it as a boolean variable
         this.isEligible = response.eligibilite;
-
+        this.step3valid=true;
         // Now you can use 'isEligible' in your application logic
         console.log('Is eligible:', this.isEligible);
       },
@@ -419,6 +424,7 @@ export class AddCreditComponent implements OnInit {
         console.log(data)
         this.client = data
         this.initform(data);
+        this.step0valid=true;
       }
     )
 
@@ -435,6 +441,7 @@ export class AddCreditComponent implements OnInit {
           this.creidtform.patchValue({
             iban: data[4]  // Assuming this.card contains the IBAN text
           });
+          this.step2valid=true;
         }
     );
         
@@ -449,6 +456,7 @@ export class AddCreditComponent implements OnInit {
         console.log(data)
         this.client2 = data
         this.initform2(data);
+        this.step1valid=true;
       }
     )
 

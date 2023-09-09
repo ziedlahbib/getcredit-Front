@@ -17,17 +17,25 @@
           <input class="form-control" type="text" formControlName="nom">
 
         </div>
+        <mat-error *ngIf="clientform.get('nom')?.hasError('required')">
+          requis
+        </mat-error>
         <div style="margin-top: 30px;">
           <span class="label">prenom</span>
           <input class="form-control" type="text" formControlName="prenom">
 
         </div>
+        <mat-error *ngIf="clientform.get('prenom')?.hasError('required')">
+          requis
+        </mat-error>
         <div style="margin-top: 30px;">
           <span class="label">email</span>
           <input class="form-control" type="text" formControlName="email">
 
         </div>
-
+        <mat-error *ngIf="clientform.get('email')?.hasError('required')">
+          requis
+        </mat-error>
       </form>
       <form *ngIf="client2!=null" [formGroup]="clientform2">
         <div style="margin-top: 30px;">
@@ -35,17 +43,20 @@
           <input class="form-control" type="text" formControlName="adresse">
 
         </div>
+        <mat-error *ngIf="clientform2.get('adresse')?.hasError('required')">
+          requis
+        </mat-error>
       </form>
     </div>
     <div style="margin: 30px;">
 
-      <button type="button" class="btn btn-primary" matStepperNext [disabled]="clientform2.invalid&&clientform.invalid">Next</button>
+      <button type="button" class="btn btn-primary" matStepperNext *ngIf="step0valid==true&&step1valid==true&&!clientform.get('email')?.hasError('required');">Next</button>
 
     </div>
 
   </mat-step>
 
-  <mat-step>
+  <mat-step *ngIf="step0valid==true&&step1valid==true&&!clientform.get('email')?.hasError('required');">
     <form>
       <ng-template matStepLabel>Information</ng-template>
 
@@ -75,6 +86,9 @@
             [disabled]="isDisabled">
 
         </div>
+        <mat-error *ngIf="creidtform.get('montant')?.hasError('required')">
+          requis
+        </mat-error>
         <div class="input-group mb-3" style="margin: 10px;">
           <label class="input-group-text" for="inputGroupFile01">carte bancaire :</label>
           <input type="file" class="form-control" id="inputGroupFile01" (change)="selectFile($event);getcardinfo()">
@@ -82,12 +96,16 @@
         <div *ngIf="card!=null">
           <span class="label">iban</span>
           <input class="form-control" type="text" formControlName="iban"  >
-
+          <mat-error *ngIf="creidtform.get('iban')?.hasError('required')">
+            requis
+          </mat-error>
         </div>
         <div style="margin-top: 30px;">
           <span class="label">nombre du mois</span>
           <input class="form-control" type="text" formControlName="nbrdumois">
-
+          <mat-error *ngIf="creidtform.get('nbrdumois')?.hasError('required')">
+            requis
+          </mat-error>
         </div>
 
       </form>
@@ -96,13 +114,13 @@
     <div style="margin: 30px;">
       <button type="button" class="btn btn-secondary" matStepperPrevious>Back</button>
       &nbsp;
-      <button type="button" class="btn btn-primary" matStepperNext>Next</button>
+      <button type="button" class="btn btn-primary" matStepperNext [disabled]="creidtform.invalid">Next</button>
 
     </div>
 
   </mat-step>
 
-  <mat-step>
+  <mat-step *ngIf="step0valid==true&&step1valid==true&&step2valid==true;">
     <ng-template matStepLabel>Information du client</ng-template>
     <form [formGroup]="clienteleigibiliteform">
       <mat-form-field appearance="fill" *ngFor="let column of columns">
@@ -129,7 +147,7 @@
     <div style="margin: 30px;">
       <button type="button" class="btn btn-secondary" matStepperPrevious>Back</button>
       &nbsp;
-      <button type="button" class="btn btn-primary" (click)="checkEligibility()" matStepperNext>Next</button>
+      <button type="button" class="btn btn-primary" (click)="checkEligibility()" matStepperNext [disabled]="clienteleigibiliteform.invalid">Next</button>
 
     </div>
 
