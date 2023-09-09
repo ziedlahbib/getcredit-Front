@@ -46,6 +46,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { StatistiqueEntrepriseComponent } from 'src/app/pages/statistique-entreprise/statistique-entreprise.component';
 import { StatistiqueMagasinComponent } from 'src/app/pages/statistique-magasin/statistique-magasin.component';
 import { UpdateproduitComponent } from 'src/app/pages/produit-management/updateproduit/updateproduit.component';
+import { UpdatemagasinComponent } from 'src/app/pages/magasin-management/updatemagasin/updatemagasin.component';
 
 
 
@@ -71,6 +72,7 @@ import { UpdateproduitComponent } from 'src/app/pages/produit-management/updatep
     AddEntrepriseComponent,
     MagasinManagementComponent,
     AddMagasinComponent,
+    UpdatemagasinComponent,
     ProduitManagementComponent,
     CreditManagementComponent,
     AddProduitComponent,
