@@ -5,6 +5,7 @@ import { CreditManagementComponent } from 'src/app/pages/credit-management/credi
 import { CreditrefmanagmentComponent } from 'src/app/pages/creditrefmanagment/creditrefmanagment.component';
 import { AddEntrepriseComponent } from 'src/app/pages/entreprise-management/add-entreprise/add-entreprise.component';
 import { EntrepriseManagementComponent } from 'src/app/pages/entreprise-management/entreprise-management.component';
+import { UpdateentrepriseComponent } from 'src/app/pages/entreprise-management/updateentreprise/updateentreprise.component';
 import { AddMagasinComponent } from 'src/app/pages/magasin-management/add-magasin/add-magasin.component';
 import { MagasinManagementComponent } from 'src/app/pages/magasin-management/magasin-management.component';
 import { UpdatemagasinComponent } from 'src/app/pages/magasin-management/updatemagasin/updatemagasin.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'modifier-mot-de-passe/:id',       component: ModifierMotDePasseComponent },
   { path: 'affichlistEntreprise',       component: EntrepriseManagementComponent },
   { path: 'ajoutEntreprise',       component: AddEntrepriseComponent },
+  { path: 'updateentreprise/:id',       component: UpdateentrepriseComponent },
   { path: 'affichlistMagasins',       component: MagasinManagementComponent },
   { path: 'ajoutMagasin',       component: AddMagasinComponent },
   { path: 'updatemagasin/:id',       component: UpdatemagasinComponent },

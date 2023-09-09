@@ -9,7 +9,7 @@ import { Entreprise } from '../model/entreprise';
 export class EntrepriseServiceService {
 
   getbyentreprisesurl="/api/entreprise/get-entreprises";
-  getbyentreprisebyIdsurl="/api/entreprise/get-entreprsier";
+  getbyentreprisebyIdsurl="/api/entreprise/get-entreprsie";
   getbyentreprisebyentrepreneursurl="/api/entreprise/get-entreprisesparuser";
   getbyentreprisebyAgentsurl="/api/entreprise/get-entreprise-paruser";
   addentrepriseUrl="/api/entreprise/add-entreprise";
