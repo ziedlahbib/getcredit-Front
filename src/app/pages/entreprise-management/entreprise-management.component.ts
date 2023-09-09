@@ -21,6 +21,7 @@ export class EntrepriseManagementComponent implements OnInit {
   isReadyM:Boolean=false;
   isReadyU:Boolean=false;
   userconn:User;
+  public role: string | null;
   public ERole=ERole ;
   listofEntreprise:Entreprise[];
   displayedColumns = ['entrpriseId','nom','numfisc', 'adresse','option'];
@@ -38,6 +39,11 @@ export class EntrepriseManagementComponent implements OnInit {
       this.userconn=data;
     }
   );
+  this.getrole();
+  }
+  getrole() {
+    this.role = localStorage.getItem('role' || '');
+    console.log(this.role)
   }
   applyFilter(event: Event) {
     let filterValue = (event.target as HTMLInputElement).value;

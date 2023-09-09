@@ -36,7 +36,7 @@ export class MagasinManagementComponent implements OnInit {
      private cdr: ChangeDetectorRef, private fb: FormBuilder) { }
   ngOnInit(): void {
     this.entrepriseform();
-    //this.getrole();
+    this.getrole();
     this.getent()
     
    
@@ -204,5 +204,9 @@ verifierUserMagasin(listU:User[]){
 isAdmin():boolean{
   let role=localStorage.getItem('role'|| '');
   return role=="ROLE_ADMIN"
+}
+getrole() {
+  this.role = localStorage.getItem('role' || '');
+  console.log(this.role)
 }
 }

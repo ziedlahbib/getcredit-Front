@@ -80,7 +80,7 @@
                 <ng-container matColumnDef="option">
                   <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
                   <mat-cell *matCellDef="let row" class="text-right ">
-                    <div>
+                    <div *ngIf="this.role==ERole.ROLE_ENTREPRENEUR">
                       <button  class="btn btn-warning" style="width: 150px;margin: 5px;"  [routerLink]="['/updateentreprise/', row.entrpriseId]">modifier</button>
                       <button class="btn btn-danger" style="width: 150px;margin: 5px;" (click)="supprimer(row)">supprimer</button><br>
                     </div>
