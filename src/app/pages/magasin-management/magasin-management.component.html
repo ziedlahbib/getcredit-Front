@@ -1,236 +1,239 @@
-<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
-  <!-- <button type="button" class="btn btn-secondary" style="margin: 10px 50px 20px;" routerLink="/ajouter-assurance">ajouter</button>
-  <button  type="button"class="btn btn-primary btn-round" style="margin: 10px 50px 20px;"  routerLink="/home">acceuil</button> -->
-</div>
-
-
-<div class="container-fluid mt--7">
-  <form  [formGroup]="entform">
-    <label>
-        entreprise
-    </label>
-    <mat-form-field appearance="fill">
-        <mat-label>Choose an option</mat-label>
-        <mat-select formControlName="entrpriseId" (selectionChange)="getmagasins($event)">
-          <mat-option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId">
-            {{ c.nom }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-</form>
-
-  <div class="row">
-    <div class="col">
-      <div class="card shadow">
-
-        <div class="card-header border-0">
-          <h3 class="mb-0">Magasin List</h3>
-        </div>
-        
-        <div>
-          <div class="table-responsive">
-            <div class="example-header" style="margin: 10px;">
-              <mat-form-field>
-                <input matInput (keyup)="applyFilter($event)" placeholder="search">
-              </mat-form-field>
-            </div>
-
-            <div class="example-container mat-elevation-z8">
-
-              <mat-table [dataSource]="dataSource" matSort class="table align-items-center table-flush">
-
-                <!-- ID Column -->
-                <ng-container matColumnDef="magasinId">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> magasinId </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <div>
-                      {{row.magasinId}}
-                    </div>
-
-
-                  </mat-cell>
-                </ng-container>
-
-
-                <!-- ID Column -->
-                <ng-container matColumnDef="addresse">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> addresse </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <div>
-                      {{row.addresse}}
-                    </div>
-
-
-                  </mat-cell>
-                </ng-container>
-
-                <!-- Color Column -->
-                <ng-container matColumnDef="option" >
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
-                  <mat-cell *matCellDef="let row" class="text-right ">
-                    <div *ngIf="this.role==ERole.ROLE_ENTREPRENEUR">
-                      <button  class="btn btn-warning" style="width: 150px;margin: 5px;"  [routerLink]="['/updatemagasin/', row.magasinId]">modifier</button>
-                      <button class="btn btn-danger" style="width: 150px;margin: 5px;" (click)="supprimer(row)">supprimer</button><br>
-                    </div>
-
-
-
-                  </mat-cell>
-                </ng-container>
-
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="handleRowClickusermagasin(row)">
-                </mat-row>
-              </mat-table>
-              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-
-
+<div *ngIf="isReady">
+  <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <!-- <button type="button" class="btn btn-secondary" style="margin: 10px 50px 20px;" routerLink="/ajouter-assurance">ajouter</button>
+    <button  type="button"class="btn btn-primary btn-round" style="margin: 10px 50px 20px;"  routerLink="/home">acceuil</button> -->
+  </div>
+  
+  
+  <div class="container-fluid mt--7">
+    <form  [formGroup]="entform">
+      <label>
+          entreprise
+      </label>
+      <mat-form-field appearance="fill">
+          <mat-label>Choose an option</mat-label>
+          <mat-select formControlName="entrpriseId" (selectionChange)="getmagasins($event)">
+            <mat-option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId">
+              {{ c.nom }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+  </form>
+  
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+  
+          <div class="card-header border-0">
+            <h3 class="mb-0">Magasin List</h3>
+          </div>
+          
+          <div>
+            <div class="table-responsive">
+              <div class="example-header" style="margin: 10px;">
+                <mat-form-field>
+                  <input matInput (keyup)="applyFilter($event)" placeholder="search">
+                </mat-form-field>
+              </div>
+  
+              <div class="example-container mat-elevation-z8">
+  
+                <mat-table [dataSource]="dataSource" matSort class="table align-items-center table-flush">
+  
+                  <!-- ID Column -->
+                  <ng-container matColumnDef="magasinId">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> magasinId </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.magasinId}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+  
+                  <!-- ID Column -->
+                  <ng-container matColumnDef="addresse">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> addresse </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.addresse}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <!-- Color Column -->
+                  <ng-container matColumnDef="option" >
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="text-right ">
+                      <div *ngIf="this.role==ERole.ROLE_ENTREPRENEUR">
+                        <button  class="btn btn-warning" style="width: 150px;margin: 5px;"  [routerLink]="['/updatemagasin/', row.magasinId]">modifier</button>
+                        <button class="btn btn-danger" style="width: 150px;margin: 5px;" (click)="supprimer(row)">supprimer</button><br>
+                        <button class="btn btn-primary" style="width: 150px;margin: 5px;" (click)="affecter(row.magasinId)">affecter</button><br>
+                      </div>
+  
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="handleRowClickusermagasin(row)">
+                  </mat-row>
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  
+  
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div *ngIf="(isEntrepreneur()||isAdmin() )&&isReadyU" class="container-fluid mt--7" style="margin-top: 50px;margin-bottom: 50px;">
-
-
-  <div class="row">
-    <div class="col">
-      <div class="card shadow">
-
-        <div class="card-header border-0">
-          <h3 class="mb-0">User List</h3>
-        </div>
-
-        <div>
-          <div class="table-responsive">
-            <div class="example-header" style="margin: 10px;">
-              <mat-form-field>
-                <input matInput (keyup)="applyFilterusersListparmagasin($event)" placeholder="search">
-              </mat-form-field>
-            </div>
-
-            <div class="example-container mat-elevation-z8">
-
-              <mat-table [dataSource]="dataSourceusersListparmagasin" matSort class="table align-items-center table-flush">
-
-                <!-- ID Column -->
-                <ng-container matColumnDef="id">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <div>
-                      {{row.id}}
-                    </div>
-
-
-                  </mat-cell>
-                </ng-container>
-
-
-                <!-- ID Column -->
-                <ng-container matColumnDef="username">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> username </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <div>
-                      {{row.username}}
-                    </div>
-
-
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="nom">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> nom </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <div>
-                      {{row.nom}}
-                    </div>
-
-
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="prenom">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> prenom </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <div>
-                      {{row.prenom}}
-                    </div>
-
-
-                  </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="adresse">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> adresse </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <div>
-                      {{row.adresse}}
-                    </div>
-
-
-                  </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="tel">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> tel </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <div>
-                      {{row.tel}}
-                    </div>
-
-
-                  </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="email">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <div>
-                      {{row.email}}
-                    </div>
-
-
-                  </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="role">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
-                  <mat-cell *matCellDef="let row">
-                    <div>
-                      {{row.roles.name}}
-                    </div>
-
-
-                  </mat-cell>
-                </ng-container>
-
-
-
-
-
-                <!-- Color Column -->
-                <ng-container matColumnDef="option">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
-                  <mat-cell *matCellDef="let row" class="text-right ">
-                    <div>
-                      <!--<button  class="dropdown-item"  id="ziedpag" style="background-color:#DC143C"  [routerLink]="['/assurance-management/modifier', row.assuId ]">modifier</button><br>-->
-                      <button *ngIf="this.userconn.roles.name!=ERole.ROLE_AGENT" class="btn btn-danger"
-                        (click)="supprimer(row)">supprimer</button><br>
-                    </div>
-
-
-
-                  </mat-cell>
-                </ng-container>
-
-                <mat-header-row *matHeaderRowDef="displayedColumnsusersListparmagasin"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumnsusersListparmagasin;" >
-                </mat-row>
-              </mat-table>
-              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-
-
+  <div *ngIf="(isEntrepreneur()||isAdmin() )&&isReadyU" class="container-fluid mt--7" style="margin-top: 50px;margin-bottom: 50px;">
+  
+  
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+  
+          <div class="card-header border-0">
+            <h3 class="mb-0">User List</h3>
+          </div>
+  
+          <div>
+            <div class="table-responsive">
+              <div class="example-header" style="margin: 10px;">
+                <mat-form-field>
+                  <input matInput (keyup)="applyFilterusersListparmagasin($event)" placeholder="search">
+                </mat-form-field>
+              </div>
+  
+              <div class="example-container mat-elevation-z8">
+  
+                <mat-table [dataSource]="dataSourceusersListparmagasin" matSort class="table align-items-center table-flush">
+  
+                  <!-- ID Column -->
+                  <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.id}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+  
+                  <!-- ID Column -->
+                  <ng-container matColumnDef="username">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> username </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.username}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="nom">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> nom </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.nom}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="prenom">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> prenom </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.prenom}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <ng-container matColumnDef="adresse">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> adresse </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.adresse}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <ng-container matColumnDef="tel">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> tel </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.tel}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <ng-container matColumnDef="email">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.email}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <ng-container matColumnDef="role">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.roles.name}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+  
+  
+  
+  
+                  <!-- Color Column -->
+                  <ng-container matColumnDef="option">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="text-right ">
+                      <div>
+                        <!--<button  class="dropdown-item"  id="ziedpag" style="background-color:#DC143C"  [routerLink]="['/assurance-management/modifier', row.assuId ]">modifier</button><br>-->
+                        <button *ngIf="this.userconn.roles.name!=ERole.ROLE_AGENT" class="btn btn-danger"
+                          (click)="supprimer(row)">supprimer</button><br>
+                      </div>
+  
+  
+  
+                    </mat-cell>
+                  </ng-container>
+  
+                  <mat-header-row *matHeaderRowDef="displayedColumnsusersListparmagasin"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: displayedColumnsusersListparmagasin;" >
+                  </mat-row>
+                </mat-table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  
+  
+              </div>
             </div>
           </div>
         </div>

@@ -24,6 +24,7 @@ export class MagasinManagementComponent implements OnInit {
   public role: string | null;
   matFormFieldHidePlaceholder: boolean = false;
   isReadyU:Boolean=false;
+  isReady:Boolean=false;
   userconn:User;
   public ERole=ERole ;
   listofMagasins:Magasin[];
@@ -37,7 +38,8 @@ export class MagasinManagementComponent implements OnInit {
   ngOnInit(): void {
     this.entrepriseform();
     this.getrole();
-    this.getent()
+    this.getent();
+    this.getuser();
     
    
   }
@@ -208,5 +210,23 @@ isAdmin():boolean{
 getrole() {
   this.role = localStorage.getItem('role' || '');
   console.log(this.role)
+}
+affecter(idmag:Number){
+  this.us.affecteragentmagasin(this.userconn.id, idmag, this.userconn).subscribe(
+    val => {
+      console.log(val)
+    }
+  )
+}
+getuser(){
+  let token = localStorage.getItem('autorisation' || '');
+    let user: any = jwt_decode(token || '');
+    this.us.getuserById(user.jti).subscribe(
+      data => {
+
+        this.userconn=data
+        this.isReady=true;
+      }
+    )
 }
 }
