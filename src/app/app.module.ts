@@ -17,6 +17,7 @@ import { StatistiqueMagasinComponent } from './pages/statistique-magasin/statist
 import { UpdateproduitComponent } from './pages/produit-management/updateproduit/updateproduit.component';
 import { UpdatemagasinComponent } from './pages/magasin-management/updatemagasin/updatemagasin.component';
 import { UpdateentrepriseComponent } from './pages/entreprise-management/updateentreprise/updateentreprise.component';
+import { UpdateclientComponent } from './pages/user-management/updateclient/updateclient.component';
 
 
 
@@ -29,6 +30,7 @@ import { UpdateentrepriseComponent } from './pages/entreprise-management/updatee
 @NgModule({
   declarations: [
     AppComponent,
+    
 
 
 

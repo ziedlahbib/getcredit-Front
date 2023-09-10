@@ -17,6 +17,7 @@ import { StatistiqueComponent } from 'src/app/pages/statistique/statistique.comp
 import { AddUserComponent } from 'src/app/pages/user-management/add-user/add-user.component';
 import { EditUserComponent } from 'src/app/pages/user-management/edit-user/edit-user.component';
 import { ModifierMotDePasseComponent } from 'src/app/pages/user-management/modifier-mot-de-passe/modifier-mot-de-passe.component';
+import { UpdateclientComponent } from 'src/app/pages/user-management/updateclient/updateclient.component';
 import { UserManagementComponent } from 'src/app/pages/user-management/user-management.component';
 
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'affichlistuser',       component: UserManagementComponent },
   { path: 'ajoutuser',       component: AddUserComponent },
   { path: 'edit-user/:id',       component: EditUserComponent },
+  { path: 'edit-client/:id',       component: UpdateclientComponent },
   { path: 'modifier-mot-de-passe/:id',       component: ModifierMotDePasseComponent },
   { path: 'affichlistEntreprise',       component: EntrepriseManagementComponent },
   { path: 'ajoutEntreprise',       component: AddEntrepriseComponent },

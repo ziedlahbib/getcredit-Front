@@ -48,6 +48,7 @@ import { StatistiqueMagasinComponent } from 'src/app/pages/statistique-magasin/s
 import { UpdateproduitComponent } from 'src/app/pages/produit-management/updateproduit/updateproduit.component';
 import { UpdatemagasinComponent } from 'src/app/pages/magasin-management/updatemagasin/updatemagasin.component';
 import { UpdateentrepriseComponent } from 'src/app/pages/entreprise-management/updateentreprise/updateentreprise.component';
+import { UpdateclientComponent } from 'src/app/pages/user-management/updateclient/updateclient.component';
 
 
 
@@ -69,6 +70,7 @@ import { UpdateentrepriseComponent } from 'src/app/pages/entreprise-management/u
     UserManagementComponent,
     AddUserComponent,
     EditUserComponent,
+    UpdateclientComponent,
     EntrepriseManagementComponent,
     AddEntrepriseComponent,
     UpdateentrepriseComponent,

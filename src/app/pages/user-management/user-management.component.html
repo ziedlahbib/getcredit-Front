@@ -121,8 +121,13 @@
                   <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
                   <mat-cell *matCellDef="let row" class="text-right">
                     <div >
-                      <button *ngIf="this.userconn.roles.name!=ERole.ROLE_AGENT" class="btn btn-danger" (click)="supprimer(row)">supprimer</button>
+                      <button *ngIf="this.userconn.roles.name!=ERole.ROLE_AGENT" class="btn btn-danger" style="width: 150px;margin: 5px;"   (click)="supprimer(row)">supprimer</button>
+
+                        <button *ngIf="this.userconn.roles.name===ERole.ROLE_ADMIN&&row.roles.name===ERole.ROLE_CLIENT" class="btn btn-warning" style="width: 150px;margin: 5px;"  [routerLink]="['/edit-client/', row.id ]">modifier</button>
+
                     </div>
+
+                    
                   </mat-cell>
                 </ng-container>
                 

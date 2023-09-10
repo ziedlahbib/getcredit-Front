@@ -1,0 +1,113 @@
+<section >
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                <p class="text-center  fw-bold mb-5 mx-1 mx-md-4 mt-4">Information</p>
+
+                                <form class="mx-1 mx-md-4" *ngIf="isReady" [formGroup]="userform">
+                                    <label>
+                                        username
+                                    </label>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+
+                                            <input type="text" pInputText formControlName="username"
+                                                placeholder="username">
+
+
+                                        </div>
+                                    </div>
+                                    <label>
+                                        nom
+                                    </label>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+
+                                            <input type="text" pInputText formControlName="nom" placeholder="nom">
+
+                                        </div>
+                                    </div>
+                                    <label>
+                                        prenom
+                                    </label>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+
+                                            <input type="text" pInputText formControlName="prenom" placeholder="prenom">
+
+
+                                        </div>
+                                    </div>
+                                    <label>
+                                        email
+                                    </label>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-inbox"></i></span>
+
+
+                                            <input type="text" pInputText formControlName="email" placeholder="email">
+
+
+                                        </div>
+                                    </div>
+                                    <label>
+                                        numero de telephonbe
+                                    </label>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-phone"></i></span>
+
+
+                                            <input type="text" pInputText formControlName="tel" placeholder="tel">
+
+
+
+                                        </div>
+                                    </div>
+
+                                    <label>
+                                        adresse
+                                    </label>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-building"></i></span>
+
+                                            <input id="float-input" type="text" pInputText formControlName="adresse"
+                                                placeholder="adresse">
+
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="button" class="btn btn-primary btn-lg"
+                                            (click)="modifier()">modifier</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                <img src="assets/Vermeg_Office.jpg" height="100%" width="100%" 
+                                 >
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
