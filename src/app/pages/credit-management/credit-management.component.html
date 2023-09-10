@@ -45,6 +45,16 @@
   
                     </mat-cell>
                   </ng-container>
+                  <ng-container matColumnDef="iban">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Iban </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                      <div>
+                        {{row.iban}}
+                      </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
                   <ng-container matColumnDef="nbrdumois">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> nombre du mois </mat-header-cell>
                     <mat-cell *matCellDef="let row">
@@ -140,6 +150,18 @@
                       <div>
                         {{row.agent?.nom}}
                       </div>
+  
+  
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="option">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
+                    <mat-cell *matCellDef="let row" class="text-right ">
+                      <div *ngIf="this.role==ERole.ROLE_ADMIN">
+                        <button  class="btn btn-warning" style="width: 150px;margin: 5px;"  [routerLink]="['/updatecredit/', row.creditId]">modifier</button>
+                       
+                      </div>
+  
   
   
                     </mat-cell>

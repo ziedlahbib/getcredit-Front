@@ -87,7 +87,7 @@ export class SidenavComponent implements OnInit {
         label: 'Gestion des crédits',
         items: [
             {
-                label: 'afficher',
+                label: 'afficher credit accéptés',
                 routerLink:'/affichcredit',
                 
 

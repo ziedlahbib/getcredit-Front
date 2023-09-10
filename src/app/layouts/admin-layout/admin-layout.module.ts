@@ -49,6 +49,7 @@ import { UpdateproduitComponent } from 'src/app/pages/produit-management/updatep
 import { UpdatemagasinComponent } from 'src/app/pages/magasin-management/updatemagasin/updatemagasin.component';
 import { UpdateentrepriseComponent } from 'src/app/pages/entreprise-management/updateentreprise/updateentreprise.component';
 import { UpdateclientComponent } from 'src/app/pages/user-management/updateclient/updateclient.component';
+import { UpdatcreditComponent } from 'src/app/pages/credit-management/updatcredit/updatcredit.component';
 
 
 
@@ -79,6 +80,7 @@ import { UpdateclientComponent } from 'src/app/pages/user-management/updateclien
     UpdatemagasinComponent,
     ProduitManagementComponent,
     CreditManagementComponent,
+    UpdatcreditComponent,
     AddProduitComponent,
     UpdateproduitComponent,
     AddCreditComponent,

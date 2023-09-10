@@ -11,6 +11,7 @@ export class CreditServiceService {
   getcreditssurl="/api/credit/get-Credits";
   getcreditbyIdsurl="/api/credit/get-credit";
   addcreditUrl="/api/credit/add-credit";
+  modifierCreditUrl="/api/credit/update-credit"
   constructor(private http : HttpClient) { }
 
   getCredits(): Observable<Credit[]>{
@@ -24,6 +25,9 @@ export class CreditServiceService {
   }
   ajoutCredit(Credit :Credit): Observable<Credit>{
     return this.http.post<Credit>(`${this.addcreditUrl}`,Credit);
+  }
+  updateCredit(id:Number, credit:Credit):Observable<Credit>{
+    return this.http.put<Credit>(`${this.modifierCreditUrl}/${id}`,credit);
   }
   affectecreditclient(idcr:Number,idc :Number,Credit :Credit): Observable<Credit>{
     return this.http.put<Credit>("/api/credit/affecter-credit-client/"+idcr+"/"+idc,Credit);

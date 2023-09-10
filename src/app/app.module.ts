@@ -18,6 +18,7 @@ import { UpdateproduitComponent } from './pages/produit-management/updateproduit
 import { UpdatemagasinComponent } from './pages/magasin-management/updatemagasin/updatemagasin.component';
 import { UpdateentrepriseComponent } from './pages/entreprise-management/updateentreprise/updateentreprise.component';
 import { UpdateclientComponent } from './pages/user-management/updateclient/updateclient.component';
+import { UpdatcreditComponent } from './pages/credit-management/updatcredit/updatcredit.component';
 
 
 
@@ -30,7 +31,7 @@ import { UpdateclientComponent } from './pages/user-management/updateclient/upda
 @NgModule({
   declarations: [
     AppComponent,
-    
+
 
 
 

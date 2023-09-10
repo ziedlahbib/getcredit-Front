@@ -4,6 +4,7 @@ import { User } from "./user";
 export class Credit {
     creditId:Number;
     montant:String;
+    nbrdumois: Number ;
     iban:String;
     restapayer:Number;
     montantparmois:Number;
