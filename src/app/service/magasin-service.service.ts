@@ -15,6 +15,7 @@ export class MagasinServiceService {
   addmagsinUrl="/api/magasin/add-magasin";
   modifiermagasinUrl="/api/magasin/update-magasin";
   deletemagasinUrl="/api/magasin/delete-magasin";
+  getmagasinbyproduiturl="/api/magasin/get-magasin-par-produit"
   constructor(private http : HttpClient) { }
 
   getMagasins(): Observable<Magasin[]>{
@@ -30,6 +31,10 @@ export class MagasinServiceService {
   }
   getMagasinById(ident :Number): Observable<Magasin>{
     return this.http.get<Magasin>(`${this.getmagasinbyIdsurl}/${ident}`);
+
+  }
+  getMagasinByproduit(idp :Number): Observable<Magasin>{
+    return this.http.get<Magasin>(`${this.getmagasinbyproduiturl}/${idp}`);
 
   }
   ajoutMagasin(magasin :Magasin): Observable<Magasin>{

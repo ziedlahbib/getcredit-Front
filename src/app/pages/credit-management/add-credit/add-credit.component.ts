@@ -4,11 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
 import { Credit } from 'src/app/model/credit';
 import { Creditrefuse } from 'src/app/model/creditrefuse.model';
+import { Magasin } from 'src/app/model/magasin';
 import { Produit } from 'src/app/model/produit';
 import { User } from 'src/app/model/user';
 import { CreditServiceService } from 'src/app/service/credit-service.service';
 import { CreditrefuseService } from 'src/app/service/creditrefuse.service';
 import { DjangoService } from 'src/app/service/django.service';
+import { MagasinServiceService } from 'src/app/service/magasin-service.service';
 import { ProduitServiceService } from 'src/app/service/produit-service.service';
 import { UserServiceService } from 'src/app/service/user-service.service';
 // const uniqueValues = {
@@ -291,13 +293,16 @@ export class AddCreditComponent implements OnInit {
   step1valid:boolean = false;
   step2valid:boolean = false;
   step3valid:boolean = false;
+  magasin:Magasin;
+  ismagasinReady:boolean=false;
   constructor(private _formBuilder: FormBuilder, private us: UserServiceService, private router: ActivatedRoute, private route: Router,
-    private cs: CreditServiceService, private ps: ProduitServiceService,
+    private cs: CreditServiceService, private ps: ProduitServiceService,private ms:MagasinServiceService,
     private dj: DjangoService, private crs: CreditrefuseService) { }
   ngOnInit(): void {
     this.getuserbyid();
     this.getproduitbyid();
     this.clienteleigibiliteinitform();
+    this.getmagasin()
 
 
 
@@ -481,6 +486,14 @@ export class AddCreditComponent implements OnInit {
         this.uisReaydp = true;
         this.creditform();
 
+      }
+    )
+  }
+  getmagasin(){
+    this.ms.getMagasinByproduit(this.router.snapshot.params['id']).subscribe(
+      data=>{
+        this.magasin=data;
+        this.ismagasinReady=true;
       }
     )
   }

@@ -1,4 +1,4 @@
-<mat-vertical-stepper [linear]="false" #stepper *ngIf="this.uisReaydu&&this.uisReaydp">
+<mat-vertical-stepper [linear]="false" #stepper *ngIf="this.uisReaydu&&this.uisReaydp&&this.ismagasinReady">
 
   <mat-step>
     <ng-template matStepLabel>formulaire du client</ng-template>
@@ -61,7 +61,7 @@
       <ng-template matStepLabel>Information</ng-template>
 
       <div style="margin: 30px;">
-        <span class="label">adresse magasin </span><label>{{user.magasin.addresse}}</label>
+        <span class="label">adresse magasin </span><label>{{magasin.addresse}}</label>
       </div>
       <div style="margin: 30px;">
         <div>
