@@ -110,7 +110,7 @@
                   <ng-container matColumnDef="option" >
                     <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
                     <mat-cell *matCellDef="let row" class="text-right ">
-                      <div *ngIf="this.role!=ERole.ROLE_ADMIN">
+                      <div *ngIf="this.role===ERole.ROLE_AGENT">
                         <button [routerLink]="['/addcredit', row.produitId ]" type="button" class="btn btn-info" style="width: 150px;margin: 5px;" > passer credit</button>
                         <button  class="btn btn-warning" style="width: 150px;margin: 5px;"  [routerLink]="['/updateProduit/', row.produitId ]">modifier</button>
                         <button class="btn btn-danger" style="width: 150px;margin: 5px;" (click)="supprimer(row)">supprimer</button><br>
