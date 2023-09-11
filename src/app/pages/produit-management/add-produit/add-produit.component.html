@@ -10,14 +10,18 @@
                     </mat-form-field>
     
                 </div>
-    
+                <mat-error *ngIf="produiteform.get('nom')?.hasError('required')">
+                    champ obligatoire
+                  </mat-error>
                 <div >
                     <mat-form-field appearance="fill">
                         <mat-label>prix</mat-label>
-                        <input matInput formControlName="prix">
+                        <input matInput type="number" formControlName="prix">
                     </mat-form-field>
                 </div>
-                
+                <mat-error *ngIf="produiteform.get('prix')?.hasError('required')">
+                    champ obligatoire
+                  </mat-error>
                 
             </form>
         </div>
@@ -54,7 +58,7 @@
         </div>
         <div mat-dialog-actions>
 
-            <button mat-button class="btn btn-dark btn-lg " (click)="ajouter()" style="text-align: center;margin-left: 400px;">ajouter
+            <button mat-button class="btn btn-dark btn-lg " [disabled]="produiteform.invalid" (click)="ajouter()" style="text-align: center;margin-left: 400px;">ajouter
                 produit</button>
         </div>
     </div>

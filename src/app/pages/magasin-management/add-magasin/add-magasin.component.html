@@ -31,7 +31,9 @@
                 <button mat-button class="btn btn-dark btn-lg " (click)="ajouter()" style="margin-top: 50px; margin-left: 45%;">ajouter
                     Magasin</button>
             </div>
-
+            <mat-error *ngIf="magasinform.get('addresse')?.hasError('required')">
+                champ obligatoire
+              </mat-error>
         <form>
             
         </form>

@@ -39,7 +39,7 @@ export class AddProduitComponent {
   initForm() {
     this.produiteform = this.formBuilder.group({
       nom: ['', Validators.required],
-      reference: ['', Validators.required],
+      reference: [''],
       prix: ['', Validators.required],
     });
 

@@ -23,7 +23,9 @@
 
                                         </div>
                                     </div>
-
+                                    <mat-error *ngIf="userform.get('username')?.hasError('required')">
+                                        champ obligatoire
+                                      </mat-error>
                                     <label>
                                         nom
                                     </label>
@@ -34,7 +36,11 @@
                                             <input type="text" pInputText formControlName="nom" placeholder="nom">
 
                                         </div>
+
                                     </div>
+                                    <mat-error *ngIf="userform.get('nom')?.hasError('required')">
+                                        champ obligatoire
+                                      </mat-error>
                                     <label>
                                         prenom
                                     </label>
@@ -47,6 +53,9 @@
 
                                         </div>
                                     </div>
+                                    <mat-error *ngIf="userform.get('prenom')?.hasError('required')">
+                                        champ obligatoire
+                                      </mat-error>
                                     <label>
                                         email
                                     </label>
@@ -60,7 +69,12 @@
 
                                         </div>
                                     </div>
-
+                                    <mat-error *ngIf="userform.get('email')?.hasError('required')">
+                                        champ obligatoire
+                                      </mat-error>
+                                      <mat-error *ngIf="userform.get('email')?.hasError('email')">
+                                        email sous la forme "exemple@exemple.xxx"
+                                      </mat-error>
                                     <label>
                                         mot de passe
                                     </label>
@@ -75,8 +89,11 @@
 
 
                                         </div>
-                                    </div>
 
+                                    </div>
+                                    <mat-error *ngIf="userform.get('password')?.hasError('required')">
+                                        champ obligatoire
+                                      </mat-error>
                                     <label>
                                        retaper mot de passe
                                     </label>
@@ -89,9 +106,12 @@
                                                 placeholder="confirmer mot de passe">
 
                                         </div>
-                                        
+
                                         
                                     </div>
+                                    <mat-error *ngIf="userform.get('confirmPassword')?.hasError('required')">
+                                        champ obligatoire
+                                      </mat-error>
                                     <div >
                                         <div class="alert alert-danger"
                                             *ngIf="userform.get('confirmPassword')?.hasError('confirmedValidator')">Passwords do not match
@@ -105,13 +125,16 @@
                                             <span class="p-inputgroup-addon"><i class="pi pi-phone"></i></span>
 
 
-                                            <input type="text" pInputText formControlName="tel" placeholder="tel">
+                                            <input type="number" pInputText formControlName="tel" placeholder="tel">
 
 
 
                                         </div>
-                                    </div>
 
+                                    </div>
+                                    <mat-error *ngIf="userform.get('tel')?.hasError('required')">
+                                        champ obligatoire
+                                      </mat-error>
                                     <label>
                                         adresse
                                     </label>
@@ -125,7 +148,11 @@
 
 
                                         </div>
+
                                     </div>
+                                    <mat-error *ngIf="userform.get('adresse')?.hasError('required')">
+                                        champ obligatoire
+                                      </mat-error>
                                     <div style="display: flex;">
                                         <label style="margin-top: 10%;">
                                             role
@@ -140,6 +167,7 @@
                                                 <mat-option value="ROLE_ADMIN"> admin</mat-option>
                                             </mat-select>
                                         </mat-form-field>
+
                                         <mat-form-field *ngIf="role==='ROLE_ENTREPRENEUR'" appearance="fill">
                                             <mat-label>Choose an option</mat-label>
                                             <mat-select matNativeControl formControlName="role">
@@ -147,8 +175,11 @@
                                             </mat-select>
                                         </mat-form-field>
 
-
                                     </div>
+                                    
+                                    <mat-error *ngIf="userform.get('role')?.hasError('required')">
+                                        champ obligatoire
+                                      </mat-error>
                                 </form>
                                 <form *ngIf="role=='ROLE_ENTREPRENEUR'" [formGroup]="entform" style="text-align: center">
                                     <label>
@@ -162,7 +193,9 @@
                                           </mat-option>
                                         </mat-select>
                                       </mat-form-field>
-
+                                      <mat-error *ngIf="entform.get('entrpriseId')?.hasError('required')">
+                                        champ obligatoire
+                                      </mat-error>
                                 </form>
                                 <form *ngIf="role=='ROLE_ENTREPRENEUR'" [formGroup]="magform"
                                     style="text-align: center">
@@ -177,11 +210,19 @@
 
                                         </mat-select>
                                     </mat-form-field>
-
+                                    <mat-error *ngIf="magform.get('magasinId')?.hasError('required')">
+                                        champ obligatoire
+                                      </mat-error>
                                 </form>
                                 <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                    <button type="button" class="btn btn-primary btn-lg"
-                                        (click)="ajouter()" [disabled]="userform.invalid">ajouter</button>
+                                    <button *ngIf="role=='ROLE_ENTREPRENEUR'"  type="button" class="btn btn-primary btn-lg"
+                                        (click)="ajouter()" [disabled]="userform.invalid||entform.get('entrpriseId')?.hasError('required')||magform.get('magasinId')?.hasError('required')"
+                                        >ajouter
+                                    </button>
+                                    <button *ngIf="role!='ROLE_ENTREPRENEUR'"  type="button" class="btn btn-primary btn-lg"
+                                    (click)="ajouter()" [disabled]="userform.invalid"
+                                    >ajouter
+                                </button>
                                 </div>
                             </div>
 

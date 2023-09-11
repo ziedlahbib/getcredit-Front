@@ -10,6 +10,9 @@
                     <mat-label>addresse</mat-label>
                     <textarea matInput formControlName="addresse"></textarea>
                 </mat-form-field>
+                <mat-error *ngIf="magasinform.get('addresse')?.hasError('required')">
+                    champ obligatoire
+                  </mat-error>
 
         </form>
 

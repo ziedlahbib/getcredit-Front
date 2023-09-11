@@ -7,13 +7,17 @@
                     <mat-label>nom</mat-label>
                     <input matInput formControlName="nom">
                 </mat-form-field>
-
+                <mat-error *ngIf="entreprsieform.get('nom')?.hasError('required')">
+                    champ obligatoire
+                  </mat-error>
 
                 <mat-form-field appearance="fill" style="margin-left: 50px;">
                     <mat-label>numero fiscale</mat-label>
                     <input matInput type="number" formControlName="numfisc">
                 </mat-form-field>
-
+                <mat-error *ngIf="entreprsieform.get('numfisc')?.hasError('required')">
+                    champ obligatoire
+                  </mat-error>
             </div>
 
             <div class="col">
@@ -22,10 +26,12 @@
                     <input matInput formControlName="adresse">
                 </mat-form-field>
             </div>
-
+            <mat-error *ngIf="entreprsieform.get('adresse')?.hasError('required')">
+                champ obligatoire
+              </mat-error>
             <div mat-dialog-actions>
 
-                <button mat-button class="btn btn-dark btn-lg " (click)="ajouter()" style="margin-top: 50px;">ajouter
+                <button mat-button class="btn btn-dark btn-lg "  [disabled]="entreprsieform.invalid" (click)="ajouter()" style="margin-top: 50px;">ajouter
                     entreprise</button>
             </div>
         </form>

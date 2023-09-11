@@ -1,67 +1,89 @@
-<mat-vertical-stepper [linear]="false" #stepper *ngIf="this.uisReaydu&&this.uisReaydp&&this.ismagasinReady&&user.magasin!=null">
+<mat-vertical-stepper [linear]="false" #stepper *ngIf="this.uisReaydu&&this.uisReaydp&&this.ismagasinReady">
 
   <mat-step>
     <ng-template matStepLabel>formulaire du client</ng-template>
     <div style="margin: 30px;">
       <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupFile01">cin1:</label>
+        <label class="input-group-text" for="inputGroupFile01">recto de la carte d'identité:</label>
         <input type="file" class="form-control" id="inputGroupFile01" (change)="selectFile($event);getuserinfo()">
       </div>
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupFile01">cin2:</label>
-        <input type="file" class="form-control" id="inputGroupFile01" (change)="selectFile($event);getuserinfo2()">
+
+      <mat-error style="font-size: bold;" *ngIf="step0valid==false">
+        choisir recto de la carte d'identité
+      </mat-error>
+      <div>
+        <p-progressSpinner *ngIf="spinn" styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"
+         animationDuration=".5s"></p-progressSpinner>
       </div>
+      
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupFile01">verso de la carte d'identité:</label>
+        <input type="file" class="form-control" id="inputGroupFile01" (change)="selectFile($event);getuserinfo2()" 
+        [disabled]="!step0valid">
+        
+      </div>
+      <mat-error style="font-size: bold;" *ngIf="step1valid==false">
+        choisir verso de la carte d'identité
+      </mat-error>
+      <div>
+        <p-progressSpinner *ngIf="spinn1" styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"
+         animationDuration=".5s"></p-progressSpinner>
+      </div>
+      
       <form *ngIf="client!=null" [formGroup]="clientform">
         <div>
           <span class="label">nom</span>
           <input class="form-control" type="text" formControlName="nom">
 
         </div>
-        <mat-error *ngIf="clientform.get('nom')?.hasError('required')">
-          requis
+        <mat-error style="font-size: bold;" *ngIf="clientform.get('nom')?.hasError('required')">
+          champ obligatoire
         </mat-error>
         <div style="margin-top: 30px;">
           <span class="label">prenom</span>
           <input class="form-control" type="text" formControlName="prenom">
 
         </div>
-        <mat-error *ngIf="clientform.get('prenom')?.hasError('required')">
-          requis
+        <mat-error style="font-size: bold;" *ngIf="clientform.get('prenom')?.hasError('required')">
+          champ obligatoire
         </mat-error>
         <div style="margin-top: 30px;">
           <span class="label">email</span>
           <input class="form-control" type="text" formControlName="email">
 
         </div>
-        <mat-error *ngIf="clientform.get('email')?.hasError('required')">
-          requis
+        <mat-error style="font-size: bold;" *ngIf="clientform.get('email')?.hasError('required')">
+          champ obligatoire
+        </mat-error>
+        <mat-error  style="font-size: bold;"*ngIf="clientform.get('email')?.hasError('email')">
+          email sous la forme "exemple@exemple.xxx"
         </mat-error>
       </form>
       <form *ngIf="client2!=null" [formGroup]="clientform2">
         <div style="margin-top: 30px;">
-          <span class="label">adresse</span>
+          <span class="label">addresse</span>
           <input class="form-control" type="text" formControlName="adresse">
 
         </div>
         <mat-error *ngIf="clientform2.get('adresse')?.hasError('required')">
-          requis
+          champ obligatoire
         </mat-error>
       </form>
     </div>
     <div style="margin: 30px;">
 
-      <button type="button" class="btn btn-primary" matStepperNext *ngIf="step0valid==true&&step1valid==true&&!clientform.get('email')?.hasError('required');">Next</button>
+      <button type="button" class="btn btn-primary" matStepperNext *ngIf="step0valid==true&&step1valid==true&&!clientform.get('email')?.hasError('required')&&!clientform.get('email')?.hasError('email');">Next</button>
 
     </div>
 
   </mat-step>
 
-  <mat-step *ngIf="step0valid==true&&step1valid==true&&!clientform.get('email')?.hasError('required');">
+  <mat-step *ngIf="step0valid==true&&step1valid==true&&!clientform.get('email')?.hasError('required')&&!clientform.get('email')?.hasError('email');">
     <form>
       <ng-template matStepLabel>Information</ng-template>
 
       <div style="margin: 30px;">
-        <span class="label">adresse magasin </span><label>{{magasin.addresse}}</label>
+        <span class="label">addresse magasin </span><label>{{magasin.addresse}}</label>
       </div>
       <div style="margin: 30px;">
         <div>
@@ -86,25 +108,33 @@
             [disabled]="isDisabled">
 
         </div>
-        <mat-error *ngIf="creidtform.get('montant')?.hasError('required')">
-          requis
+        <mat-error champ obligatoire *ngIf="creidtform.get('montant')?.hasError('required')">
+          champ obligatoire
         </mat-error>
         <div class="input-group mb-3" style="margin: 10px;">
           <label class="input-group-text" for="inputGroupFile01">carte bancaire :</label>
           <input type="file" class="form-control" id="inputGroupFile01" (change)="selectFile($event);getcardinfo()">
         </div>
+        <mat-error style="font-size: bold;" *ngIf="step2valid==false">
+          choisir la carte bancaire
+        </mat-error>
+        <div>
+          <p-progressSpinner *ngIf="spinn2" styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"
+           animationDuration=".5s"></p-progressSpinner>
+        </div>
+        
         <div *ngIf="card!=null">
           <span class="label">iban</span>
           <input class="form-control" type="text" formControlName="iban"  >
           <mat-error *ngIf="creidtform.get('iban')?.hasError('required')">
-            requis
+            champ obligatoire
           </mat-error>
         </div>
         <div style="margin-top: 30px;">
           <span class="label">nombre du mois</span>
-          <input class="form-control" type="text" formControlName="nbrdumois">
+          <input class="form-control" type="number" formControlName="nbrdumois">
           <mat-error *ngIf="creidtform.get('nbrdumois')?.hasError('required')">
-            requis
+            champ obligatoire
           </mat-error>
         </div>
 
@@ -136,7 +166,9 @@
         </mat-error>
       </mat-form-field>
     </form>
-    
+    <mat-error >
+      Tous les champs sont obligatoire
+    </mat-error>
     
     
     
@@ -152,7 +184,7 @@
     </div>
 
   </mat-step>
-  <mat-step *ngIf="!isEligible">
+  <mat-step *ngIf="!isEligible&&step0valid==true&&step1valid==true&&step2valid==true">
     <ng-template matStepLabel>client non eligible</ng-template>
     <div style="margin: 30px;">
       <a class="url">sorry ! ce client n'est pas eligible pour un crédit </a>
@@ -166,12 +198,14 @@
       <button type="button" class="btn btn-primary" (click)="submitr()">confirmer client</button>
     </div>
   </mat-step>
-  <mat-step *ngIf="isEligible">
+  <mat-step *ngIf="isEligible&&step0valid==true&&step1valid==true&&step2valid==true&&step3valid==true;">
     <ng-template matStepLabel>signature du contrat</ng-template>
     <div style="margin: 30px;">
-      <a class="url">terme du contrat</a>
+
+      <a  style="color: green;font-weight: bold;">Félicitation       </a>
+      <!-- <button type="button" class="btn btn-success">signé contrat</button> -->
+      <a class="url" style="color: rgb(0, 9, 128);">terme du contrat</a>
       &nbsp;
-      <button type="button" class="btn btn-success">signé contrat</button>
     </div>
     <div >
       <button type="button" class="btn btn-warning" (click)="stepper.reset()">Reset</button>

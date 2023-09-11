@@ -51,7 +51,7 @@ import { UpdateentrepriseComponent } from 'src/app/pages/entreprise-management/u
 import { UpdateclientComponent } from 'src/app/pages/user-management/updateclient/updateclient.component';
 import { UpdatcreditComponent } from 'src/app/pages/credit-management/updatcredit/updatcredit.component';
 
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 
@@ -114,6 +114,7 @@ import { UpdatcreditComponent } from 'src/app/pages/credit-management/updatcredi
     StepsModule,
     MatStepperModule,
     NgApexchartsModule,
+    ProgressSpinnerModule
     
 
     

@@ -150,8 +150,8 @@ export class ProduitManagementComponent {
       }
     )
   }
-  supprimer(entreprise :any){
-    this.ps.deleteProduit(entreprise.entrpriseId).subscribe(()=>this.ps.getProduits().subscribe(
+  supprimer(produit :any){
+    this.ps.deleteProduit(produit.produitId).subscribe(()=>this.ps.getProduits().subscribe(
       data=>{
         this.listofProduit=data
         this.dataSource = new MatTableDataSource(this.listofProduit);
