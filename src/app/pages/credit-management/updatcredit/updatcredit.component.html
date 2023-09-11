@@ -6,7 +6,7 @@
 
       </div>
       <mat-error *ngIf="creidtform.get('montant')?.hasError('required')">
-        requis
+        champ obligatoire
       </mat-error>
       <div class="input-group mb-3" style="margin: 10px;">
         <label class="input-group-text" for="inputGroupFile01">carte bancaire :</label>
@@ -16,18 +16,18 @@
         <span class="label">iban</span>
         <input class="form-control" type="text" formControlName="iban"  >
         <mat-error *ngIf="creidtform.get('iban')?.hasError('required')">
-          requis
+          champ obligatoire
         </mat-error>
       </div>
       <div style="margin-top: 30px;">
         <span class="label">nombre du mois</span>
         <input class="form-control" type="text" formControlName="nbrdumois">
         <mat-error *ngIf="creidtform.get('nbrdumois')?.hasError('required')">
-          requis
+          champ obligatoire
         </mat-error>
       </div>
 
     </form>
   </div>
-  <button mat-button class="btn btn-dark btn-lg " (click)="modifier()" style="margin-top: 50px;">modifier</button>
+  <button mat-button class="btn btn-dark btn-lg " [disabled]="creidtform.invalid" (click)="modifier()" style="margin-top: 50px;">modifier</button>
   
