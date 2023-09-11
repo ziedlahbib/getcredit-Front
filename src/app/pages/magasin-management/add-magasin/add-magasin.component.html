@@ -10,7 +10,9 @@
                     <mat-label>addresse</mat-label>
                     <textarea matInput formControlName="addresse"></textarea>
                 </mat-form-field>
-
+                <mat-error *ngIf="magasinform.get('addresse')?.hasError('required')">
+                    champ obligatoire
+                  </mat-error>
         </form>
         <form [formGroup]="entform" style="text-align: center" >
             <label>
@@ -24,16 +26,16 @@
 
                 </select>
             </mat-form-field>
-
+            <mat-error *ngIf="entform.get('entrpriseId')?.hasError('required')">
+                champ obligatoire
+              </mat-error>
         </form>
             <div mat-dialog-actions>
 
-                <button mat-button class="btn btn-dark btn-lg " (click)="ajouter()" style="margin-top: 50px; margin-left: 45%;">ajouter
+                <button mat-button class="btn btn-dark btn-lg " [disabled]="magasinform.invalid||entform.get('entrpriseId')?.hasError('required')" (click)="ajouter()" style="margin-top: 50px; margin-left: 45%;">ajouter
                     Magasin</button>
             </div>
-            <mat-error *ngIf="magasinform.get('addresse')?.hasError('required')">
-                champ obligatoire
-              </mat-error>
+
         <form>
             
         </form>
