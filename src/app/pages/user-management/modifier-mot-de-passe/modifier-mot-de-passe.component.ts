@@ -71,11 +71,11 @@ update(){
           const body: string = response.body;
           console.log('Response:', body);
           // Handle the string response
-          if(body=="Password updated successfully"){
+          if(body=="Mot de passe mis à jour avec succès"){
             this.invalidpw = false;
             this.Successpw = true;
             this.message = body;
-          }else if(body=="Invalid old password"){
+          }else if(body=="Ancien mot de passe invalide"){
             this.invalidpw = true;
             this.Successpw = false;
             this.message = body;

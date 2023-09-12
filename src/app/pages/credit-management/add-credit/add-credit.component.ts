@@ -503,6 +503,8 @@ export class AddCreditComponent implements OnInit {
           res => {
 
             console.log(res)
+            console.log(this.clientform.value)
+            console.log(this.combinedForm.value)
             this.us.ajoutclient(this.combinedForm.value).subscribe(
               res => {
                 this.cs.affectecreditclient(data.creditId, res.id, data).subscribe(
