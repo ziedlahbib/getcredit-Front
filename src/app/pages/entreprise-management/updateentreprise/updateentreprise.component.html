@@ -1,39 +1,41 @@
-<div class="container-fluid mt--7" *ngIf="isReady==true">
+<div class="container-fluid mt--7"*ngIf="isReady==true">
 
-    <div class="card shadow" style="height: 500px;background-image: url('../assets/entreprise.jpg'); background-size: 50% auto;">
+    <div class="card shadow"
+        style="height: 500px;background-image: url('../assets/entreprise.jpg'); background-size: 50% auto;">
         <form [formGroup]="entreprsieform" style="text-align: center; margin-top: 10%;">
             <div class="col">
                 <mat-form-field appearance="fill">
-                    <mat-label>nom</mat-label>
+                    <mat-label>Nom</mat-label>
                     <input matInput formControlName="nom">
                 </mat-form-field>
                 <mat-error *ngIf="entreprsieform.get('nom')?.hasError('required')">
-                    champ obligatoire
-                  </mat-error>
+                    Champ obligatoire
+                </mat-error>
 
-
-                <mat-form-field appearance="fill" style="margin-left: 50px;">
-                    <mat-label>numero fiscale</mat-label>
+            </div>
+            <div class="col">
+                <mat-form-field appearance="fill" >
+                    <mat-label>numéro fiscal</mat-label>
                     <input matInput type="number" formControlName="numfisc">
                 </mat-form-field>
                 <mat-error *ngIf="entreprsieform.get('numfisc')?.hasError('required')">
-                    champ obligatoire
-                  </mat-error>
+                    Champ obligatoire
+                </mat-error>
             </div>
 
             <div class="col">
                 <mat-form-field appearance="fill">
-                    <mat-label>address</mat-label>
+                    <mat-label>Adresse</mat-label>
                     <input matInput formControlName="adresse">
                 </mat-form-field>
             </div>
             <mat-error *ngIf="entreprsieform.get('adresse')?.hasError('required')">
-                champ obligatoire
-              </mat-error>
+                Champ obligatoire
+            </mat-error>
             <div mat-dialog-actions>
 
-                <button mat-button class="btn btn-dark btn-lg "  [disabled]="entreprsieform.invalid" (click)="modifier()" style="margin-top: 50px;">modifier
-                    entreprise</button>
+                <button mat-button class="btn btn-dark btn-lg " [disabled]="entreprsieform.invalid" (click)="modifier()"
+                    style="margin-top: 50px;">Confirmer</button>
             </div>
         </form>
     </div>
