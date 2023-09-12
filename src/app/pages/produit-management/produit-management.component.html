@@ -2,10 +2,10 @@
   <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8" *ngIf="this.role!=ERole.ROLE_AGENT">
     <form [formGroup]="entform" style="text-align: center">
       <label>
-        entreprise
+        Entreprise
       </label>
       <mat-form-field *ngIf="loading">
-        <mat-label>choisir une option</mat-label>
+        <mat-label>Choisir une option</mat-label>
         <!-- <input matInput placeholder="Search" [formControl]="myControl"> -->
         <mat-select formControlName="entrpriseId" (selectionChange)="getmagasins($event)">
           <mat-option *ngFor="let option of listofEntreprise " [value]="option.entrpriseId">
@@ -21,7 +21,7 @@
         Magasin
       </label>
       <mat-form-field>
-        <mat-label>choisir une option</mat-label>
+        <mat-label>Choisir une option</mat-label>
         <!-- <input matInput placeholder="Search" [formControl]="myControlmagasin"> -->
         <mat-select formControlName="magasinId" (selectionChange)="getproduitsbymagasin($event)">
           <mat-option *ngFor="let option of listofMagasin " [value]="option.magasinId">
@@ -42,7 +42,7 @@
         <div class="card shadow">
   
           <div class="card-header border-0">
-            <h3 class="mb-0">Liste des Produits</h3>
+            <h3 class="mb-0">Liste des produits</h3>
           </div>
   
           <div>
@@ -59,7 +59,7 @@
   
                   <!-- ID Column -->
                   <ng-container matColumnDef="produitId">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> produitId </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Produit-Id </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.produitId}}
@@ -72,7 +72,7 @@
   
                   <!-- ID Column -->
                   <ng-container matColumnDef="nom">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> nom </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.nom}}
@@ -82,7 +82,7 @@
                     </mat-cell>
                   </ng-container>
                   <ng-container matColumnDef="reference">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> reference </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Référence </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.reference}}
@@ -92,7 +92,7 @@
                     </mat-cell>
                   </ng-container>
                   <ng-container matColumnDef="prix">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> prix </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Prix </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.prix}}
@@ -108,7 +108,7 @@
   
                   <!-- Color Column -->
                   <ng-container matColumnDef="option" >
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Option </mat-header-cell>
                     <mat-cell *matCellDef="let row" class="text-right ">
                       <div *ngIf="this.role!=ERole.ROLE_ADMIN">
                         <button [routerLink]="['/addcredit', row.produitId ]" type="button" class="btn btn-info" style="width: 150px;margin: 5px;" > passer credit</button>

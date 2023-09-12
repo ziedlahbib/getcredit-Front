@@ -24,7 +24,7 @@ export class NavbarBackComponent implements OnInit {
     this.getuserbyid();
     this.item = [
         {
-            label:'home',
+            label:'Accueil',
             icon:'pi pi-home',
             routerLink:'/home',
   
@@ -50,7 +50,7 @@ getuserbyid(){
     
                 },
                 {
-                    label:'logout',
+                    label:'se déconnecter',
                     icon:'pi pi-sign-out',
                     routerLink: '/login',
                     command: () => this.logout()

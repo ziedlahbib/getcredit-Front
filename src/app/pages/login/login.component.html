@@ -1,5 +1,5 @@
 
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"></p>
 
                 <form class="mx-1 mx-md-4" [formGroup]="loginForm">
                   <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
@@ -8,14 +8,14 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <div class="p-inputgroup">
                         <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                        <input type="text" pInputText placeholder="Username" formControlName="username" name="username">
+                        <input type="text" pInputText placeholder="Identifiant" formControlName="username" name="username">
                       </div>
                     </div>
 
                     <div class="d-flex flex-row align-items-center mb-4">
                       <div class="p-inputgroup">
                         <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
-                        <input type="password" placeholder="password" pPassword formControlName="password"
+                        <input type="password" placeholder="Mot de passe" pPassword formControlName="password"
                           name="password" />
                       </div>
                     </div>
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="d-flex flex-row align-items-center mb-4">
-                      <button pButton type="button" label="sign in" (click)="handleLogin()"></button>
+                      <button pButton type="button" label="Se connecter" (click)="handleLogin()"></button>
                     </div>
 
 

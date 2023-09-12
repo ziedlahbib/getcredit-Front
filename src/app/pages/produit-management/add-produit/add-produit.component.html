@@ -5,22 +5,22 @@
             <form [formGroup]="produiteform">
                 <div>
                     <mat-form-field appearance="fill">
-                        <mat-label>nom</mat-label>
+                        <mat-label>Nom</mat-label>
                         <input matInput formControlName="nom">
                     </mat-form-field>
     
                 </div>
                 <mat-error *ngIf="produiteform.get('nom')?.hasError('required')">
-                    champ obligatoire
+                    Champ obligatoire
                   </mat-error>
                 <div >
                     <mat-form-field appearance="fill">
-                        <mat-label>prix</mat-label>
+                        <mat-label>Prix</mat-label>
                         <input matInput type="number" formControlName="prix">
                     </mat-form-field>
                 </div>
                 <mat-error *ngIf="produiteform.get('prix')?.hasError('required')">
-                    champ obligatoire
+                    Champ obligatoire
                   </mat-error>
                 
             </form>
@@ -28,38 +28,48 @@
 
         <div style="text-align: center;" >
             <form *ngIf="role=='ROLE_ENTREPRENEUR'" [formGroup]="entform">
-                <label>
-                    entreprise
-                </label>
-                <mat-form-field appearance="fill">
-                    <mat-label>Choose an option</mat-label>
-                    <mat-select formControlName="entrpriseId" (selectionChange)="getmagasins($event)">
-                      <mat-option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId">
-                        {{ c.nom }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-
+                <div>
+                    <label>
+                        Entreprise
+                    </label>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choisir une option</mat-label>
+                        <mat-select formControlName="entrpriseId" (selectionChange)="getmagasins($event)">
+                          <mat-option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId">
+                            {{ c.nom }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                <div style="margin-left: 120px;">
+                    <mat-error *ngIf="!this.entform.get('entrpriseId')?.value">
+                        Champ obligatoire
+                      </mat-error>
+                </div>
             </form>
             <form *ngIf="(role=='ROLE_ENTREPRENEUR')&&this.loadingm" [formGroup]="magform" >
                 <label>
                     Magasin
                 </label>
                 <mat-form-field appearance="fill">
-                    <mat-label>Choose an option</mat-label>
+                    <mat-label>Choisir une option</mat-label>
                     <mat-select matNativeControl formControlName="magasinId">
                         <mat-option *ngFor="let c of listofMagasin" [value]="c.magasinId">{{ c.addresse
                             }}</mat-option>
 
                     </mat-select>
                 </mat-form-field>
-
+                <mat-error style="margin-left: 120px;" *ngIf="!this.magform.get('magasinId')?.value">
+                    Champ obligatoire
+                  </mat-error>
             </form>
         </div>
         <div mat-dialog-actions>
 
-            <button mat-button class="btn btn-dark btn-lg " [disabled]="produiteform.invalid" (click)="ajouter()" style="text-align: center;margin-left: 400px;">ajouter
-                produit</button>
+            <button mat-button *ngIf="role=='ROLE_ENTREPRENEUR'" class="btn btn-dark btn-lg " [disabled]="produiteform.invalid||!this.magform.get('magasinId')?.value"
+             (click)="ajouter()" style="text-align: center;margin-left: 400px;">Confirmer</button>
+             <button mat-button *ngIf="role=='ROLE_AGENT'" class="btn btn-dark btn-lg " [disabled]="produiteform.invalid"
+             (click)="ajouter()" style="text-align: center;margin-left: 400px;">Confirmer</button>
         </div>
     </div>
 </div>
