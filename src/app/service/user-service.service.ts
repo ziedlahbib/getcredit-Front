@@ -12,6 +12,8 @@ import { map } from 'rxjs/operators';
 export class UserServiceService {
 
   getbyusersurl="/api/user/get-users";
+  getbyuserbuusernamesurl="/api/user/get-userbyusername";
+  getbyuserbyemailsurl="/api/user/get-userbyemail";
   getbyuserbyentrpreneursurl="/api/user/get-userbyentrepreneur";
   getbyuserbyagentsurl="/api/user/get-userbyagent";
   getbyuserbyIdsurl="/api/user/get-user";
@@ -62,6 +64,14 @@ export class UserServiceService {
   }
   getuserById(iduser :Number): Observable<User>{
     return this.http.get<User>(`${this.getbyuserbyIdsurl}/${iduser}`);
+
+  }
+  getuserByusername(username :string): Observable<User>{
+    return this.http.get<User>(`${this.getbyuserbuusernamesurl}/${username}`);
+
+  }
+  getuserByemail(email :string): Observable<User>{
+    return this.http.get<User>(`${this.getbyuserbyemailsurl}/${email}`);
 
   }
   ajoutuser(user :User): Observable<User>{

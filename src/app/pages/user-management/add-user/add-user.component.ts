@@ -12,6 +12,10 @@ import { EntrepriseServiceService } from 'src/app/service/entreprise-service.ser
 import { ChangeDetectorRef } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { Observable } from 'rxjs';
+import {  AsyncValidatorFn } from '@angular/forms';
+import {  of } from 'rxjs';
+import { debounceTime, map, catchError, switchMap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-add-user',
@@ -54,12 +58,54 @@ export class AddUserComponent implements OnInit {
         }
     }
 }
+usernameValidator: AsyncValidatorFn = (control: AbstractControl): Observable<ValidationErrors | null> => {
+  const username = control.value;
+
+  if (!username) {
+    // Return early if the username is empty
+    return of(null);
+  }
+
+  // Use debounceTime to delay the request to avoid making too many requests
+  return of(username).pipe(
+    debounceTime(300), // Adjust debounce time as needed
+    switchMap(username => {
+      return this.us.getuserByusername(username).pipe(
+        map(response => {
+          return response ? { usernameTaken: true } : null;
+        }),
+        catchError(() => of(null)) // Handle errors gracefully, return null for non-HTTP errors
+      );
+    })
+  );
+};
+emailValidator: AsyncValidatorFn = (control: AbstractControl): Observable<ValidationErrors | null> => {
+  const username = control.value;
+
+  if (!username) {
+    // Return early if the username is empty
+    return of(null);
+  }
+
+  // Use debounceTime to delay the request to avoid making too many requests
+  return of(username).pipe(
+    debounceTime(300), // Adjust debounce time as needed
+    switchMap(username => {
+      return this.us.getuserByemail(username).pipe(
+        map(response => {
+          return response ? { emailTaken: true } : null;
+        }),
+        catchError(() => of(null)) // Handle errors gracefully, return null for non-HTTP errors
+      );
+    })
+  );
+};
   initForm() {
     this.userform = this.formBuilder.group({
-      username: ['', Validators.required],
+      username: ['', [Validators.required],[this.usernameValidator]],
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
-      email: ['', [Validators.required,Validators.email]],
+      email: ['', [Validators.required],[this.emailValidator]],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
       tel: ['', Validators.required],
@@ -76,6 +122,11 @@ export class AddUserComponent implements OnInit {
         
       }
     )
+    this.userform.get('username')?.valueChanges.subscribe((value) => {
+      // You can log the value here to see if the function is called
+      console.log(value);
+    });
+    
   }
   magasinform() {
     this.magform = this.formBuilder.group({
