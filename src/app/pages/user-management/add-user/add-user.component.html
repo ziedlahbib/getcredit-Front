@@ -164,7 +164,7 @@
                                             Role 
                                         </label>
                                         <mat-form-field *ngIf="role==='ROLE_ADMIN'" appearance="fill">
-                                            <mat-label>Choisis une option</mat-label>
+                                            <mat-label>Choisir une option</mat-label>
                                             <mat-select matNativeControl formControlName="role">
                                                 <!-- <option value="" selected></option>
                                                <option *ngFor="let c of erole | keyvalue" [value]="c.value">{{c.value}}
@@ -175,7 +175,7 @@
                                         </mat-form-field>
 
                                         <mat-form-field *ngIf="role==='ROLE_ENTREPRENEUR'" appearance="fill">
-                                            <mat-label>Choisis une option</mat-label>
+                                            <mat-label>Choisir une option</mat-label>
                                             <mat-select matNativeControl formControlName="role">
                                                 <mat-option value="ROLE_AGENT" selected> Agent</mat-option>
                                             </mat-select>
@@ -192,7 +192,7 @@
                                         Entreprise 
                                     </label>
                                     <mat-form-field appearance="fill">
-                                        <mat-label>Choisis une option</mat-label>
+                                        <mat-label>Choisir une option</mat-label>
                                         <mat-select formControlName="entrpriseId" (selectionChange)="getmagasins($event)">
                                           <mat-option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId">
                                             {{ c.nom }}
@@ -209,7 +209,7 @@
                                         Magasin 
                                     </label>
                                     <mat-form-field appearance="fill">
-                                        <mat-label>Choisis une option</mat-label>
+                                        <mat-label>Choisir une option</mat-label>
                                         <mat-select matNativeControl formControlName="magasinId">
                                             <mat-option *ngFor="let c of listofMagasin" [value]="c.magasinId">{{ c.addresse
                                                 }}</mat-option>

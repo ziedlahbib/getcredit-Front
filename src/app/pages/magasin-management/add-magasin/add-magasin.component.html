@@ -4,22 +4,22 @@
         <form [formGroup]="magasinform" style="text-align: center; margin-top: 10%;">
         
             <label>
-                adresse
+                Adresse
             </label>
                 <mat-form-field appearance="fill">
-                    <mat-label>addresse</mat-label>
+                    <mat-label>Adresse</mat-label>
                     <textarea matInput formControlName="addresse"></textarea>
                 </mat-form-field>
                 <mat-error *ngIf="magasinform.get('addresse')?.hasError('required')">
-                    champ obligatoire
+                    Champ obligatoire
                   </mat-error>
         </form>
         <form [formGroup]="entform" style="text-align: center" >
             <label>
-                entreprise
+                Entreprise
             </label>
             <mat-form-field appearance="fill">
-                <mat-label>Choose an option</mat-label>
+                <mat-label>Choisir une option</mat-label>
                 <select  matNativeControl formControlName="entrpriseId">
                       <option value="" selected></option>
                       <option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId">{{ c.nom }}</option>
@@ -27,13 +27,13 @@
                 </select>
             </mat-form-field>
             <mat-error *ngIf="entform.get('entrpriseId')?.hasError('required')">
-                champ obligatoire
+                Champ obligatoire
               </mat-error>
         </form>
             <div mat-dialog-actions>
 
-                <button mat-button class="btn btn-dark btn-lg " [disabled]="magasinform.invalid||entform.get('entrpriseId')?.hasError('required')" (click)="ajouter()" style="margin-top: 50px; margin-left: 45%;">ajouter
-                    Magasin</button>
+                <button mat-button class="btn btn-dark btn-lg " [disabled]="magasinform.invalid||entform.get('entrpriseId')?.hasError('required')" 
+                (click)="ajouter()" style="margin-top: 50px; margin-left: 45%;">Confirmer</button>
             </div>
 
         <form>

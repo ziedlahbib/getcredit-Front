@@ -8,10 +8,10 @@
   <div class="container-fluid mt--7">
     <form  [formGroup]="entform">
       <label>
-          entreprise
+          entrprise
       </label>
       <mat-form-field appearance="fill">
-          <mat-label>Choose an option</mat-label>
+          <mat-label>Choisir une option</mat-label>
           <mat-select formControlName="entrpriseId" (selectionChange)="getmagasins($event)">
             <mat-option *ngFor="let c of listofEntreprise" [value]="c.entrpriseId">
               {{ c.nom }}
@@ -26,7 +26,7 @@
         <div class="card shadow">
   
           <div class="card-header border-0">
-            <h3 class="mb-0">Magasin List</h3>
+            <h3 class="mb-0">Liste des magasins</h3>
           </div>
           
           <div>
@@ -43,7 +43,7 @@
   
                   <!-- ID Column -->
                   <ng-container matColumnDef="magasinId">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> magasinId </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Magasin-Id </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.magasinId}}
@@ -56,7 +56,7 @@
   
                   <!-- ID Column -->
                   <ng-container matColumnDef="addresse">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> addresse </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Adresse </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.addresse}}
@@ -68,7 +68,7 @@
   
                   <!-- Color Column -->
                   <ng-container matColumnDef="option" >
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Option </mat-header-cell>
                     <mat-cell *matCellDef="let row" class="text-right ">
                       <div *ngIf="this.role==ERole.ROLE_ENTREPRENEUR">
                         <button  class="btn btn-warning" style="width: 150px;margin: 5px;"  [routerLink]="['/updatemagasin/', row.magasinId]">modifier</button>
@@ -103,7 +103,7 @@
         <div class="card shadow">
   
           <div class="card-header border-0">
-            <h3 class="mb-0">User List</h3>
+            <h3 class="mb-0">Liste des agents</h3>
           </div>
   
           <div>
@@ -120,7 +120,7 @@
   
                   <!-- ID Column -->
                   <ng-container matColumnDef="id">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.id}}
@@ -133,7 +133,7 @@
   
                   <!-- ID Column -->
                   <ng-container matColumnDef="username">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> username </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Identifiant </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.username}}
@@ -143,7 +143,7 @@
                     </mat-cell>
                   </ng-container>
                   <ng-container matColumnDef="nom">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> nom </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.nom}}
@@ -153,7 +153,7 @@
                     </mat-cell>
                   </ng-container>
                   <ng-container matColumnDef="prenom">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> prenom </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> prénom </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.prenom}}
@@ -164,7 +164,7 @@
                   </ng-container>
   
                   <ng-container matColumnDef="adresse">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> adresse </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Adresse </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.adresse}}
@@ -175,7 +175,7 @@
                   </ng-container>
   
                   <ng-container matColumnDef="tel">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> tel </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> numéro de téléphone </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.tel}}
@@ -186,7 +186,7 @@
                   </ng-container>
   
                   <ng-container matColumnDef="email">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.email}}
@@ -197,7 +197,7 @@
                   </ng-container>
   
                   <ng-container matColumnDef="role">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.roles.name}}
@@ -213,7 +213,7 @@
   
                   <!-- Color Column -->
                   <ng-container matColumnDef="option">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Option </mat-header-cell>
                     <mat-cell *matCellDef="let row" class="text-right ">
                       <div>
                         <!--<button  class="dropdown-item"  id="ziedpag" style="background-color:#DC143C"  [routerLink]="['/assurance-management/modifier', row.assuId ]">modifier</button><br>-->
