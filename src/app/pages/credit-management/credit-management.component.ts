@@ -46,6 +46,7 @@ export class CreditManagementComponent implements OnInit {
   getcredits(){
     this.cs.getCredits().subscribe(
       data=>{
+        console.log(data)
         this.listofCredit=data;
         this.dataSource=new MatTableDataSource(this.listofCredit);
         this.dataSource._renderChangesSubscription;

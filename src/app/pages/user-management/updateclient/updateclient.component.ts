@@ -21,11 +21,9 @@ export class UpdateclientComponent {
   }
   initForm(data) {
     this.userform = this.formBuilder.group({
-      username: [data.username, Validators.required],
       nom: [data.nom, Validators.required],
       prenom: [data.prenom, Validators.required],
-      email: [data.email, Validators.required],
-      tel: [data.tel, Validators.required],
+      email: [data.email, [Validators.required,Validators.email]],
       adresse: [data.adresse, Validators.required],
   });
     

@@ -1,9 +1,13 @@
 import { AfterContentInit, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ERole } from 'src/app/model/erole';
 import { User } from 'src/app/model/user';
 import { UserServiceService } from 'src/app/service/user-service.service';
+import { Observable } from 'rxjs';
+import {  AsyncValidatorFn } from '@angular/forms';
+import {  of } from 'rxjs';
+import { debounceTime, map, catchError, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-user',
@@ -23,10 +27,10 @@ export class EditUserComponent implements OnInit {
   }
   initForm(data) {
     this.userform = this.formBuilder.group({
-      username: [data.username, Validators.required],
+      username: [data.username, [Validators.required],[this.usernameValidator]],
       nom: [data.nom, Validators.required],
       prenom: [data.prenom, Validators.required],
-      email: [data.email, Validators.required],
+      email: [data.email, [Validators.required,Validators.email],[this.emailValidator]],
       tel: [data.tel, Validators.required],
       adresse: [data.adresse, Validators.required],
       roles: [data.roles.name, Validators.required],
@@ -40,6 +44,58 @@ export class EditUserComponent implements OnInit {
     }
   )
 }
+usernameValidator: AsyncValidatorFn = (control: AbstractControl): Observable<ValidationErrors | null> => {
+  const username = control.value;
+  if (username==this.user.username) {
+    // Return early if the username is empty
+    return of(null);
+  }
+  if (!username) {
+    // Return early if the username is empty
+    return of(null);
+  }
+
+  // Use debounceTime to delay the request to avoid making too many requests
+  return of(username).pipe(
+    debounceTime(300), // Adjust debounce time as needed
+    switchMap(username => {
+      return this.us.getuserByusername(username).pipe(
+        map(response => {
+          
+            return response ? { usernameTaken: true } : null;
+          
+          
+        }),
+        catchError(() => of(null)) // Handle errors gracefully, return null for non-HTTP errors
+      );
+    })
+  );
+
+};
+emailValidator: AsyncValidatorFn = (control: AbstractControl): Observable<ValidationErrors | null> => {
+  const username = control.value;
+  if (username==this.user.email) {
+    // Return early if the username is empty
+    return of(null);
+  }
+  if (!username) {
+    // Return early if the username is empty
+    return of(null);
+  }
+
+  // Use debounceTime to delay the request to avoid making too many requests
+  return of(username).pipe(
+    debounceTime(300), // Adjust debounce time as needed
+    switchMap(username => {
+      return this.us.getuserByemail(username).pipe(
+        map(response => {
+          return response ? { emailTaken: true } : null;
+        }),
+        catchError(() => of(null)) // Handle errors gracefully, return null for non-HTTP errors
+      );
+    })
+  );
+};
 get(id:number){
   this.us.getuserById(id ).subscribe(
     data => {

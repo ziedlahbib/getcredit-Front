@@ -250,6 +250,7 @@ export class AddCreditComponent implements OnInit {
   creidtform: FormGroup;
   clientform: FormGroup;
   clientform2: FormGroup;
+  combinedForm:FormGroup;
   clienteleigibiliteform: FormGroup
   isDisabled: boolean = true;
   uisReaydu: boolean = false;
@@ -270,7 +271,7 @@ export class AddCreditComponent implements OnInit {
     this.getuserbyid();
     this.getproduitbyid();
     this.clienteleigibiliteinitform();
-    this.getmagasin()
+    this.getmagasin();
 
 
 
@@ -297,6 +298,21 @@ export class AddCreditComponent implements OnInit {
 
     this.clientform.valueChanges.subscribe(data => {
       console.log(this.clientform.value);
+    });
+  }
+  initCombinedForm(data1, data2) {
+    //   const concatenatedString = `${data2[7]}${data2[8]}${data2[9]}${data2[10]}`;
+    // console.log(data1)
+    // console.log(data2)
+    this.combinedForm = this._formBuilder.group({
+      adresse: [this.clientform2.get('adresse')?.value, Validators.required],
+      nom: [this.clientform.get('nom')?.value, Validators.required],
+      prenom: [this.clientform.get('prenom')?.value, Validators.required], // Utilisez data2 pour le prénom
+      email: [this.clientform.get('email')?.value, [Validators.required, Validators.email]]
+    });
+  
+    this.combinedForm.valueChanges.subscribe(data => {
+      console.log(this.combinedForm.value);
     });
   }
   agentform: FormGroup = this._formBuilder.group({ firstCtrl: [''] });
@@ -439,6 +455,7 @@ export class AddCreditComponent implements OnInit {
         this.client2 = data;
 
         this.initform2(data);
+        this.initCombinedForm(this.clientform.value,this.clientform2.value);
         this.step1valid=true;
         this.spinn1=false;
       }
@@ -486,7 +503,7 @@ export class AddCreditComponent implements OnInit {
           res => {
 
             console.log(res)
-            this.us.ajoutclient(this.clientform.value).subscribe(
+            this.us.ajoutclient(this.combinedForm.value).subscribe(
               res => {
                 this.cs.affectecreditclient(data.creditId, res.id, data).subscribe(
                   res => {
@@ -517,7 +534,7 @@ export class AddCreditComponent implements OnInit {
           res => {
             console.log(data.creditId)
             console.log(this.user.id)
-            this.us.ajoutclient(this.clientform.value).subscribe(
+            this.us.ajoutclient(this.combinedForm.value).subscribe(
               res => {
                 this.crs.affectecreditclient(data.creditId, res.id, data).subscribe(
                   resu => {

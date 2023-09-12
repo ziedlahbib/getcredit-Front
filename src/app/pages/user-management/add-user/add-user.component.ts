@@ -105,7 +105,7 @@ emailValidator: AsyncValidatorFn = (control: AbstractControl): Observable<Valida
       username: ['', [Validators.required],[this.usernameValidator]],
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
-      email: ['', [Validators.required,Validators.email],[this.emailValidator],],
+      email: ['', [Validators.required,Validators.email],[this.emailValidator]],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
       tel: ['', Validators.required],

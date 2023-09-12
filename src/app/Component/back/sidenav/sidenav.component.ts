@@ -18,13 +18,13 @@ export class SidenavComponent implements OnInit {
         label: 'Gestion des utilisateurs',
         items: [
             {
-                label: 'ajouter',
+                label: 'Ajouter un utilisateur',
                 routerLink: '/ajoutuser',
                 visible:this.isEntrepreneur() || this.isAdmin()
 
             },
             {
-                label: 'afficher',
+                label: 'Afficher la liste des utilisateurs',
                 routerLink: '/affichlistuser',
 
             },
@@ -35,14 +35,14 @@ export class SidenavComponent implements OnInit {
         label: 'Gestion des Entreprises',
         items: [
             {
-                label: 'ajouter',
+                label: 'Ajouter un entreprise',
                 routerLink:'/ajoutEntreprise',
                 visible:this.isEntrepreneur()
 
             },
 
             {
-                label: 'afficher',
+                label: 'Afficher la liste des entreprises',
                 routerLink:'/affichlistEntreprise'
 
             },
@@ -54,13 +54,13 @@ export class SidenavComponent implements OnInit {
         label: 'Gestion des magasins',
         items: [
             {
-                label: 'ajouter',
+                label: 'Ajouter un magasin',
                 routerLink:'/ajoutMagasin',
                 visible:this.isEntrepreneur()
 
             },
             {
-                label: 'afficher',
+                label: 'Afficher la liste des magasins',
                 routerLink:'/affichlistMagasins'
 
             },
@@ -71,13 +71,13 @@ export class SidenavComponent implements OnInit {
         label: 'Gestion des produits',
         items: [
             {
-                label: 'ajouter',
+                label: 'Ajouter un produit',
                 routerLink:'/ajoutProduit',
                 visible:this.isEntrepreneur() || this.isAgent()
 
             },
             {
-                label: 'afficher',
+                label: 'Afficher la liste des produits',
                 routerLink:'/affichlistProduits'
 
             },
@@ -87,12 +87,12 @@ export class SidenavComponent implements OnInit {
         label: 'Gestion des crédits',
         items: [
             {
-                label: 'afficher credit accéptés',
+                label: 'Afficher la liste des crédits accéptés',
                 routerLink:'/affichcredit',
                 
 
             },{
-                label: 'afficher credit refusé',
+                label: 'Afficher la liste des crédits refusés',
                 routerLink:'/affichcreditref',
                 
 
@@ -104,7 +104,7 @@ export class SidenavComponent implements OnInit {
         label: 'statistique',
         items: [
             {
-                label: 'afficher',
+                label: 'Afficher la statistique',
                 routerLink:'/affichstatitistique',
                 
 
