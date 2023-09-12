@@ -6,7 +6,7 @@
         <div class="card shadow">
   
           <div class="card-header border-0">
-            <h3 class="mb-0">User List</h3>
+            <h3 class="mb-0">Liste des crédits</h3>
           </div>
   
           <div>
@@ -23,7 +23,7 @@
   
                   <!-- ID Column -->
                   <ng-container matColumnDef="creditId">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> creditId </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Crédit-Id </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.creditId}}
@@ -36,7 +36,7 @@
   
                   <!-- ID Column -->
                   <ng-container matColumnDef="montant">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> montant </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Montant </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.montant}}
@@ -56,7 +56,7 @@
                     </mat-cell>
                   </ng-container>
                   <ng-container matColumnDef="nbrdumois">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> nombre du mois </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre du mois </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.nbrdumois}}
@@ -66,7 +66,7 @@
                     </mat-cell>
                   </ng-container>
                   <ng-container matColumnDef="montantparmois">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> montant par mois </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Montant par mois </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.montantparmois}}
@@ -77,7 +77,7 @@
                   </ng-container>
   
                   <ng-container matColumnDef="dateDebut">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> date Debut </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Date Début </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.dateDebut}}
@@ -88,7 +88,7 @@
                   </ng-container>
   
                   <ng-container matColumnDef="dateFin">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> date Fin </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Date Fin </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.dateFin}}
@@ -99,7 +99,7 @@
                   </ng-container>
   
                   <ng-container matColumnDef="clientId">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> client Id </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Client-Id </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.user?.id}}
@@ -110,7 +110,7 @@
                   </ng-container>
   
                   <ng-container matColumnDef="clientnom">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> clientnom </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Nom du client </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.user?.nom}}
@@ -123,7 +123,7 @@
   
 
                   <ng-container matColumnDef="clientprenom">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> client prenom </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> prénom du client </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.user?.prenom}}
@@ -134,7 +134,7 @@
                   </ng-container>
   
                   <ng-container matColumnDef="agentId">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> agent Id </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Agent-Id </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.agent?.id}}
@@ -145,7 +145,7 @@
                   </ng-container>
   
                   <ng-container matColumnDef="agentnom">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> agent nom  </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Nom de l'agent </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.agent?.nom}}
@@ -155,10 +155,10 @@
                     </mat-cell>
                   </ng-container>
                   <ng-container matColumnDef="option">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> option </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Option </mat-header-cell>
                     <mat-cell *matCellDef="let row" class="text-right ">
                       <div *ngIf="this.role==ERole.ROLE_ADMIN">
-                        <button  class="btn btn-warning" style="width: 85px;margin: 5px;"  [routerLink]="['/updatecredit/', row.creditId]">modifier</button>
+                        <button  class="btn btn-warning" style="width: 85px;margin: 5px;"  [routerLink]="['/updatecredit/', row.creditId]">Modifier</button>
                        
                       </div>
   
