@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import { User } from 'src/app/model/user';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-navbar-back',
@@ -13,12 +14,15 @@ import { Router } from '@angular/router';
 })
 export class NavbarBackComponent implements OnInit {
 
-  
+  nom: String = '';
+  prenom: String = '';
   user: User;
   items: MenuItem[]=[];
   item: MenuItem[]=[];
   isReady=false;
-  constructor(private us : UserServiceService,private authenticationService: AuthServiceService,private router :Router) { }
+  constructor(private us : UserServiceService,
+    private authenticationService: AuthServiceService,private router :Router,
+    private userService: UserService) { }
 
   ngOnInit(): void {
     this.getuserbyid();
@@ -29,7 +33,13 @@ export class NavbarBackComponent implements OnInit {
             routerLink:'/home',
   
         },];
+        this.userService.nom$.subscribe((nom) => {
+          this.nom = nom;
+        });
     
+        this.userService.prenom$.subscribe((prenom) => {
+          this.prenom = prenom;
+        });
   }
 getuserbyid(){
   let token=localStorage.getItem('autorisation'|| '');
@@ -37,6 +47,8 @@ getuserbyid(){
   this.us.getuserById(user.jti).subscribe(
     data=>{
       this.user=data;
+      this.nom=data.nom;
+      this.prenom=data.prenom
       this.isReady=true;
       this.items = [
 

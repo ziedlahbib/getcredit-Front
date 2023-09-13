@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import {  AsyncValidatorFn } from '@angular/forms';
 import {  of } from 'rxjs';
 import { debounceTime, map, catchError, switchMap } from 'rxjs/operators';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -20,7 +21,8 @@ export class EditUserComponent implements OnInit {
   erole=ERole;
   user:User;
   isReady=false;
-  constructor(private us :UserServiceService ,private formBuilder: FormBuilder,private router:ActivatedRoute,private route:Router) { }
+  constructor(private us :UserServiceService ,private formBuilder: FormBuilder,
+    private router:ActivatedRoute,private route:Router,private userService: UserService) { }
 
   ngOnInit(): void {
     this.get(this.router.snapshot.params['id']);
@@ -112,6 +114,8 @@ modifier(){
   this.us.updateuser(this.router.snapshot.params['id'],this.userform.value).subscribe(
     data=>{
       console.log(data);
+      this.userService.setNom(data.nom);
+      this.userService.setPrenom(data.prenom);
       this.route.navigate(['/affichlistuser']);
     }
   )
