@@ -17,7 +17,9 @@ export class LoginComponent implements OnInit {
   public password? : string;
 
   errorMessage = "Les informations d'identification invalides";
+  errordesaMessage = "Ce compte est désactivé";
   successMessage?: string;
+  comptedesa=false;
   invalidLogin = false;
   loginSuccess = false
   constructor(private route: ActivatedRoute,
@@ -37,15 +39,26 @@ export class LoginComponent implements OnInit {
     )
   }
   handleLogin() {
-    this.authenticationService.authenticationService(this.loginForm.value).subscribe((result)=> {
-      this.invalidLogin = false;
-      this.loginSuccess = true;
-      this.successMessage = 'Login Successful.';
-      this.router.navigate(['/affichlistuser']);
-      this.authenticationService.registerSuccessfulLogin(result);
-    }, () => {
-      this.invalidLogin = true;
-      this.loginSuccess = false;
-    });   
+    this.authenticationService.authenticationService(this.loginForm.value).subscribe(
+      (result) => {
+        console.log(result);
+        console.log(result.message);
+        if (result.message === "Ce compte est désactivé") {
+          this.authenticationService.logout();
+          this.comptedesa=true
+        } else {
+          this.invalidLogin = false;
+          this.loginSuccess = true;
+          this.successMessage = 'Login Successful.';
+          this.router.navigate(['/affichlistuser']);
+          this.authenticationService.registerSuccessfulLogin(result);
+        }
+      },
+      () => {
+        this.invalidLogin = true;
+        this.loginSuccess = false;
+      }
+    );
   }
+  
 }

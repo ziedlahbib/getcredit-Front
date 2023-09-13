@@ -26,6 +26,8 @@ export class UserServiceService {
   getbyuserbymagsinsurl="/api/user/get-userbymagasin";
   forgotpassworduril="/api/forgot";
   resetpassworduril="/api/reset";
+  activerurl="/api/user/activer-user";
+  desactiverurl="/api/user/desactiver-user";
 
   constructor(private http : HttpClient) { }
 
@@ -85,6 +87,12 @@ export class UserServiceService {
   }
   updateuser(id:Number, user:User):Observable<User>{
     return this.http.put<User>(`${this.modifieruserUrl}/${id}`,user);
+  }
+  activeruser(id:Number, user:User):Observable<User>{
+    return this.http.put<User>(`${this.activerurl}/${id}`,user);
+  }
+  desactiveruser(id:Number, user:User):Observable<User>{
+    return this.http.put<User>(`${this.desactiverurl}/${id}`,user);
   }
   updatepassword(iduser:Number,request:ChangePasswordRequest):Observable<HttpEvent<any>>{
     //return this.http.put<string>(`${this.modifierpwuserUrl}/${iduser}`,request);

@@ -41,6 +41,32 @@ export class EntrepriseManagementComponent implements OnInit {
   );
   this.getrole();
   }
+  activer(id:number,user:User){
+    console.log(user)
+    this.us.activeruser(id,user).subscribe(()=>  this.us.getuserBymagasin(user.magasin.magasinId).subscribe(
+      res=>{
+        this.usersListparmagasin=res;
+        this.dataSourceusersListparmagasin=new MatTableDataSource(this.usersListparmagasin);
+        this.dataSourceusersListparmagasin._renderChangesSubscription;
+        this.dataSourceusersListparmagasin.paginator = this.paginatorusersListparmagasin;
+        this.dataSourceusersListparmagasin.sort = this.sortusersListparmagasin;
+        this.verifierUserMagasin(this.listofMagasins,res);
+      }
+    ));
+  }
+  desaactiver(id:number,user:User){
+    this.us.desactiveruser(id,user).subscribe(()=>  this.us.getuserBymagasin(user.magasin.magasinId).subscribe(
+      res=>{
+        this.usersListparmagasin=res;
+        this.dataSourceusersListparmagasin=new MatTableDataSource(this.usersListparmagasin);
+        this.dataSourceusersListparmagasin._renderChangesSubscription;
+        this.dataSourceusersListparmagasin.paginator = this.paginatorusersListparmagasin;
+        this.dataSourceusersListparmagasin.sort = this.sortusersListparmagasin;
+        this.verifierUserMagasin(this.listofMagasins,res);
+      }
+    )
+    );
+  }
   getrole() {
     this.role = localStorage.getItem('role' || '');
     console.log(this.role)

@@ -2,6 +2,7 @@
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"></p>
 
                 <form class="mx-1 mx-md-4" [formGroup]="loginForm">
+                  <div class="alert alert-warning" *ngIf='comptedesa'>{{errordesaMessage}}</div>
                   <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
                     <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div> 
                   <div class="grid p-fluid">

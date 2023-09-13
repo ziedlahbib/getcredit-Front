@@ -254,4 +254,101 @@ verifierMagasin(listE:Entreprise[],listM:Magasin[]){
         console.log('U',this.isReadyU)
       }
       }
+      activer(id:number,user:User){
+        let token=localStorage.getItem('autorisation'|| '');
+        let userr:any=jwt_decode(token|| '');
+        this.us.activeruser(id,user).subscribe(()=>this.us.getuserById(userr.jti).subscribe(
+          data=>{
+            console.log('user',data)
+            this.userconn=data;
+            if(this.userconn.roles.name==ERole.ROLE_ADMIN){
+              this.us.getusers().subscribe(
+                res=>{
+          
+                  this.usersList=res;
+                  this.dataSource=new MatTableDataSource(this.usersList);
+                  this.dataSource._renderChangesSubscription;
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  
+                }
+              )
+              
+            }else if(this.userconn.roles.name==ERole.ROLE_ENTREPRENEUR){
+              this.us.getuserByentrepreneur(this.userconn.id).subscribe(
+                res=>{
+                  console.log('sss',res)
+                  this.usersList=res;
+                  this.dataSource=new MatTableDataSource(this.usersList);
+                  this.dataSource._renderChangesSubscription;
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  
+                }
+              )
+            }else if(this.userconn.roles.name==ERole.ROLE_AGENT){
+              this.us.getuserBagent(this.userconn.id).subscribe(
+                res=>{
+                  this.usersList=res;
+                  this.dataSource=new MatTableDataSource(this.usersList);
+                  this.dataSource._renderChangesSubscription;
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  
+                }
+              )
+            }
+          
+          }
+        ));
+      }
+      desaactiver(id:number,user:User){
+        let token=localStorage.getItem('autorisation'|| '');
+        let userr:any=jwt_decode(token|| '');
+        this.us.desactiveruser(id,user).subscribe(()=>this.us.getuserById(userr.jti).subscribe(
+          data=>{
+            console.log('user',data)
+            this.userconn=data;
+            if(this.userconn.roles.name==ERole.ROLE_ADMIN){
+              this.us.getusers().subscribe(
+                res=>{
+          
+                  this.usersList=res;
+                  this.dataSource=new MatTableDataSource(this.usersList);
+                  this.dataSource._renderChangesSubscription;
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  
+                }
+              )
+              
+            }else if(this.userconn.roles.name==ERole.ROLE_ENTREPRENEUR){
+              this.us.getuserByentrepreneur(this.userconn.id).subscribe(
+                res=>{
+                  console.log('sss',res)
+                  this.usersList=res;
+                  this.dataSource=new MatTableDataSource(this.usersList);
+                  this.dataSource._renderChangesSubscription;
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  
+                }
+              )
+            }else if(this.userconn.roles.name==ERole.ROLE_AGENT){
+              this.us.getuserBagent(this.userconn.id).subscribe(
+                res=>{
+                  this.usersList=res;
+                  this.dataSource=new MatTableDataSource(this.usersList);
+                  this.dataSource._renderChangesSubscription;
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  
+                }
+              )
+            }
+          
+          }
+        )
+        );
+      }
 }

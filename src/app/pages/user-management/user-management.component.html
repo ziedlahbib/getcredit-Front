@@ -121,9 +121,13 @@
                   <mat-header-cell *matHeaderCellDef mat-sort-header> Option </mat-header-cell>
                   <mat-cell *matCellDef="let row" class="text-right">
                     <div >
-                      <button *ngIf="this.userconn.roles.name!=ERole.ROLE_AGENT" class="btn btn-danger" style="width: 150px;margin: 5px;"   (click)="supprimer(row)">supprimer</button>
-
-                        <button *ngIf="this.userconn.roles.name===ERole.ROLE_ADMIN&&row.roles.name===ERole.ROLE_CLIENT" class="btn btn-warning" style="width: 150px;margin: 5px;"  [routerLink]="['/edit-client/', row.id ]">modifier</button>
+                       <button *ngIf="this.userconn.roles.name!=ERole.ROLE_AGENT&&row.active==false" class="btn btn-primary" style="width: 95px;"
+                       (click)="activer(row.id,row)">activer</button><br>
+                       <button *ngIf="this.userconn.roles.name!=ERole.ROLE_AGENT&&row.active==true" class="btn btn-danger"
+                       (click)="desaactiver(row.id,row)">désactiver</button><br>
+                        <button *ngIf="this.userconn.roles.name===ERole.ROLE_ADMIN&&row.roles.name===ERole.ROLE_CLIENT" 
+                        class="btn btn-warning" style="margin: 5px;width: 90px;" 
+                         [routerLink]="['/edit-client/', row.id ]">modifier</button>
 
                     </div>
 
@@ -226,7 +230,7 @@
                   <mat-cell *matCellDef="let row" class="text-right ">
                     <div>
                       <!--<button  class="dropdown-item"  id="ziedpag" style="background-color:#DC143C"  [routerLink]="['/assurance-management/modifier', row.assuId ]">modifier</button><br>-->
-                      <button class="btn btn-danger" (click)="supprimer(row)">supprimer</button><br>
+                      <!-- <button class="btn btn-danger" (click)="supprimer(row)">supprimer</button><br> -->
                     </div>
 
 
@@ -304,7 +308,7 @@
                   <mat-cell *matCellDef="let row" class="text-right ">
                     <div>
                       <!--<button  class="dropdown-item"  id="ziedpag" style="background-color:#DC143C"  [routerLink]="['/assurance-management/modifier', row.assuId ]">modifier</button><br>-->
-                      <button class="btn btn-danger" (click)="supprimer(row)">supprimer</button><br>
+                      <!-- <button class="btn btn-danger" (click)="supprimer(row)">supprimer</button><br> -->
                     </div>
 
 
@@ -452,8 +456,10 @@
                   <mat-cell *matCellDef="let row" class="text-right ">
                     <div>
                       <!--<button  class="dropdown-item"  id="ziedpag" style="background-color:#DC143C"  [routerLink]="['/assurance-management/modifier', row.assuId ]">modifier</button><br>-->
-                      <button *ngIf="this.userconn.roles.name!=ERole.ROLE_AGENT" class="btn btn-danger"
-                        (click)="supprimer(row)">supprimer</button><br>
+                      <button *ngIf="this.userconn.roles.name!=ERole.ROLE_AGENT&&row.active==false" class="btn btn-primary"
+                      (click)="activer(row.id,row)">activer</button><br>
+                      <button *ngIf="this.userconn.roles.name!=ERole.ROLE_AGENT&&row.active==true" class="btn btn-danger"
+                      (click)="desaactiver(row.id,row)">désactiver</button><br>
                     </div>
 
 
