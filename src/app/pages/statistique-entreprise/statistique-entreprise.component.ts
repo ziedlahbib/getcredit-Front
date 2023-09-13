@@ -59,11 +59,11 @@ export class StatistiqueEntrepriseComponent {
         this.chartOptions = {
           series: [
             {
-              name: 'credit refusé',
+              name: 'credits refusés',
               data: approvedDataArray,
             },
             {
-              name: 'credit accepté',
+              name: 'credits acceptés',
               data: notApprovedDataArray,
             },
           ],

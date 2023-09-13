@@ -74,11 +74,11 @@ export class StatistiqueMagasinComponent {
     this.chartOptions = {
       series: [
         {
-          name: 'credit refusé',
+          name: 'credits refusés',
           data: [], // Initialize with empty data array
         },
         {
-          name: 'credit accépté',
+          name: 'credits accéptés',
           data: [], // Initialize with empty data array
         },
       ],

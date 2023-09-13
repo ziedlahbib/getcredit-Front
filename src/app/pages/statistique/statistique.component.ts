@@ -27,7 +27,7 @@ export class StatistiqueComponent {
   public chartOptions: Partial<ChartOptions>| any;
   cref: Number;
   cr: Number;
-  label: Array<string> =["crédit refusé", "crédit accepté"];
+  label: Array<string> =["crédits refusés", "crédit acceptés"];
   constructor(private stat: StatitsiqteserviceService) {
   
     // Initialize cref and cr variables to 0
