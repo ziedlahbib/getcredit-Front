@@ -26,7 +26,7 @@ export class UserManagementComponent implements OnInit {
   public ERole=ERole ;
   usersList:User[]=[];
   userconn:User;
-  displayedColumns = ['id','username','nom', 'prenom','adresse','tel','email','role','option'];
+  displayedColumns = ['id','username','nom', 'prenom','adresse','tel','email','role','magasinid','entrepriseid','entrepreneurid','option'];
   dataSource: MatTableDataSource<User>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -58,7 +58,7 @@ getuser() {
       if(this.userconn.roles.name==ERole.ROLE_ADMIN){
         this.us.getusers().subscribe(
           res=>{
-    
+            console.log(res)
             this.usersList=res;
             this.dataSource=new MatTableDataSource(this.usersList);
             this.dataSource._renderChangesSubscription;

@@ -196,14 +196,21 @@
                     </mat-cell>
                   </ng-container>
   
-                  <ng-container matColumnDef="role">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
-                    <mat-cell *matCellDef="let row">
-                      <div>
-                        {{row.roles.name}}
+                  <ng-container  matColumnDef="role">
+                    <mat-header-cell fxFlex="250px"  *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+                    <mat-cell  *matCellDef="let row" class="cell">
+                      <div *ngIf="row.roles.name=='ROLE_CLIENT'">
+                        Client
                       </div>
-  
-  
+                      <div *ngIf="row.roles.name=='ROLE_AGENT'">
+                        Agent
+                      </div>
+                      <div *ngIf="row.roles.name=='ROLE_ENTREPRENEUR'">
+                        Entrepreneur
+                      </div>
+                      <div *ngIf="row.roles.name=='ROLE_ADMIN'">
+                        Admin
+                      </div>
                     </mat-cell>
                   </ng-container>
   

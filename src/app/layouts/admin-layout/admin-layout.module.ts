@@ -114,7 +114,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     StepsModule,
     MatStepperModule,
     NgApexchartsModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+
     
 
     

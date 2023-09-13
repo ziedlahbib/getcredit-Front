@@ -29,7 +29,7 @@
 
                 <!-- ID Column -->
                 <ng-container matColumnDef="id">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+                  <mat-header-cell  *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
                   <mat-cell *matCellDef="let row">
                     <div>
                       {{row.id}}
@@ -104,17 +104,53 @@
                 
 
                 
-                <ng-container matColumnDef="role">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+                <ng-container  matColumnDef="role">
+                  <mat-header-cell fxFlex="250px"  *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+                  <mat-cell  *matCellDef="let row" class="cell">
+                    <div *ngIf="row.roles.name=='ROLE_CLIENT'">
+                      Client
+                    </div>
+                    <div *ngIf="row.roles.name=='ROLE_AGENT'">
+                      Agent
+                    </div>
+                    <div *ngIf="row.roles.name=='ROLE_ENTREPRENEUR'">
+                      Entrepreneur
+                    </div>
+                    <div *ngIf="row.roles.name=='ROLE_ADMIN'">
+                      Admin
+                    </div>
+                  </mat-cell>
+                </ng-container>
+                <ng-container  matColumnDef="magasinid">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Magasin-Id </mat-header-cell>
                   <mat-cell *matCellDef="let row" class="cell">
-                    <div>
-                      {{row.roles.name}}
+                    <div *ngIf="row.magasin && row.magasin.magasinId !== null" >
+                      {{row.magasin.magasinId}}
                     </div>
 
 
                   </mat-cell>
                 </ng-container>
-              
+                <ng-container matColumnDef="entrepriseid">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Entreprise-Id </mat-header-cell>
+                  <mat-cell *matCellDef="let row" class="cell">
+                    <div  *ngIf="row.magasin && row.magasin.entreprise && row.magasin.entreprise.entrepriseId !== null">
+                      {{row.magasin.entreprise.entrpriseId}}
+                    </div>
+
+
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="entrepreneurid">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Entrepreneur-Id </mat-header-cell>
+                  <mat-cell *matCellDef="let row" class="cell">
+                    <div *ngIf="row.entrepreneur && row.entrepreneur.id !== null">
+                      {{row.entrepreneur.id}}
+                    </div>
+
+
+                  </mat-cell>
+                </ng-container>
 
                 <!-- Color Column -->
                 <ng-container matColumnDef="option">
