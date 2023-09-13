@@ -25,9 +25,13 @@ export class AddCreditComponent implements OnInit {
   // uniqueValues = uniqueValues;
   // translations = translations;
   placeholder = 'Choisir une option';
-  columns = ['age', 'workclass', 'education',
+  // columns = ['age', 'workclass', 'education',
+  //   'education_num', 'marital_status', 'occupation',
+  //   'relationship', 'race', 'gender', 'capital_gain', 'capital_loss',
+  //   'hours_per_week', 'native_country'];
+    columns = ['age', 'workclass', 'education',
     'education_num', 'marital_status', 'occupation',
-    'relationship', 'race', 'gender', 'capital_gain', 'capital_loss',
+    'relationship',  'capital_gain', 'capital_loss',
     'hours_per_week', 'native_country'];
   uniqueValues = {
     age: [39, 50, 38, 53, 28, 37, 49, 52, 31, 42, 30, 23, 32, 40, 34, 25, 43, 54, 35, 59, 56, 19, 20, 45, 22, 48, 21, 24, 57, 44, 41, 29, 18, 47, 46, 36, 79, 27, 67, 33, 76, 17, 55, 61, 70, 64, 71, 68, 66, 51, 58, 26, 60, 90, 75, 65, 77, 62, 63, 80, 72, 74, 69, 73, 81, 78, 88, 82, 83, 84, 85, 86, 87],
@@ -37,8 +41,8 @@ export class AddCreditComponent implements OnInit {
     marital_status: ['Never-married', 'Married-civ-spouse', 'Divorced', 'Married-spouse-absent', 'Separated', 'Married-AF-spouse', 'Widowed'],
     occupation: ['Adm-clerical', 'Exec-managerial', 'Handlers-cleaners', 'Prof-specialty', 'Other-service', 'Sales', 'Craft-repair', 'Transport-moving', 'Farming-fishing', 'Machine-op-inspct', 'Tech-support', '?', 'Protective-serv', 'Armed-Forces', 'Priv-house-serv'],
     relationship: ['Not-in-family', 'Husband', 'Wife', 'Own-child', 'Unmarried', 'Other-relative'],
-    race: ['White', 'Black', 'Asian-Pac-Islander', 'Amer-Indian-Eskimo', 'Other'],
-    gender: ['Male', 'Female'],
+    // race: ['White', 'Black', 'Asian-Pac-Islander', 'Amer-Indian-Eskimo', 'Other'],
+    // gender: ['Male', 'Female'],
     capital_gain: [2174, 0, 14084, 5178, 5013, 2407, 14344, 15024, 7688, 34095, 4064, 4386, 7298, 1409, 3674, 1055, 3464, 2050, 2176, 594, 20051, 6849, 4101, 1111, 8614, 3411, 2597, 25236, 4650, 9386, 2463, 3103, 10605, 2964, 3325, 2580, 3471, 4865, 99999, 6514, 1471, 2329, 2105, 2885, 25124, 10520, 2202, 2961, 27828, 6767, 2228, 1506, 13550, 2635, 5556, 4787, 3781, 3137, 3818, 3942, 914, 401, 2829, 2977, 4934, 2062, 2354, 5455, 15020, 1424, 3273, 22040, 4416, 3908, 10566, 991, 4931, 1086, 7430, 6497, 114, 7896, 2346, 3418, 3432, 2907, 1151, 2414, 2290, 15831, 41310, 4508, 2538, 3456, 6418, 1848, 3887, 5721, 9562, 1455, 2036, 1831, 11678, 2936, 2993, 7443, 6360, 1797, 1173, 4687, 6723, 2009, 6097, 2653, 1639, 18481, 7978, 2387, 5060],
     capital_loss: [0, 2042, 1408, 1902, 1573, 1887, 1719, 1762, 1564, 2179, 1816, 1980, 1977, 1876, 1340, 2206, 1741, 1485, 2339, 2415, 1380, 1721, 2051, 2377, 1669, 2352, 1672, 653, 2392, 1504, 2001, 1590, 1651, 1628, 1848, 1740, 2002, 1579, 2258, 1602, 419, 2547, 2174, 2205, 1726, 2444, 1138, 2238, 625, 213, 1539, 880, 1668, 1092, 1594, 3004, 2231, 1844, 810, 2824, 2559, 2057, 1974, 974, 2149, 1825, 1735, 1258, 2129, 2603, 2282, 323, 4356, 2246, 1617, 1648, 2489, 3770, 1755, 3683, 2267, 2080, 2457, 155, 3900, 2201, 1944, 2467, 2163, 2754, 2472, 1411],
     hours_per_week: [40, 13, 16, 45, 50, 80, 30, 35, 60, 20, 52, 44, 15, 25, 38, 43, 55, 48, 58, 32, 70, 2, 22, 56, 41, 28, 36, 24, 46, 42, 12, 65, 1, 10, 34, 75, 98, 33, 54, 8, 6, 64, 19, 18, 72, 5, 9, 47, 37, 21, 26, 14, 4, 59, 7, 99, 53, 39, 62, 57, 78, 90, 66, 11, 49, 84, 3, 17, 68, 27, 85, 31, 51, 77, 63, 23, 87, 88, 73, 89, 97, 94, 29, 96, 67, 82, 86, 91, 81, 76, 92, 61, 74, 95],
@@ -123,19 +127,19 @@ export class AddCreditComponent implements OnInit {
       }
 
     },
-    race: {
-      label: 'Race',
-      values: {
-        'White': 'Blanc', 'Black': 'Noir', 'Asian-Pac-Islander': 'Asie-Pacifique',
-        'Amer-Indian-Eskimo': 'Indien amér./Esquimau', 'Other': 'Autre'
-      }
+    // race: {
+    //   label: 'Race',
+    //   values: {
+    //     'White': 'Blanc', 'Black': 'Noir', 'Asian-Pac-Islander': 'Asie-Pacifique',
+    //     'Amer-Indian-Eskimo': 'Indien amér./Esquimau', 'Other': 'Autre'
+    //   }
 
-    },
-    gender: {
-      label: 'Genre',
-      values: { 'Male': 'Homme', 'Female': 'Femme' }
+    // },
+    // gender: {
+    //   label: 'Genre',
+    //   values: { 'Male': 'Homme', 'Female': 'Femme' }
 
-    },
+    // },
     capital_gain: {
       label: 'Gain en capital',
       values: {
@@ -341,8 +345,8 @@ export class AddCreditComponent implements OnInit {
       marital_status: ['', [Validators.required]],
       occupation: ['', [Validators.required]],
       relationship: ['', [Validators.required]],
-      race: ['', [Validators.required]],
-      gender: ['', [Validators.required]],
+      race: ['', ],
+      gender: ['', ],
       capital_gain: ['', [Validators.required]],
       capital_loss: ['', [Validators.required]],
       hours_per_week: ['', [Validators.required]],
