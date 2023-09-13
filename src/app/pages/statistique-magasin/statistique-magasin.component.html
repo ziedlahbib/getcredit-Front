@@ -1,7 +1,7 @@
 <form [formGroup]="entform" style="text-align: center">
-    <label>entreprise</label>
+    <label>Entreprise</label>
     <mat-form-field *ngIf="loading">
-      <mat-label>choisir une option</mat-label>
+      <mat-label>Choisir une option</mat-label>
       <mat-select formControlName="entrpriseId" (selectionChange)="getmagasins($event)">
         <mat-option *ngFor="let option of listofEntreprise" [value]="option.entrpriseId">
           {{ option.nom }}

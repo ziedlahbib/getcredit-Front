@@ -11,3 +11,10 @@
   .demo-row-is-clicked {
     font-weight: bold;
   }
+  label {
+    color: #B4886B;
+    font-weight: bold;
+    width: 130px;
+  
+  }
+  label:after { content: ": " }

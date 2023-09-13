@@ -13,7 +13,7 @@
             <div class="table-responsive">
               <div class="example-header" style="margin: 10px;">
                 <mat-form-field>
-                  <input matInput (keyup)="applyFilter($event)" placeholder="search">
+                  <input matInput (keyup)="applyFilter($event)" placeholder="Rechercher">
                 </mat-form-field>
               </div>
   
@@ -123,7 +123,7 @@
   
 
                   <ng-container matColumnDef="clientprenom">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> prénom du client </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Prénom du client </mat-header-cell>
                     <mat-cell *matCellDef="let row">
                       <div>
                         {{row.user?.prenom}}

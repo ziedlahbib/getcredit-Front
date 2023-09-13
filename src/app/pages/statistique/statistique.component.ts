@@ -4,7 +4,7 @@ import { ChartComponent } from "ng-apexcharts";
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
-  ApexChart
+  ApexChart,
 } from "ng-apexcharts";
 
 
@@ -27,8 +27,9 @@ export class StatistiqueComponent {
   public chartOptions: Partial<ChartOptions>| any;
   cref: Number;
   cr: Number;
-
+  label: Array<string> =["crédit refusé", "crédit accepté"];
   constructor(private stat: StatitsiqteserviceService) {
+  
     // Initialize cref and cr variables to 0
     this.cref = 0;
     this.cr = 0;
@@ -46,10 +47,10 @@ export class StatistiqueComponent {
         this.cref = data;
         // Update the chartOptions with the new data
         this.updateChartOptions();
+  
       }
     );
   }
-
   // Function to update the chart options when new data is available
   updateChartOptions() {
     this.chartOptions = {

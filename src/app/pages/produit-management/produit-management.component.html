@@ -6,7 +6,7 @@
       </label>
       <mat-form-field *ngIf="loading">
         <mat-label>Choisir une option</mat-label>
-        <!-- <input matInput placeholder="Search" [formControl]="myControl"> -->
+        <!-- <input matInput placeholder="Rechercher" [formControl]="myControl"> -->
         <mat-select formControlName="entrpriseId" (selectionChange)="getmagasins($event)">
           <mat-option *ngFor="let option of listofEntreprise " [value]="option.entrpriseId">
             {{ option.nom }}
@@ -22,7 +22,7 @@
       </label>
       <mat-form-field>
         <mat-label>Choisir une option</mat-label>
-        <!-- <input matInput placeholder="Search" [formControl]="myControlmagasin"> -->
+        <!-- <input matInput placeholder="Rechercher" [formControl]="myControlmagasin"> -->
         <mat-select formControlName="magasinId" (selectionChange)="getproduitsbymagasin($event)">
           <mat-option *ngFor="let option of listofMagasin " [value]="option.magasinId">
             {{ option.addresse }}
@@ -49,7 +49,7 @@
             <div class="table-responsive">
               <div class="example-header" style="margin: 10px;">
                 <mat-form-field>
-                  <input matInput (keyup)="applyFilter($event)" placeholder="search">
+                  <input matInput (keyup)="applyFilter($event)" placeholder="Rechercher">
                 </mat-form-field>
               </div>
   
