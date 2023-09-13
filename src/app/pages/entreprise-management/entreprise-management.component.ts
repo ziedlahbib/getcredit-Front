@@ -179,7 +179,7 @@ myFunctionusermagasin(rowData:any) {
 }
 ////////////////////////////////userparmagasin////////////////
 usersListparmagasin:User[]=[];
-displayedColumnsusersListparmagasin = ['id','username','nom', 'prenom','adresse','tel','email','role','option'];
+displayedColumnsusersListparmagasin = ['id','username','nom', 'prenom','adresse','tel','email','role','magasinid','entrepriseid','entrepreneurid','option'];
 dataSourceusersListparmagasin: MatTableDataSource<User>;
 @ViewChild(MatPaginator) paginatorusersListparmagasin: MatPaginator;
 @ViewChild(MatSort) sortusersListparmagasin: MatSort;
